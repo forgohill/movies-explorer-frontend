@@ -1,5 +1,8 @@
-import logo from './logo.svg';
+import logo from '../images/logo.svg';
 import './App.css';
+
+import './FilterCheckbox/FilterCheckbox.css';
+import './FilterCheckbox/FilterCheckbox.jsx';
 
 function App() {
   return (
@@ -7,7 +10,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Дипломный проект «Movies explorer»
         </p>
         <a
           className="App-link"
