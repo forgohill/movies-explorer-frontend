@@ -1,0 +1,17 @@
+.navigation__navbar {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  background-color: azure;
+}
+
+.navigation__link {
+  text-decoration: none;
+  color: black;
+}
+
+.navigation__link:hover {
+  text-decoration: none;
+  color: black;
+  background-color: cadetblue;
+}
