@@ -1,10 +1,15 @@
-import React from 'react';
+// to='#about-project'>
+// to='#techs'>
+// to='#about-me'>
 
+
+import React from 'react';
+import './Techs.css';
 const Techs = () => {
   return (
-    <div>
+    <section className='techs' id='techs'>
       <b>Techs</b> — компонент с использованными технологиями.
-    </div>
+    </section>
   );
 }
 

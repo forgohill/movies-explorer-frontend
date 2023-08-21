@@ -1,10 +1,15 @@
+// to='#about-project'>
+// to='#techs'>
+// to='#about-me'>
+
 import React from 'react';
+import './AboutMe.css';
 
 const AboutMe = () => {
   return (
-    <div>
+    <section className='student' id='student'>
       <b>AboutMe</b> — компонент с информацией о студенте.
-    </div>
+    </section>
   );
 }
 

@@ -1,8 +1,8 @@
 .header {
   /* position: relative; */
-
-  padding: 0 70px;
-  margin: 14px auto;
+  margin: 0;
+  padding: 15px 70px 14px;
+  /* margin: 14px 0 14px; */
 
   display: flex;
   flex-direction: row;
@@ -11,6 +11,13 @@
 
   min-height: 44px;
   /* background-color: rgba(137, 43, 226, .1); */
+}
+
+.header_hero {
+  background-color: wheat;
+
+  /* ТУТ ИСТИНЫЙ ХЕДЕР ХЕРОУ */
+  /* background-color: #DDDEE3; */
 }
 
 .header__logo {
@@ -25,14 +32,14 @@
 
 @media screen and (max-width: 768px) {
   .header {
-    padding: 0 30px;
+    padding: 15px 30px 15px;
   }
 }
 
 @media screen and (max-width: 320px) {
   .header {
-    margin: 14px auto;
-    padding: 0 14px;
+    /* margin: 14px auto; */
+    padding: 14px 14px;
   }
 }
 
