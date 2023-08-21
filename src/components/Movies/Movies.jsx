@@ -10,7 +10,7 @@ const Movies = () => {
     <div>
       <b>Movies</b> — компонент страницы с поиском по фильмам. В нём пригодятся эти
       <SearchForm></SearchForm>
-      <Preloader></Preloader>
+      {/* <Preloader></Preloader> */}
       <MoviesCardList></MoviesCardList>
       <MoviesCard></MoviesCard>
     </div>
