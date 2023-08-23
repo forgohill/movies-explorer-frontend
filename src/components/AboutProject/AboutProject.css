@@ -177,6 +177,10 @@
 }
 
 @media screen and (max-width: 610px) {
+  .about {
+    min-height: 721px;
+  }
+
   .about__list {
     width: 88.7%;
     display: flex;
@@ -188,9 +192,16 @@
     align-items: center;
     gap: 56px;
   }
+
+  .about__table {
+    width: 88.7%;
+    margin: 59px 0 0;
+  }
+
 }
 
 @media screen and (max-width: 480px) {
+
   .about {
     min-height: 641px;
   }
@@ -226,10 +237,6 @@
     line-height: 1.45;
   }
 
-  .about__table {
-    width: 88.7%;
-    margin: 59px 0 0;
-  }
 
   .about__cell-paragraph {
     font-size: 11px;

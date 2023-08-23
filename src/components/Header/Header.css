@@ -14,10 +14,10 @@
 }
 
 .header_hero {
-  background-color: wheat;
+  /* background-color: wheat; */
 
   /* ТУТ ИСТИНЫЙ ХЕДЕР ХЕРОУ */
-  /* background-color: #DDDEE3; */
+  background-color: #DDDEE3;
 }
 
 .header__logo {
