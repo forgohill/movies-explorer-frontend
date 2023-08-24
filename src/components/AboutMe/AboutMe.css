@@ -188,6 +188,10 @@
 /* //////////////////////////////////////////////////////// */
 
 @media screen and (max-width: 768px) {
+  .student {
+    min-height: 994px
+  }
+
   .student__title {
     padding: 93px 0 0;
     width: 87%;
@@ -284,7 +288,7 @@
   }
 
   .student__title {
-    padding: 77px 0 0;
+    padding: 74px 0 0;
     width: 91%;
     font-size: 18px;
     font-weight: 400;
@@ -298,7 +302,7 @@
   }
 
   .student__container {
-    margin: 64px 0 0;
+    margin: 58px 0 0;
     padding: 0;
     width: 91%;
 
@@ -313,6 +317,8 @@
   }
 
   .student__about {
+    margin: 20px 0 0;
+
     font-size: 11px;
     line-height: 1.45;
   }
@@ -339,15 +345,16 @@
   .student__title_portfolio {
     width: 91%;
 
-    margin: 69px 0 0;
+    margin: 68px 0 0;
     padding: 0;
 
     font-size: 14px;
     line-height: 1.42;
+    letter-spacing: normal;
   }
 
   .student__list-portfolio {
-    margin: 43px 0 0;
+    margin: 41px 0 0;
     width: 91%;
   }
 

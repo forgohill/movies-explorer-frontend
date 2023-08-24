@@ -184,7 +184,7 @@
 
   .techs__title {
     margin: 0;
-    padding: 75px 0 0;
+    padding: 73px 0 0;
     width: 88.7%;
 
     font-size: 18px;
@@ -193,12 +193,11 @@
   }
 
   .techs__line {
-    margin: 28px 0 0;
+    margin: 27px 0 0;
     width: 88.7%;
   }
 
   .techs__item {
-    letter-spacing: -0.48px;
+    letter-spacing: -1px;
   }
-
 }

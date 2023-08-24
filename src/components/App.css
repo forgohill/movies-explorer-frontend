@@ -1,9 +1,13 @@
 .App {
+  position: relative;
   display: flex;
   flex-direction: column;
 
+  /* justify-content: center; */
+  /* align-items: center; */
   /* text-align: center; */
   max-width: 1280px;
+  height: 100vh;
 
   padding: 0;
   margin: 0 auto;
