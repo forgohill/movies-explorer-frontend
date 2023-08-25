@@ -1,4 +1,5 @@
 import React from 'react';
+import './Movies.css';
 
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
@@ -7,8 +8,8 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 const Movies = () => {
   return (
-    <div>
-      <b>Movies</b> — компонент страницы с поиском по фильмам. В нём пригодятся эти
+    <div className='movies'>
+      {/* <b>Movies</b> — компонент страницы с поиском по фильмам. В нём пригодятся эти */}
       <SearchForm></SearchForm>
       {/* <Preloader></Preloader> */}
       <MoviesCardList></MoviesCardList>

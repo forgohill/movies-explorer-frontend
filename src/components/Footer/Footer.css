@@ -82,6 +82,10 @@
 }
 
 @media screen and (max-width: 320px) {
+  .footer {
+    min-height: 253px;
+  }
+
   .footer__title {
     width: 300px;
 

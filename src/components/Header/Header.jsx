@@ -13,7 +13,7 @@ const Header = ({
   console.log(pathname);
 
   return (
-    <div className={`header ${pathname === '/' ? 'header_hero' : ''}`}>
+    <div className={`header ${pathname === '/' ? 'header_hero' : ''} ${pathname === '/movies' ? 'header_movies' : ''}`}>
       <Link to='/' className='header__logo links__hover'></Link>
       <Navigation onAuth={onAuth} />
       <BurgerMenu />

@@ -21,6 +21,10 @@
   background-color: #DDDEE3;
 }
 
+.header_movies {
+  background-color: #fafafa;
+}
+
 .header__logo {
   display: block;
   width: 38px;

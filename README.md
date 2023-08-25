@@ -1,3 +1,9 @@
+# mediatype
+
+@media screen and (max-width: 768px) {}
+
+@media screen and (max-width: 320px) {}
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
