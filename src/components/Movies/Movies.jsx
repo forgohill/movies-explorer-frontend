@@ -13,7 +13,7 @@ const Movies = () => {
       <SearchForm></SearchForm>
       {/* <Preloader></Preloader> */}
       <MoviesCardList></MoviesCardList>
-      <MoviesCard></MoviesCard>
+      {/* <MoviesCard></MoviesCard> */}
     </div>
   );
 }

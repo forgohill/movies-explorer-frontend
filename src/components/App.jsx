@@ -14,7 +14,7 @@
  */
 
 import React, { useState } from 'react';
-import { Routes, Route, } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { AuthorizedContext } from '../contexts/AuthorizedContext';
 
 import './App.css';
@@ -29,7 +29,12 @@ import Footer from './Footer/Footer';
 import PageNotFound from './PageNotFound/PageNotFound';
 
 function App() {
+
+  const { pathname } = useLocation();
+
   const [isAuthorized, setAuthorized] = useState(false);
+
+
 
   const togleAuthorized = () => {
     // console.log(isAuthorized);
@@ -41,63 +46,67 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <AuthorizedContext.Provider
-        value={isAuthorized}>
-        <Header
-          onAuth={togleAuthorized}
-        ></Header>
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <Main></Main>
-            } />
+    // <div className={`app ${pathname === '/movies' ? 'app_movies' : ''}`}>
+    <div className='app'>
+      {/* <div className='page'> */}
+      <div className={`page ${pathname === '/movies' ? 'app_movies' : ''}`}>
+        <AuthorizedContext.Provider
+          value={isAuthorized}>
+          <Header
+            onAuth={togleAuthorized}
+          ></Header>
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <Main></Main>
+              } />
 
-          <Route
-            path='/movies'
-            element={
-              <Movies></Movies>
-            } />
+            <Route
+              path='/movies'
+              element={
+                <Movies></Movies>
+              } />
 
-          <Route
-            path='/saved-movies'
-            element={
-              <SavedMovies></SavedMovies>
-            } />
+            <Route
+              path='/saved-movies'
+              element={
+                <SavedMovies></SavedMovies>
+              } />
 
-          <Route
-            path='/signup'
-            element={
-              <Register></Register>
-            } />
+            <Route
+              path='/signup'
+              element={
+                <Register></Register>
+              } />
 
-          <Route
-            path='/signin'
-            element={
-              <Login
-                onAuth={togleAuthorized}
-              ></Login>
-            } />
+            <Route
+              path='/signin'
+              element={
+                <Login
+                  onAuth={togleAuthorized}
+                ></Login>
+              } />
 
-          <Route
-            path='/profile'
-            element={
-              <Profile
-                onAuth={togleAuthorized}
-              ></Profile>
-            } />
+            <Route
+              path='/profile'
+              element={
+                <Profile
+                  onAuth={togleAuthorized}
+                ></Profile>
+              } />
 
-          <Route
-            path='*'
-            element={
-              <PageNotFound></PageNotFound>
-            } />
+            <Route
+              path='*'
+              element={
+                <PageNotFound></PageNotFound>
+              } />
 
-        </Routes>
-        <Footer></Footer>
-      </AuthorizedContext.Provider>
-    </div>
+          </Routes>
+          <Footer></Footer>
+        </AuthorizedContext.Provider>
+      </div>
+    </div >
   );
 }
 
