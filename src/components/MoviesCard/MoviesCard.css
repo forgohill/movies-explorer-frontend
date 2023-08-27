@@ -77,6 +77,14 @@
   background-color: #2BE080;
 }
 
+.movie-card__btn_delete-saved {
+  background-image: url(../../images/button_delete-saved-card.svg);
+  background-position: center;
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+}
+
 .movie-card__duration {
   margin: 10px 0 0 0;
   padding: 0;

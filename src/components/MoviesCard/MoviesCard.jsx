@@ -1,5 +1,6 @@
 import React from 'react';
-import './MoviesCard.css';
+import './MoviesCard.css'; import { useLocation } from 'react-router-dom'
+
 // import picture_01 from '../../images/picture_01.jpg'
 
 // const movie = {
@@ -13,7 +14,10 @@ import './MoviesCard.css';
 const MoviesCard = ({
   movie
 }) => {
-  console.log(movie);
+
+  const { pathname } = useLocation();
+
+  // console.log(movie);
   function msToTime(duration) {
     var milliseconds = Math.floor((duration % 1000) / 100),
       seconds = Math.floor((duration / 1000) % 60),
@@ -39,7 +43,11 @@ const MoviesCard = ({
           </h2>
           <p className="movie-card__duration">{msToTime(movie.duration)}</p>
         </div>
-        <button className={`movie-card__btn ${movie.status === true ? 'movie-card__btn_saved' : ''} links__hover`}></button>
+
+        {pathname === '/movies'
+          ? <button className={`movie-card__btn ${movie.status === true ? 'movie-card__btn_saved' : ''} links__hover`}></button>
+          : <button className={`movie-card__btn movie-card__btn_delete-saved links__hover`}></button>}
+        {/* <button className={`movie-card__btn ${movie.status === true ? 'movie-card__btn_saved' : ''} links__hover`}></button> */}
       </div>
 
     </li>

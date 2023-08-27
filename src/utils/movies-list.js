@@ -54,87 +54,87 @@ export const movies = [
     description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
     id: '005'
   },
-  // {
-  //   name: '33 слова о дизайне',
-  //   url: picture_06,
-  //   duration: 6120000,
-  //   status: false,
-  //   description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
-  //   id: '006'
-  // }, {
-  //   name: '33 слова о дизайне',
-  //   url: picture_07,
-  //   duration: 6120000,
-  //   status: false,
-  //   description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
-  //   id: '007'
-  // }, {
-  //   name: '33 слова о дизайне',
-  //   url: picture_08,
-  //   duration: 6120000,
-  //   status: true,
-  //   description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
-  //   id: '008'
-  // },
-  // {
-  //   name: '33 слова о дизайне',
-  //   url: picture_09,
-  //   duration: 6120000,
-  //   status: false,
-  //   description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
-  //   id: '009'
-  // }, {
-  //   name: '33 слова о дизайне',
-  //   url: picture_10,
-  //   duration: 6120000,
-  //   status: false,
-  //   description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
-  //   id: '010'
-  // },
-  // {
-  //   name: '33 слова о дизайне',
-  //   url: picture_11,
-  //   duration: 6120000,
-  //   status: true,
-  //   description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
-  //   id: '011'
-  // }, {
-  //   name: '33 слова о дизайне',
-  //   url: picture_12,
-  //   duration: 6120000,
-  //   status: false,
-  //   description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
-  //   id: '012'
-  // }, {
-  //   name: '33 слова о дизайне',
-  //   url: picture_13,
-  //   duration: 6120000,
-  //   status: true,
-  //   description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
-  //   id: '013'
-  // },
-  // {
-  //   name: '33 слова о дизайне',
-  //   url: picture_14,
-  //   duration: 6120000,
-  //   status: false,
-  //   description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
-  //   id: '014'
-  // },
-  // {
-  //   name: '33 слова о дизайне',
-  //   url: picture_15,
-  //   duration: 6120000,
-  //   status: false,
-  //   description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
-  //   id: '015'
-  // },
-  // {
-  //   name: '33 слова о дизайне',
-  //   url: picture_16,
-  //   duration: 6120000,
-  //   status: true,
-  //   description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
-  //   id: '016'
-  // },
+  {
+    name: '33 слова о дизайне',
+    url: picture_06,
+    duration: 6120000,
+    status: false,
+    description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
+    id: '006'
+  }, {
+    name: '33 слова о дизайне',
+    url: picture_07,
+    duration: 6120000,
+    status: false,
+    description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
+    id: '007'
+  }, {
+    name: '33 слова о дизайне',
+    url: picture_08,
+    duration: 6120000,
+    status: true,
+    description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
+    id: '008'
+  },
+  {
+    name: '33 слова о дизайне',
+    url: picture_09,
+    duration: 6120000,
+    status: false,
+    description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
+    id: '009'
+  }, {
+    name: '33 слова о дизайне',
+    url: picture_10,
+    duration: 6120000,
+    status: false,
+    description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
+    id: '010'
+  },
+  {
+    name: '33 слова о дизайне',
+    url: picture_11,
+    duration: 6120000,
+    status: true,
+    description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
+    id: '011'
+  }, {
+    name: '33 слова о дизайне',
+    url: picture_12,
+    duration: 6120000,
+    status: false,
+    description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
+    id: '012'
+  }, {
+    name: '33 слова о дизайне',
+    url: picture_13,
+    duration: 6120000,
+    status: true,
+    description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
+    id: '013'
+  },
+  {
+    name: '33 слова о дизайне',
+    url: picture_14,
+    duration: 6120000,
+    status: false,
+    description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
+    id: '014'
+  },
+  {
+    name: '33 слова о дизайне',
+    url: picture_15,
+    duration: 6120000,
+    status: false,
+    description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
+    id: '015'
+  },
+  {
+    name: '33 слова о дизайне',
+    url: picture_16,
+    duration: 6120000,
+    status: true,
+    description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime eaque exercitationem officiis esse libero!',
+    id: '016'
+  },
 ];

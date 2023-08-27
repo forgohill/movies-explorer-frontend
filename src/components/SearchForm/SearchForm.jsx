@@ -14,11 +14,12 @@ const SearchForm = () => {
           className="search__form"
           noValidate>
           <fieldset className='search__fieldset'>
-            <label htmlFor="" className='search__label-form'>
+            <label htmlFor="search__input" className='search__label-form'>
               <img src={placeholderSerch} alt="" className='search__search-image' />
               <input
                 type="text"
                 className="search__input"
+                id="search__input"
                 placeholder='Фильм' />
             </label>
           </fieldset>

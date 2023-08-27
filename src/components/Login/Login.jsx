@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
 import { AuthorizedContext } from '../../contexts/AuthorizedContext';
-
+import AuthForm from '../AuthForm/AuthForm'
 const Login = ({
   onAuth,
 }) => {
@@ -10,7 +10,7 @@ const Login = ({
   console.log(Authorized);
 
   return (
-    <div>
+    <main>
       <b>Login</b> — компонент страницы авторизации.
       <Link
         to='/'
@@ -19,7 +19,11 @@ const Login = ({
       >
         ВОЙТИ
       </Link>
-    </div>
+
+      <AuthForm>
+        <div>РЕБЕНОЧЕК</div>
+      </AuthForm>
+    </main>
   );
 }
 
