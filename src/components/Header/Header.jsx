@@ -19,7 +19,9 @@ const Header = ({
         <Navigation onAuth={onAuth} />
         <BurgerMenu />
       </header>
-      : null
+      : <header className='header header_auth'>
+        <Link to='/' className='header__logo links__hover'></Link>
+      </header>
   );
 }
 
