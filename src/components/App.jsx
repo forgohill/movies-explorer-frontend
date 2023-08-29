@@ -45,6 +45,10 @@ function App() {
     return setAuthorized(true);
   };
 
+  const onlyLogin = () => {
+    setAuthorized(true);
+  }
+
   return (
     // <div className={`app ${pathname === '/movies' ? 'app_movies' : ''}`}>
     <div className='app'>
@@ -84,7 +88,7 @@ function App() {
               path='/signin'
               element={
                 <Login
-                  onAuth={togleAuthorized}
+                  onAuth={onlyLogin}
                 ></Login>
               } />
 
