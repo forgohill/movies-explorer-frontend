@@ -1,9 +1,9 @@
-.burger-menu__container {
+.burger-menu {
   display: none;
 }
 
 @media screen and (max-width: 768px) {
-  .burger-menu__container {
+  .burger-menu {
     position: relative;
     display: block;
     width: 44px;
@@ -11,7 +11,7 @@
   }
 
 
-  .burger-menu__container_open {
+  .burger-menu_open {
     position: fixed;
     right: 32px;
     top: 15px;
@@ -205,12 +205,12 @@
 }
 
 @media screen and (max-width: 320px) {
-  .burger-menu__container {
+  .burger-menu {
     width: 39px;
     height: 43px;
   }
 
-  .burger-menu__container_open {
+  .burger-menu_open {
     position: fixed;
     right: 14px;
     top: 14px;

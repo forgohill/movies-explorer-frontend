@@ -37,7 +37,6 @@ function App() {
 
 
   const togleAuthorized = () => {
-    // console.log(isAuthorized);
     console.log('togleAuthorized');
     if (isAuthorized === true) {
       return setAuthorized(false)
@@ -50,9 +49,8 @@ function App() {
   }
 
   return (
-    // <div className={`app ${pathname === '/movies' ? 'app_movies' : ''}`}>
     <div className='app'>
-      <div className={`page ${pathname === '/movies' ? 'app_movies' : ''}`}>
+      <div className='page'>
         <AuthorizedContext.Provider
           value={isAuthorized}>
           <Header

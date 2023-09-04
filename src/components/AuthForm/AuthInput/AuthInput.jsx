@@ -16,7 +16,6 @@ const AuthInput = ({
       <input
         placeholder={placeholderInput}
         name={nameInput}
-        // value={inptValue}
         className='input-auth__input' id={idInput}
         type='text'
       />

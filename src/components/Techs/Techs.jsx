@@ -1,7 +1,3 @@
-// to='#about-project'>
-// to='#techs'>
-// to='#about-me'>
-
 
 import React from 'react';
 import './Techs.css';

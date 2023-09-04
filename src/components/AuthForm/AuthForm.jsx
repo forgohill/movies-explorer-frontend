@@ -27,7 +27,7 @@ const AuthForm = ({ title,
       <div className='auth__wrapper'>
         <p className="auth__paragraph">{authMessage}<span className='auth__link'><Link
           to={endpoint}
-          className='auth__link links__hover'
+          className='auth__link links-hover'
         >
           {authLinkMessage}
         </Link>

@@ -15,7 +15,7 @@
   margin: 0 auto;
 }
 
-.links__hover:hover {
+.links-hover:hover {
   transition: 1s ease;
   opacity: .7;
 }

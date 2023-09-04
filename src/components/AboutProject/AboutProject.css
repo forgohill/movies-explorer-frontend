@@ -37,7 +37,7 @@
   list-style: none;
 }
 
-.about_item {
+.about__item {
   margin: 0;
   padding: 0;
   max-width: 550px;
@@ -147,7 +147,7 @@
     width: 87%;
   }
 
-  .about_item {
+  .about__item {
     max-width: 319px;
   }
 
@@ -213,7 +213,7 @@
 
 
 
-  .about_item {
+  .about__item {
     max-width: 284px;
   }
 

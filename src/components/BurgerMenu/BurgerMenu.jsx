@@ -26,8 +26,6 @@ const BurgerMenu = () => {
   const [isChecked, setChecked] = useState(false);
 
   const togleChecked = () => {
-    // setChecked(false);
-    // console.log(isChecked);
     if (isChecked === true) {
       return setChecked(false)
     }
@@ -39,14 +37,10 @@ const BurgerMenu = () => {
     setChecked(checked);
     console.log(isChecked);
   }
-  // burger-menu__container_open
-  // {`  ${(isChecked === true ? '' : '')} `}
   return (
     <>
       {Authorized === true ?
-        < div className={`burger-menu__container  ${(isChecked === true ? '' : '')} `} >
-          {/* < div
-           className={`'burger-menu__container' ${(isChecked === true ? 'burger-menu__container_before-active' : '')}`} > */}
+        < div className={`burger-menu ${(isChecked === true ? '' : '')}`} >
           < input
             checked={isChecked}
             onChange={handlerCheched}
@@ -57,13 +51,12 @@ const BurgerMenu = () => {
 
           <label
             htmlFor='burger-menu__checkbox'
-            // onClick={togleChecked}
             className={`burger-menu__label ${(isChecked === true ? 'burger-menu__label_active' : '')} `}>
           </label>
 
           <ul
             onClick={togleChecked}
-            className='burger-menu__line-list links__hover'>
+            className='burger-menu__line-list links-hover'>
             <li className="burger-menu__line-item"></li>
             <li className="burger-menu__line-item"></li>
             <li className="burger-menu__line-item"></li>
@@ -82,13 +75,11 @@ const BurgerMenu = () => {
                 <NavLink
                   className={({ isActive, isPending }) =>
                     isPending
-                      ? "burger-menu__link links__hover"
+                      ? "burger-menu__link links-hover"
                       :
                       isActive
                         ? "burger-menu__link burger-menu__link_active"
-                        : "burger-menu__link links__hover"}
-                  // className='burger-menu__link
-                  // links__hover '
+                        : "burger-menu__link links-hover"}
                   onClick={togleChecked}
                   to="/"
                 >
@@ -97,14 +88,14 @@ const BurgerMenu = () => {
               </li>
               <li className='burger-menu__item'>
                 <NavLink
-                  // className='burger-menu__link links__hover'
+
                   className={({ isActive, isPending }) =>
                     isPending
-                      ? "burger-menu__link links__hover"
+                      ? "burger-menu__link links-hover"
                       :
                       isActive
                         ? "burger-menu__link burger-menu__link_active"
-                        : "burger-menu__link links__hover"}
+                        : "burger-menu__link links-hover"}
                   onClick={togleChecked}
                   to="/movies">
                   Фильмы
@@ -112,14 +103,14 @@ const BurgerMenu = () => {
               </li>
               <li className='burger-menu__item'>
                 <NavLink
-                  // className='burger-menu__link links__hover'
+
                   className={({ isActive, isPending }) =>
                     isPending
-                      ? "burger-menu__link links__hover"
+                      ? "burger-menu__link links-hover"
                       :
                       isActive
                         ? "burger-menu__link burger-menu__link_active"
-                        : "burger-menu__link links__hover"}
+                        : "burger-menu__link links-hover"}
                   onClick={togleChecked}
                   to="/saved-movies">
                   Сохранённые фильмы

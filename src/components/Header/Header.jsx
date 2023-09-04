@@ -15,12 +15,12 @@ const Header = ({
     pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' || pathname === '/profile'
       ?
       <header className={`header ${pathname === '/' ? 'header_hero' : ''} ${pathname === '/movies' ? 'header_movies' : ''}`}>
-        <Link to='/' className='header__logo links__hover'></Link>
+        <Link to='/' className='header__logo links-hover'></Link>
         <Navigation onAuth={onAuth} />
         <BurgerMenu />
       </header>
       : <header className='header header_auth'>
-        <Link to='/' className='header__logo links__hover'></Link>
+        <Link to='/' className='header__logo links-hover'></Link>
       </header>
   );
 }
@@ -35,7 +35,7 @@ export default Header;
         path={'/'}
         element={
           <header className={`header ${pathname === '/' ? 'header_hero' : ''} ${pathname === '/movies' ? 'header_movies' : ''}`}>
-            <Link to='/' className='header__logo links__hover'></Link>
+            <Link to='/' className='header__logo links-hover'></Link>
             <Navigation onAuth={onAuth} />
             <BurgerMenu />
           </header>
@@ -46,7 +46,7 @@ export default Header;
         path={'/movies'}
         element={
           <header className={`header ${pathname === '/' ? 'header_hero' : ''} ${pathname === '/movies' ? 'header_movies' : ''}`}>
-            <Link to='/' className='header__logo links__hover'></Link>
+            <Link to='/' className='header__logo links-hover'></Link>
             <Navigation onAuth={onAuth} />
             <BurgerMenu />
           </header>
@@ -57,7 +57,7 @@ export default Header;
         path={'/saved-movies'}
         element={
           <header className={`header ${pathname === '/' ? 'header_hero' : ''} ${pathname === '/movies' ? 'header_movies' : ''}`}>
-            <Link to='/' className='header__logo links__hover'></Link>
+            <Link to='/' className='header__logo links-hover'></Link>
             <Navigation onAuth={onAuth} />
             <BurgerMenu />
           </header>
@@ -68,7 +68,7 @@ export default Header;
         path={'/profile'}
         element={
           <header className={`header ${pathname === '/' ? 'header_hero' : ''} ${pathname === '/movies' ? 'header_movies' : ''}`}>
-            <Link to='/' className='header__logo links__hover'></Link>
+            <Link to='/' className='header__logo links-hover'></Link>
             <Navigation onAuth={onAuth} />
             <BurgerMenu />
           </header>

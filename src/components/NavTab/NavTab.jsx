@@ -1,7 +1,3 @@
-// to='#about-project'>
-// to='#techs'>
-// to='#about-me'>
-
 import React from 'react';
 import { HashLink } from 'react-router-hash-link';
 import './NavTab.css';
@@ -12,7 +8,7 @@ const NavTab = () => {
       <ul className='navtab__list'>
         <li className="navtab__item">
           <HashLink
-            className='navtab__link links__hover'
+            className='navtab__link links-hover'
             to='#about'
             smooth>
             О проекте
@@ -20,7 +16,7 @@ const NavTab = () => {
         </li>
         <li className="navtab__item">
           <HashLink
-            className='navtab__link links__hover'
+            className='navtab__link links-hover'
             to='#techs'
             smooth>
             Технологии
@@ -28,7 +24,7 @@ const NavTab = () => {
         </li>
         <li className="navtab__item">
           <HashLink
-            className='navtab__link links__hover'
+            className='navtab__link links-hover'
             to='#student'
             smooth>
             Студент

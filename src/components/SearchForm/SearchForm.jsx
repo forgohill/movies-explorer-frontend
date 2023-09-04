@@ -23,7 +23,7 @@ const SearchForm = () => {
                 placeholder='Фильм' />
             </label>
           </fieldset>
-          <button type='submit' className="search__button links__hover"></button>
+          <button type='submit' className="search__button links-hover"></button>
         </form>
         <div className="search__wrapper">
           <label

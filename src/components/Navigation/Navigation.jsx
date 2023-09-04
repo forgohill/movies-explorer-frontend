@@ -22,7 +22,6 @@ const Navigation = () => {
   const Authorized = React.useContext(AuthorizedContext);
   console.log(Authorized);
   return (
-    // <nav className='navigation'>
     <nav
       className={`navigation ${Authorized === true
         ? 'navigation_invisible'
@@ -36,14 +35,11 @@ const Navigation = () => {
                   to='/movies'
                   className={({ isActive, isPending }) =>
                     isPending
-                      ? "navigation__link navigation__link_films links__hover"
+                      ? "navigation__link navigation__link_films links-hover"
                       :
                       isActive
                         ? "navigation__link navigation__link_films navigation__link_active"
-                        : "navigation__link navigation__link_films links__hover"}
-                // className='navigation__link
-                //   navigation__link_films
-                //   links__hover'
+                        : "navigation__link navigation__link_films links-hover"}
                 >
                   Фильмы
                 </NavLink>
@@ -53,28 +49,15 @@ const Navigation = () => {
                   to='/saved-movies'
                   className={({ isActive, isPending }) =>
                     isPending
-                      ? "navigation__link navigation__link_films links__hover"
+                      ? "navigation__link navigation__link_films links-hover"
                       :
                       isActive
                         ? "navigation__link navigation__link_films navigation__link_active"
-                        : "navigation__link navigation__link_films links__hover"}
-                // className='navigation__link
-                //   navigation__link_films
-                //   links__hover'
+                        : "navigation__link navigation__link_films links-hover"}
                 >
                   Сохранённые фильмы
                 </NavLink></li>
             </ul>
-            {/* <li className='navigation__item'>
-                      <Link
-                        to='/profile'
-                        className='navigation__link
-                        navigation__link_account
-                        links__hover'>
-                        <div className='navigation__icon-account'></div>
-                        Аккаунт
-                      </Link>
-                    </li> */}
             <li className='navigation__item'>
               <AccountButton></AccountButton>
             </li>
@@ -89,7 +72,7 @@ const Navigation = () => {
                 to='/signup'
                 className='navigation__link
                         navigation__link_registration
-                        links__hover'>
+                        links-hover'>
                 Регистрация
               </Link>
             </li>
@@ -97,7 +80,7 @@ const Navigation = () => {
               <Link
                 to='/signin'
                 className='navigation__button-login
-                        links__hover'>
+                        links-hover'>
                 Войти
               </Link>
             </li>

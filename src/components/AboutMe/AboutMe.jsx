@@ -1,7 +1,3 @@
-// to='#about-project'>
-// to='#techs'>
-// to='#about-me'>
-
 import React from 'react';
 import './AboutMe.css';
 import portret from '../../images/foto_title.jpg'
@@ -21,21 +17,21 @@ const AboutMe = () => {
             <li className='student__contact'>
               <a href="https://github.com/forgohill"
                 target='_blank'
-                className="student__link links__hover">
+                className="student__link links-hover">
                 Github
               </a>
             </li>
             <li className='student__contact'>
               <a href="https://vk.com/marlo"
                 target='_blank'
-                className="student__link links__hover">
+                className="student__link links-hover">
                 Vkontakte
               </a>
             </li>
             <li className='student__contact'>
               <a href="https://www.instagram.com/forgohill/"
                 target='_blank'
-                className="student__link links__hover">
+                className="student__link links-hover">
                 Instagram
               </a>
             </li>
@@ -53,7 +49,7 @@ const AboutMe = () => {
         <li className='student__item-portfolio'>
           <a href="https://github.com/forgohill/how-to-learn"
             target='_blank'
-            className="student__link-portfolio links__hover">
+            className="student__link-portfolio links-hover">
             Статичный сайт
             <span className="student__arrow-portfolio">
               ↗
@@ -63,7 +59,7 @@ const AboutMe = () => {
         <li className='student__item-portfolio'>
           <a href="https://github.com/forgohill/russian-travel"
             target='_blank'
-            className="student__link-portfolio links__hover">
+            className="student__link-portfolio links-hover">
             Адаптивный сайт
             <span className="student__arrow-portfolio">
               ↗
@@ -73,7 +69,7 @@ const AboutMe = () => {
         <li className='student__item-portfolio'>
           <a href="https://github.com/forgohill/react-mesto-auth"
             target='_blank'
-            className="student__link-portfolio links__hover">
+            className="student__link-portfolio links-hover">
             Одностраничное приложение
             <span className="student__arrow-portfolio">
               ↗

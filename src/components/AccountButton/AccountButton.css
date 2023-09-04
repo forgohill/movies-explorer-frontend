@@ -1,9 +1,9 @@
-.profile-btn__link {
+.profile-btn {
   display: flex;
   text-decoration: none;
 }
 
-.profile-btn__link_account {
+.profile-btn_account {
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -7,9 +7,9 @@ const AccountButton = ({ isChecked, togleChecked }) => {
     <Link
       onClick={togleChecked}
       to='/profile'
-      className='profile-btn__link
-      profile-btn__link_account
-      links__hover'>
+      className='profile-btn
+      profile-btn_account
+      links-hover'>
       <div className='profile-btn__icon-account'></div>
       Аккаунт
     </Link>

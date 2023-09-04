@@ -37,14 +37,11 @@ const Navigation = () => {
                           to='/movies'
                           className={({ isActive, isPending }) =>
                             isPending
-                              ? "navigation__link navigation__link_films links__hover"
+                              ? "navigation__link navigation__link_films links-hover"
                               :
                               isActive
                                 ? "navigation__link navigation__link_films burger-menu__link_active"
-                                : "navigation__link navigation__link_films  navigation__link_active links__hover"}
-                        // className='navigation__link
-                        //   navigation__link_films
-                        //   links__hover'
+                                : "navigation__link navigation__link_films  navigation__link_active links-hover"}
                         >
                           Фильмы
                         </NavLink>
@@ -54,28 +51,16 @@ const Navigation = () => {
                           to='/saved-movies'
                           className={({ isActive, isPending }) =>
                             isPending
-                              ? "navigation__link navigation__link_films links__hover"
+                              ? "navigation__link navigation__link_films links-hover"
                               :
                               isActive
                                 ? "navigation__link navigation__link_films burger-menu__link_active"
-                                : "navigation__link navigation__link_films  navigation__link_active links__hover"}
-                        // className='navigation__link
-                        //   navigation__link_films
-                        //   links__hover'
+                                : "navigation__link navigation__link_films  navigation__link_active links-hover"}
                         >
                           Сохранённые фильмы
                         </NavLink></li>
                     </ul>
-                    {/* <li className='navigation__item'>
-                      <Link
-                        to='/profile'
-                        className='navigation__link
-                        navigation__link_account
-                        links__hover'>
-                        <div className='navigation__icon-account'></div>
-                        Аккаунт
-                      </Link>
-                    </li> */}
+
                     <li className='navigation__item'>
                       <AccountButton></AccountButton>
                     </li>
@@ -90,7 +75,7 @@ const Navigation = () => {
                         to='/signup'
                         className='navigation__link
                         navigation__link_registration
-                        links__hover'>
+                        links-hover'>
                         Регистрация
                       </Link>
                     </li>
@@ -98,7 +83,7 @@ const Navigation = () => {
                       <Link
                         to='/signin'
                         className='navigation__button-login
-                        links__hover'>
+                        links-hover'>
                         Войти
                       </Link>
                     </li>
@@ -119,7 +104,7 @@ const Navigation = () => {
                       to='/'
                       className='navigation__link
                       navigation__link_main
-                      links__hover'>
+                      links-hover'>
                       Главная
                     </Link>
                   </li>
@@ -129,7 +114,7 @@ const Navigation = () => {
                       className='navigation__link
                       navigation__link_films
                       navigation__link_active
-                      links__hover'>
+                      links-hover'>
                       Фильмы
                     </Link>
                   </li>
@@ -138,7 +123,7 @@ const Navigation = () => {
                       to='/saved-movies'
                       className='navigation__link
                       navigation__link_films
-                      links__hover'>
+                      links-hover'>
                       Сохранённые фильмы
                     </Link>
                   </li>
@@ -147,7 +132,7 @@ const Navigation = () => {
                   <Link to='/profile'
                     className='navigation__link
                     navigation__link_account
-                    links__hover'>
+                    links-hover'>
                     <div className='navigation__icon-account'></div>
                     Аккаунт
                   </Link>
@@ -167,17 +152,12 @@ const Navigation = () => {
                       to='/'
                       className='navigation__link
                       navigation__link_main
-                      links__hover'>
+                      links-hover'>
                       Главная
                     </Link>
                   </li>
                   <li className='navigation__item'>
-                    {/* <Link to='/movies'
-                      className='navigation__link
-                      navigation__link_films
-                      links__hover'>
-                      Фильмы
-                    </Link> */}
+
                     <li className='navigation__item'>
                       <AccountButton></AccountButton>
                     </li>
@@ -189,20 +169,13 @@ const Navigation = () => {
                       className='navigation__link
                       navigation__link_films
                       navigation__link_active
-                      links__hover'>
+                      links-hover'>
                       Сохранённые фильмы
                     </Link>
                   </li>
                 </ul>
                 <li className='navigation__item'>
-                  {/* <Link
-                    to='/profile'
-                    className='navigation__link
-                    navigation__link_account
-                    links__hover'>
-                    <div className='navigation__icon-account'></div>
-                    Аккаунт
-                  </Link> */}
+
                   <li className='navigation__item'>
                     <AccountButton></AccountButton>
                   </li>

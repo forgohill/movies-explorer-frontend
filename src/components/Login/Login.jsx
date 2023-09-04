@@ -54,7 +54,7 @@ const Login = ({
       {/* <div className='login__wrapper'>
         <p className="login__paragraph">Ещё не зарегистрированы? <Link
           to='/signup'
-          className='login__link links__hover'
+          className='login__link links-hover'
         >
           Регистрация
         </Link>
