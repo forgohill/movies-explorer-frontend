@@ -32,7 +32,6 @@ const MoviesCard = ({
 
   return (
     <li className='movie-card'>
-      {/* <b>MoviesCard</b> — компонент одной карточки фильма. */}
       <img src={movie.url}
         alt={movie.description}
         className='movie-card__image' />
@@ -47,7 +46,6 @@ const MoviesCard = ({
         {pathname === '/movies'
           ? <button className={`movie-card__btn ${movie.status === true ? 'movie-card__btn_saved' : ''} links__hover`}></button>
           : <button className={`movie-card__btn movie-card__btn_delete-saved links__hover`}></button>}
-        {/* <button className={`movie-card__btn ${movie.status === true ? 'movie-card__btn_saved' : ''} links__hover`}></button> */}
       </div>
 
     </li>

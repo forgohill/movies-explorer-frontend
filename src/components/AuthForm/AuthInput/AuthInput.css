@@ -5,9 +5,9 @@
 
   display: flex;
   flex-direction: column;
-  /* gap: 5px; */
+
   color: #A0A0A0;
-  font-family: Inter;
+  font-family: 'Inter', Arial, sans-serif;
   font-size: 10px;
   font-weight: 400;
   line-height: 1.2;
@@ -21,10 +21,9 @@
 .input-auth__input {
   margin: 5px 0 0 0;
   padding: 0 0 10px 0;
-  /* height: 28px; */
 
   color: #000;
-  font-family: Inter;
+  font-family: 'Inter', Arial, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -51,13 +50,12 @@
 .input-auth__error {
   position: absolute;
 
-  /* margin: 6px 0 0; */
   margin: 0;
   padding: 0;
 
   top: 50px;
   color: #EE3465;
-  font-family: Inter;
+  font-family: 'Inter', Arial, sans-serif;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;

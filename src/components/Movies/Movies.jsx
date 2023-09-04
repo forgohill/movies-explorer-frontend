@@ -9,11 +9,8 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 const Movies = () => {
   return (
     <main className='movies'>
-      {/* <b>Movies</b> — компонент страницы с поиском по фильмам. В нём пригодятся эти */}
       <SearchForm></SearchForm>
-      {/* <Preloader></Preloader> */}
       <MoviesCardList></MoviesCardList>
-      {/* <MoviesCard></MoviesCard> */}
     </main>
   );
 }

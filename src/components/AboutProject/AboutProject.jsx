@@ -27,7 +27,6 @@ const AboutProject = () => {
           <p className='about__cell-paragraph about__cell-paragraph_frontend'>Front-end</p>
         </li>
       </ul>
-      {/* <b>AboutProject</b> компонент с описанием дипломного проекта. */}
     </section>
   );
 }

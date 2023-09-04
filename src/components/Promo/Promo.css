@@ -1,15 +1,11 @@
 .promo {
   max-width: 1280px;
   min-height: 0;
-  /* min-height: 524px; */
 
   background-image: url(../../images/landing-logo.svg);
-  /* background-position: center; */
   background-position: center 82px;
   background-repeat: no-repeat;
   background-size: 320px 320px;
-
-  /* background-size: contain; */
   background-color: #DDDEE3;
 }
 
@@ -19,17 +15,12 @@
 
   color: #000;
   text-align: center;
-  font-family: Inter;
+  font-family: 'Inter', Arial, sans-serif;
   font-size: 50px;
   font-weight: 400;
   line-height: 1.16;
   letter-spacing: -2px;
   max-width: 730px;
-
-  /* background-image: url(../../images/landing-logo.svg); */
-  /* background-position: center; */
-  /* background-repeat: no-repeat; */
-  /* background-size: 320px 320px; */
 }
 
 @media screen and (max-width: 768px) {

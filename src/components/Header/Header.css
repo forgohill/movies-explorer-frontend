@@ -1,25 +1,17 @@
 .header {
-  /* position: relative; */
+  position: relative;
   margin: 0;
   padding: 15px 70px 14px;
-  /* margin: 14px 0 14px; */
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* align-self: stretch; */
-  /* max-width: 1280px; */
+
   min-height: 44px;
-  /* background-color: rgba(137, 43, 226, .1); */
   flex: 0 0 auto;
-  /* width: 100%; */
 }
 
 .header_hero {
-  /* background-color: wheat; */
-
-  /* ТУТ ИСТИНЫЙ ХЕДЕР ХЕРОУ */
   background-color: #DDDEE3;
 }
 
@@ -41,8 +33,6 @@
   background-image: url(../../images/logo.svg);
   background-position: center;
   background-repeat: no-repeat;
-  caret-color: transparent;
-
 }
 
 
@@ -52,29 +42,19 @@
   }
 
   .header_auth {
-    /* margin: 0 auto; */
     padding: 232px 0px 40px;
-    /* min-height: auto; */
-    /* width: 396px; */
   }
 }
 
 @media screen and (max-width: 450px) {
   .header_auth {
-    /* margin: 0 auto; */
     padding: 56px 0px 50px;
-    /* min-height: auto; */
-    /* width: 260px; */
     width: auto;
   }
 }
 
 @media screen and (max-width: 320px) {
   .header {
-    /* margin: 14px auto; */
     padding: 14px 14px;
   }
-
 }
-
-/* @media screen and (max-width: 320px) {} */

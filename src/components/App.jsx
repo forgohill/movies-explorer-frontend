@@ -52,7 +52,6 @@ function App() {
   return (
     // <div className={`app ${pathname === '/movies' ? 'app_movies' : ''}`}>
     <div className='app'>
-      {/* <div className='page'> */}
       <div className={`page ${pathname === '/movies' ? 'app_movies' : ''}`}>
         <AuthorizedContext.Provider
           value={isAuthorized}>

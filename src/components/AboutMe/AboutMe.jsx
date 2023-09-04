@@ -9,7 +9,6 @@ import portret from '../../images/foto_title.jpg'
 const AboutMe = () => {
   return (
     <section className='student' id='student'>
-      {/* <b>AboutMe</b> — компонент с информацией о студенте. */}
       <h2 className="student__title">Студент</h2>
       <div className="student__line"></div>
       <ul className='student__container'>
@@ -20,17 +19,23 @@ const AboutMe = () => {
 
           <ul className='student__contacts'>
             <li className='student__contact'>
-              <a href="#" className="student__link links__hover">
+              <a href="https://github.com/forgohill"
+                target='_blank'
+                className="student__link links__hover">
                 Github
               </a>
             </li>
             <li className='student__contact'>
-              <a href="#" className="student__link links__hover">
+              <a href="https://vk.com/marlo"
+                target='_blank'
+                className="student__link links__hover">
                 Vkontakte
               </a>
             </li>
             <li className='student__contact'>
-              <a href="#" className="student__link links__hover">
+              <a href="https://www.instagram.com/forgohill/"
+                target='_blank'
+                className="student__link links__hover">
                 Instagram
               </a>
             </li>
@@ -46,7 +51,9 @@ const AboutMe = () => {
       <h2 className="student__title student__title_portfolio">Портфолио</h2>
       <ul className='student__list-portfolio'>
         <li className='student__item-portfolio'>
-          <a href="" className="student__link-portfolio links__hover">
+          <a href="https://github.com/forgohill/how-to-learn"
+            target='_blank'
+            className="student__link-portfolio links__hover">
             Статичный сайт
             <span className="student__arrow-portfolio">
               ↗
@@ -54,7 +61,9 @@ const AboutMe = () => {
           </a>
         </li>
         <li className='student__item-portfolio'>
-          <a href="" className="student__link-portfolio links__hover">
+          <a href="https://github.com/forgohill/russian-travel"
+            target='_blank'
+            className="student__link-portfolio links__hover">
             Адаптивный сайт
             <span className="student__arrow-portfolio">
               ↗
@@ -62,7 +71,9 @@ const AboutMe = () => {
           </a>
         </li>
         <li className='student__item-portfolio'>
-          <a href="" className="student__link-portfolio links__hover">
+          <a href="https://github.com/forgohill/react-mesto-auth"
+            target='_blank'
+            className="student__link-portfolio links__hover">
             Одностраничное приложение
             <span className="student__arrow-portfolio">
               ↗

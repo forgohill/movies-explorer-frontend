@@ -27,38 +27,13 @@ const MoviesCardList = () => {
     )
   });
 
-  // console.log(movies);
   return (
     <section className='movies-list'>
       <ul className='movies-list__list'>
-        {/* {moviesList} */}
         {pathname === '/movies' ? moviesList : moviesSavedList}
-        {/* <li className='movies-list__item'> */}
-        {/* <MoviesCard /> */}
-        {/* </li> */}
-        {/* <li className='movies-list__item'> */}
-        {/* <MoviesCard /> */}
-        {/* </li> */}
-        {/* <li className='movies-list__item'> */}
-        {/* <MoviesCard /> */}
-        {/* </li> */}
-        {/* <li className='movies-list__item'> */}
-        {/* <MoviesCard /> */}
-        {/* </li> */}
-        {/* <li className='movies-list__item'> */}
-        {/* <MoviesCard /> */}
-        {/* </li> */}
-        {/* <li className='movies-list__item'> */}
-        {/* <MoviesCard /> */}
-        {/* </li> */}
-        {/* <li className='movies-list__item'> */}
-        {/* <MoviesCard /> */}
-        {/* </li> */}
       </ul>
       {pathname === '/movies' ? <button type='button' className='movies-list__btn-more' >Ещё</button>
         : <div className='movies-list__saveddevider'></div>}
-
-      {/* <b>MoviesCardList</b> — компонент, который управляет отрисовкой карточек фильмов на страницу и их количеством. */}
     </section >
   );
 }

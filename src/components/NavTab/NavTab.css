@@ -10,7 +10,6 @@
 
 .navtab__list {
   display: flex;
-  /* align-items: center; */
   flex-wrap: wrap;
   gap: 40px;
   margin: 0;
@@ -29,7 +28,7 @@
   display: block;
 
   color: #000;
-  font-family: Inter;
+  font-family: 'Inter', Arial, sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 500;

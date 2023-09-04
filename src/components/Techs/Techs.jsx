@@ -8,7 +8,6 @@ import './Techs.css';
 const Techs = () => {
   return (
     <section className='techs' id='techs'>
-      {/* <b>Techs</b> — компонент с использованными технологиями. */}
       <h2 className='techs__title'>Технологии</h2>
       <div className="techs__line"></div>
       <h3 className='techs__subtitle'>7 технологий</h3>

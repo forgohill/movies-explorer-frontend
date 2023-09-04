@@ -39,11 +39,12 @@ const BurgerMenu = () => {
     setChecked(checked);
     console.log(isChecked);
   }
-
+  // burger-menu__container_open
+  // {`  ${(isChecked === true ? '' : '')} `}
   return (
     <>
       {Authorized === true ?
-        < div className='burger-menu__container' >
+        < div className={`burger-menu__container  ${(isChecked === true ? '' : '')} `} >
           {/* < div
            className={`'burger-menu__container' ${(isChecked === true ? 'burger-menu__container_before-active' : '')}`} > */}
           < input
@@ -53,10 +54,12 @@ const BurgerMenu = () => {
             type="checkbox"
             className='burger-menu__checkbox'
             id='burger-menu__checkbox' />
+
           <label
             htmlFor='burger-menu__checkbox'
             // onClick={togleChecked}
-            className='burger-menu__label'></label>
+            className={`burger-menu__label ${(isChecked === true ? 'burger-menu__label_active' : '')} `}>
+          </label>
 
           <ul
             onClick={togleChecked}
@@ -129,6 +132,7 @@ const BurgerMenu = () => {
               </li>
             </ul>
           </nav>
+
         </div >
         : null
       }

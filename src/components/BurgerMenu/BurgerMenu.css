@@ -1,7 +1,5 @@
 .burger-menu__container {
   display: none;
-  /* caret-color: transparent; */
-
 }
 
 @media screen and (max-width: 768px) {
@@ -10,12 +8,18 @@
     display: block;
     width: 44px;
     height: 44px;
-    /* background-color: yellow; */
   }
+
+
+  .burger-menu__container_open {
+    position: fixed;
+    right: 32px;
+    top: 15px;
+  }
+
 
   .burger-menu__checkbox {
     display: none;
-    /* caret-color: transparent; */
   }
 
   .burger-menu__label {
@@ -25,13 +29,13 @@
     left: 8px;
     width: 28px;
     height: 23px;
-    /* background-color: chocolate; */
+
     cursor: pointer;
     z-index: 10;
     transition: .3s all;
-    caret-color: transparent;
-    /* caret-color: transparent; */
   }
+
+  .burger-menu__label_active {}
 
   .burger-menu__line-list {
     position: absolute;
@@ -50,18 +54,14 @@
 
   .burger-menu__line-item {
     position: absolute;
-    /* top: 11px;
-    left: 8px; */
     top: 0;
     left: 0;
-
     width: 28px;
     height: 3px;
-    background-color: black;
 
     transition: .3s all;
     z-index: 11;
-    caret-color: transparent;
+    background-color: black;
   }
 
   .burger-menu__line-item:nth-of-type(2),
@@ -77,38 +77,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* display: block; */
-    /* position: relative; */
-    /* position: absolute; */
+
     position: fixed;
     width: 67.7%;
-    /* height: 150px; */
     height: 100vh;
-    /* bottom: 0; */
-    /* left: 0; */
-    /* top: -70px; */
-    /* right: -30px; */
+
     top: 0px;
-    /* top: -52px; */
     right: 0px;
-    /* min-height: 0; */
+
     font-size: 0;
-
-    /* overflow: hidden; */
-
     transition: .3s all;
     transform: translateX(100%);
-    /* transform: translateY(100%); */
-    /* background-color: rgba(238, 130, 238, .5); */
     background-color: #FFF;
     z-index: 6;
   }
 
-  /* burger-menu__container */
-  /* burger-menu__navigation_active */
-  /* .burger-menu__navigation_active::before { */
   .burger-menu__cover {
-    /* content: ''; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -131,10 +115,11 @@
     align-items: center;
     margin: 0;
     padding: 0;
+    transition: .3s all;
   }
 
   .burger-menu__item {
-    margin: 34px 0 0;
+    margin: 29px 0 0;
     padding: 0;
     display: block;
     list-style: none;
@@ -157,7 +142,7 @@
 
     color: #000;
     text-align: center;
-    font-family: Inter;
+    font-family: 'Inter', Arial, sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -167,26 +152,31 @@
   }
 
   .burger-menu__link_active {
-    /* text-decoration: underline */
     color: #000;
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-underline-offset: 8px;
 
     text-decoration-thickness: 2px;
   }
 
-  /* .burger-menu__container_before-active::before { */
   .burger-menu__checkbox:checked~.burger-menu__cover {
     transform: translateX(0%);
   }
 
   .burger-menu__checkbox:checked~.burger-menu__label {
-    left: 27px;
+    position: fixed;
+    top: 25px;
+    right: 27px;
+    left: auto;
     width: 20px;
   }
 
   .burger-menu__checkbox:checked~.burger-menu__line-list {
-    left: 27px;
+    position: fixed;
+    top: 25px;
+    right: 27px;
+    left: auto;
+
     width: 20px;
   }
 
@@ -220,22 +210,21 @@
     height: 43px;
   }
 
+  .burger-menu__container_open {
+    position: fixed;
+    right: 14px;
+    top: 14px;
+  }
+
   .burger-menu__label {
     width: 22px;
-    /* background-color: chocolate; */
   }
 
   .burger-menu__line-list {
-    /* position: absolute; */
-    /* display: block; */
-    /* margin: 0; */
-    /* padding: 0; */
     width: 22px;
     height: 20.5px;
     top: 13px;
     left: 8px;
-
-
   }
 
   .burger-menu__line-item {
@@ -262,15 +251,19 @@
 
 
   .burger-menu__checkbox:checked~.burger-menu__label {
-    left: 13px;
-    top: 4px;
+    /* left: 13px; */
+    right: 20px;
+    top: 20px;
     width: 20px;
     height: 18px;
+
+    background-color: aqua;
   }
 
   .burger-menu__checkbox:checked~.burger-menu__line-list {
-    left: 13px;
-    top: 5px;
+    /* left: 13px; */
+    right: 20px;
+    top: 20px;
     width: 20px;
   }
 
@@ -319,9 +312,6 @@
 @media screen and (max-height: 451px) {
   .burger-menu__item:last-child {
     margin: 34px 0 0;
-    /* margin: 0 0 90px; */
-    /* position: absolute; */
     position: static;
-    /* bottom: 0; */
   }
 }
