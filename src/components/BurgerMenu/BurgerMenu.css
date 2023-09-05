@@ -257,7 +257,7 @@
     width: 20px;
     height: 18px;
 
-    background-color: aqua;
+    /* background-color: aqua; */
   }
 
   .burger-menu__checkbox:checked~.burger-menu__line-list {

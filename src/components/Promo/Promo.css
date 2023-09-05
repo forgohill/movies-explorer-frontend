@@ -33,7 +33,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 480px) {
   .promo {
     background-size: 248px 248px;
     background-position: center 142px;
