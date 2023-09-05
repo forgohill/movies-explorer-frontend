@@ -19,7 +19,7 @@ const Header = ({
         <Navigation onAuth={onAuth} />
         <BurgerMenu />
       </header>
-      : <header className='header header_auth'>
+      : <header className={`header ${pathname === '/signin' || pathname === '/signup' ? 'header_auth' : 'header_disable'}`}>
         <Link to='/' className='header__logo links-hover'></Link>
       </header>
   );

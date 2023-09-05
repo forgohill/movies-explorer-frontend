@@ -35,6 +35,9 @@
   background-repeat: no-repeat;
 }
 
+.header_disable {
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
   .header {
