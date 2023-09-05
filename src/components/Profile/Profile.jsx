@@ -25,6 +25,7 @@ const Profile = ({ onAuth }) => {
           className='profile__label'>
           Имя
           <input
+            placeholder='Введите имя'
             // value={'Виталий'}
             disabled={isVisible}
             type="text"
@@ -45,7 +46,7 @@ const Profile = ({ onAuth }) => {
           <input
             disabled={isVisible}
             // value={'pochta@yandex.ru'}
-
+            placeholder='Введите e-mail'
             type="text"
             id='name'
             className='profile__input' />
