@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { AuthorizedContext } from '../../contexts/AuthorizedContext';
 
 import AuthForm from '../AuthForm/AuthForm';
-import AuthInput from '../AuthForm/AuthInput/AuthInput';
+import AuthInput from '../AuthInput/AuthInput';
 import './Login.css';
 const Login = ({
   onAuth,
@@ -43,24 +43,7 @@ const Login = ({
           nameInput={'authEmail'}
           erorrMessage={'Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символов).'}
         />
-
-        {/* <button
-          type='button'
-          onClick={handleClick}
-          to='/'
-          className='auth__btn'>Войти</button> */}
       </AuthForm >
-
-      {/* <div className='login__wrapper'>
-        <p className="login__paragraph">Ещё не зарегистрированы? <Link
-          to='/signup'
-          className='login__link links-hover'
-        >
-          Регистрация
-        </Link>
-        </p>
-      </div> */}
-
     </main >
   );
 }

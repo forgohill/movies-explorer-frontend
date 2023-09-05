@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import './AuthForm.css';
 
 
@@ -21,7 +22,6 @@ const AuthForm = ({ title,
           onClick={onClickLogin}
           type='submit'
           className='auth__btn'>{buttonText}</button>
-
       </form>
 
       <div className='auth__wrapper'>
@@ -34,7 +34,6 @@ const AuthForm = ({ title,
         </span>
         </p>
       </div>
-
     </>
   );
 }

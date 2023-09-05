@@ -60,4 +60,9 @@
   .header {
     padding: 14px 14px;
   }
+
+  .header_auth {
+    padding: 56px 0px 50px;
+    width: auto;
+  }
 }

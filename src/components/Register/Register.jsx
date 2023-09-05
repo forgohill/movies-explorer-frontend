@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link, useLocation } from 'react-router-dom';
 import AuthForm from '../AuthForm/AuthForm';
-import AuthInput from '../AuthForm/AuthInput/AuthInput';
+import AuthInput from '../AuthInput/AuthInput';
 import './Register.css';
 
 const Register = () => {
@@ -44,8 +44,6 @@ const Register = () => {
           nameInput={'authEmail'}
           erorrMessage={'Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символов).'}
         />
-
-
       </AuthForm >
 
     </main >
