@@ -11,15 +11,15 @@
   flex: 0 0 auto;
 }
 
-.header_hero {
+.header_place_hero {
   background-color: #DDDEE3;
 }
 
-.header_movies {
+.header_place_movies {
   background-color: #fafafa;
 }
 
-.header_auth {
+.header_place_auth {
   margin: 0 auto;
   /* padding: 70px 0px 40px; */
   padding: 15px 0px 40px;
@@ -36,7 +36,7 @@
   background-repeat: no-repeat;
 }
 
-.header_disable {
+.header_type_disable {
   display: none;
 }
 
@@ -45,7 +45,7 @@
     padding: 15px 30px 15px;
   }
 
-  .header_auth {
+  .header_place_auth {
     padding: 30px 0px 40px;
   }
 }
@@ -55,7 +55,7 @@
     padding: 14px 14px;
   }
 
-  .header_auth {
+  .header_place_auth {
     padding: 56px 0px 50px;
     width: auto;
   }

@@ -49,7 +49,7 @@
   flex-direction: column;
 }
 
-.student__wrapper_info {
+.student__wrapper_content_info {
   max-width: 600px;
 }
 
@@ -129,7 +129,7 @@
   text-decoration: none;
 }
 
-.student__title_portfolio {
+.student__title_content_portfolio {
   margin: 101px 0 0;
   padding: 0;
 
@@ -204,7 +204,7 @@
     width: 87%;
   }
 
-  .student__wrapper_info {
+  .student__wrapper_content_info {
     max-width: 364px;
   }
 
@@ -242,7 +242,7 @@
     height: 307px;
   }
 
-  .student__title_portfolio {
+  .student__title_content_portfolio {
     margin: 90px 0 0;
     padding: 0;
   }
@@ -342,7 +342,7 @@
     height: 352px;
   }
 
-  .student__title_portfolio {
+  .student__title_content_portfolio {
     width: 91%;
 
     margin: 68px 0 0;

@@ -19,12 +19,12 @@ const AboutProject = () => {
       </ul>
       <ul className='about__table'>
         <li className='about__cell'>
-          <p className='about__cell-paragraph about__cell-paragraph_one-week'>1 неделя</p>
-          <p className='about__cell-paragraph about__cell-paragraph_backend'>Back-end</p>
+          <p className='about__cell-paragraph about__cell-paragraph_type_blue'>1 неделя</p>
+          <p className='about__cell-paragraph about__cell-paragraph_type_line'>Back-end</p>
         </li>
         <li className='about__cell'>
-          <p className='about__cell-paragraph about__cell-paragraph_four-week'>4 недели</p>
-          <p className='about__cell-paragraph about__cell-paragraph_frontend'>Front-end</p>
+          <p className='about__cell-paragraph about__cell-paragraph_type_grey'>4 недели</p>
+          <p className='about__cell-paragraph about__cell-paragraph_type_line'>Front-end</p>
         </li>
       </ul>
     </section>

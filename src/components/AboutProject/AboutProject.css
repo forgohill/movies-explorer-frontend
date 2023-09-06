@@ -104,29 +104,30 @@
   text-align: center;
 }
 
-.about__cell-paragraph_one-week {
+.about__cell-paragraph_type_blue {
   margin: 0;
   background-color: #3456F3;
   color: #fff;
 }
 
-.about__cell-paragraph_backend {
+.about__cell-paragraph_type_line {
   margin: 0;
   padding: 13px 0 0;
   color: #A0A0A0;
 }
 
-.about__cell-paragraph_four-week {
+.about__cell-paragraph_type_grey {
   margin: 0;
   background-color: #F2F2F2;
   color: #000;
 }
 
+/*
 .about__cell-paragraph_frontend {
   margin: 0;
   padding: 13px 0 0;
   color: #A0A0A0;
-}
+} */
 
 
 @media screen and (max-width: 768px) {
