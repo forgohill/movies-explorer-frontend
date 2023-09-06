@@ -165,7 +165,6 @@
   .about__cell:last-child {
     flex-shrink: 1.06;
   }
-
 }
 
 @media screen and (max-width: 610px) {
@@ -189,7 +188,6 @@
     width: 88.7%;
     margin: 59px 0 0;
   }
-
 }
 
 @media screen and (max-width: 480px) {
@@ -210,8 +208,6 @@
     width: 88.7%;
     margin: 28px 0 0;
   }
-
-
 
   .about__item {
     max-width: 284px;

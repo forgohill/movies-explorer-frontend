@@ -1,16 +1,27 @@
 .profile {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
+  justify-content: center;
 
   background-color: #fff;
-  height: 100vh;
+  /* height: 100vh; */
 
   flex: 1;
 }
 
+.profile__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 527px;
+}
+
 .profile__title {
-  margin: 76px 0 0;
+  /* margin: 76px 0 0; */
+  /* margin: 0; */
+  margin: 26px 0 0;
   padding: 0;
 
   color: #000;
@@ -29,13 +40,17 @@
   margin: 123px 0 0 0;
   width: 100%;
   max-width: 410px;
-  min-height: 260px;
-
+  /* min-height: 260px; */
+  min-height: 281px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   flex: 1;
+}
+
+.profile__form_show {
+  min-height: 399px;
 }
 
 .profile__label {
@@ -122,7 +137,7 @@
   width: 100%;
   max-width: 410px;
 
-  margin: 20px 0 70px;
+  margin: 20px 0 20px;
   padding: 0;
 
   color: #FFF;
@@ -150,7 +165,7 @@
 
 .profile__error-submit_show {
   display: block;
-  bottom: 135px;
+  bottom: 85px;
 }
 
 .profile__btn-save_show {
@@ -178,7 +193,9 @@
 
 .profile__link {
 
-  margin: 16px 0 70px;
+  /* margin: 16px 0 70px; */
+  /* margin: 16px 0; */
+  margin: 16px 0 20px;
 
   display: none;
   color: #EE3465;
@@ -200,13 +217,21 @@
   display: block;
 }
 
+
+
 @media screen and (max-width: 768px) {
+  .profile__container {
+    min-height: 551px;
+  }
+
   .profile__title {
-    margin: 237px 0 0;
+    /* margin: 237px 0 0; */
+    margin: 37px 0 0;
   }
 
   .profile__form {
     margin: 96px 0 0;
+    min-height: 272px;
   }
 
   .profile__line {
@@ -222,19 +247,25 @@
   }
 
   .profile__link {
-    margin: 16px 0 269px;
+    /* margin: 16px 0 269px; */
+    margin: 16px 0 69px;
   }
 
   .profile__btn-save {
-    margin: 0 0 269px;
+    /* margin: 0 0 269px; */
+    margin: 0 0 69px;
   }
 
   .profile__error-submit_show {
-    bottom: 334px;
+    bottom: 134px;
   }
 }
 
 @media screen and (max-width: 480px) {
+  .profile__container {
+    flex: 1;
+  }
+
   .profile__title {
     margin: 73px 0 0;
   }

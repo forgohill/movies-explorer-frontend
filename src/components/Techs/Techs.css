@@ -138,6 +138,8 @@
   }
 }
 
+/* @media screen and (max-width: 610px) { */
+
 @media screen and (max-width: 610px) {
   .techs {
     min-height: 680px;

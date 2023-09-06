@@ -337,6 +337,7 @@
   }
 
   .student__portret {
+    margin: 0 auto;
     width: 292px;
     height: 352px;
   }
