@@ -6,7 +6,7 @@ const AboutMe = () => {
   return (
     <section className='student' id='student'>
       <h2 className="student__title">Студент</h2>
-      <div className="student__line"></div>
+      {/* <div className="student__line"></div> */}
       <ul className='student__container'>
         <li className="student__wrapper student__wrapper_content_info">
           <h3 className="student__name">Виталий</h3>
