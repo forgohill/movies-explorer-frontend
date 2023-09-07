@@ -19,7 +19,6 @@ const Profile = ({ onAuth }) => {
       className='profile'>
       <div className="profile__container">
         <h1 className="profile__title">Привет, Виталий!</h1>
-        {/* <form className={`profile__form ${isVisible === false ? 'profile__form_show' : ''}`}> */}
         <form className='profile__form'
           onSubmit={handleRedact}
         >

@@ -2,7 +2,6 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  /* flex: 1; */
 }
 
 .auth__title {
@@ -40,7 +39,6 @@
   bottom: 0;
 
   margin: 0;
-  /* margin: 152px 0 0; */
   padding: 0;
   width: 396px;
   height: 45px;
@@ -80,7 +78,6 @@
 .auth__paragraph {
   margin: 16px 0 17px;
   padding: 0;
-  /* padding: 0 0 232px 0; */
 
   color: #A0A0A0;
   text-align: center;
@@ -106,15 +103,8 @@
 
 @media screen and (max-width: 480px) {
   .auth {
-    /* display: flex; */
-    /* flex-direction: column; */
     flex: 1;
   }
-
-  /* .auth__form { */
-  /* min-height: 320px; */
-  /* flex: 1; */
-  /* } */
 
   .auth__title {
     text-align: center;
@@ -142,8 +132,3 @@
     line-height: 1.25;
   }
 }
-
-
-/* @media screen and (max-width: 450px) { */
-/* .auth__paragraph {} */
-/* } */

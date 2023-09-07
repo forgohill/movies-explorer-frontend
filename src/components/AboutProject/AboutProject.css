@@ -8,7 +8,6 @@
 
 .about__title {
   margin: 0;
-  /* padding: 113px 0 0; */
   padding: 114px 0 22px;
   border-bottom: 1px solid black;
   color: #000;
@@ -19,15 +18,6 @@
   line-height: 1.22;
   letter-spacing: -0.88px;
 }
-
-/*
-.about__line {
-  width: 89%;
-  height: 1px;
-  background-color: black;
-  margin: 23px 0 0;
-  padding: 0;
-} */
 
 .about__list {
   width: 89%;
