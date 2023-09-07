@@ -207,14 +207,15 @@
   border-radius: 50%;
 }
 
-.search__line {
+.search__label-text {
+  cursor: pointer;
+}
 
+/* .search__line {
   width: 89.06%;
   height: 1px;
-
   background-color: #E8E8E8;
-
-}
+} */
 
 /* ///////////////////////////////////////////// */
 /* ///////////////////////////////////////////// */
