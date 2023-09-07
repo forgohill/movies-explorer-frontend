@@ -63,17 +63,17 @@ const Profile = ({ onAuth }) => {
           <button
             // disabled
             onClick={handleRedact}
-            className={`profile__btn-save  ${isVisible === false ? 'profile__btn-save_show' : ''}`}
+            className={`profile__btn-save  ${isVisible === false ? 'profile__btn-save_show' : ''} `}
           >Сохранить</button>
         </form>
         <button
           onClick={handleRedact}
-          className={`profile__btn-redact ${isVisible === true ? 'profile__btn-redact_show' : ''}`}
+          className={`profile__btn-redact ${isVisible === true ? 'profile__btn-redact_show' : ''} links-hover`}
         >Редактировать</button>
 
         <Link
           to='/'
-          className={`profile__link ${isVisible === true ? 'profile__link_show' : ''}`}
+          className={`profile__link ${isVisible === true ? 'profile__link_show' : ''} links-hover`}
           onClick={onAuth}
         >
           Выйти из аккаунта

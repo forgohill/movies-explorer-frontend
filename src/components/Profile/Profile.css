@@ -157,6 +157,11 @@
   background-color: #3456F3;
 }
 
+.profile__btn-save:hover {
+  background-color: #3457f3cc;
+  transition: 1s ease;
+}
+
 .profile__btn-save:disabled {
 
   color: #C2C2C2;
