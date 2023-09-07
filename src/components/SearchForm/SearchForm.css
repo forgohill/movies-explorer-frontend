@@ -1,16 +1,24 @@
 .search {
-  margin: 0;
-  padding: 70px 0 10px;
+  margin: 0 auto;
+  padding: 70px 0 68px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 69px;
+
+  border-bottom: 1px solid #E8E8E8;
+  /* border-bottom: 1px solid black; */
+
+  width: 89.06%;
+
+  /* gap: 69px; */
 }
 
 .search__container {
   margin: 0;
   padding: 0;
-  width: 89.06%;
+  /* width: 89.06%; */
+  width: 100%;
+
   min-height: 72px;
 
   display: flex;
@@ -54,19 +62,33 @@
   background-color: #fff;
 }
 
-.search__search-image {
+
+.search__label-form::before {
+  content: '';
+  width: 22px;
+  height: 22px;
+  /* background-color: #2BE080; */
+
+  background-image: url(../../images/search__gray.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* .search__search-image {
   width: 22px;
   height: 22px;
   object-position: center;
   background-color: transparent;
-}
+} */
 
 .search__input {
   margin: 0 0 0 16px;
   padding: 0;
 
-  width: 100%;
+  /* width: 100%; */
   min-height: 22px;
+  flex: 1;
+
   color: #A0A0A0;
 
   font-family: 'Inter', Arial, sans-serif;
@@ -191,6 +213,7 @@
   height: 1px;
 
   background-color: #E8E8E8;
+
 }
 
 /* ///////////////////////////////////////////// */
@@ -199,11 +222,12 @@
 
 @media screen and (max-width: 768px) {
   .search {
-    padding: 80px 0 10px;
+    padding: 80px 0 109px;
+    width: 92.1%;
   }
 
   .search__container {
-    width: 92.1%;
+    width: 100%;
   }
 
   .search__form {}
@@ -245,28 +269,22 @@
 /* ///////////////////////////////////////////// */
 /* ///////////////////////////////////////////// */
 
-@media screen and (max-width: 630px) {
-  .search__fieldset {
-    width: 70%;
-  }
+/* @media screen and (max-width: 680px) { */
 
-  .search__search-image {
-    display: none;
-  }
-
-  /* .search__button {
+/* .search__button {
     margin: 0;
   } */
-}
+/* } */
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 680px) {
   .search {
-    gap: 35px;
+    padding: 80px 0 33px;
+    width: 93.75%;
   }
 
   .search__container {
-    width: 93.75%;
+    width: 100%;
     flex-direction: column;
     gap: 36px;
 
@@ -277,7 +295,7 @@
   }
 
   .search__form {
-    padding: 19px 19px 19px 19px;
+    padding: 21px 19px 19px 19px;
 
     width: 100%;
     box-sizing: border-box;
@@ -295,7 +313,17 @@
     width: 80%;
   }
 
-  .search__label-form {}
+  .search__fieldset {
+    width: 70%;
+  }
+
+  /* .search__search-image {
+    display: none;
+  } */
+
+  .search__label-form::before {
+    display: none;
+  }
 
   .search__input {
     margin: 0;

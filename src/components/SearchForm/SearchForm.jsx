@@ -15,7 +15,7 @@ const SearchForm = () => {
           noValidate>
           <fieldset className='search__fieldset'>
             <label htmlFor="search__input" className='search__label-form'>
-              <img src={placeholderSerch} alt="" className='search__search-image' />
+              {/* <img src={placeholderSerch} alt="" className='search__search-image' /> */}
               <input
                 type="text"
                 className="search__input"
@@ -40,7 +40,7 @@ const SearchForm = () => {
           Короткометражки
         </div>
       </div>
-      <div className="search__line"></div>
+      {/* <div className="search__line"></div> */}
     </section>
   );
 }
