@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import './AuthForm.css';
 
 
@@ -10,18 +11,19 @@ const AuthForm = ({ title,
   endpoint,
   onClickLogin,
   ...props }) => {
-  console.log(props);
+  // console.log(props);
 
   return (
     <>
       <h1 className='auth__title'>{title}</h1>
-      <form className='auth__form'>
+      <form className='auth__form'
+        onSubmit={onClickLogin}
+      >
         {props.children}
         <button
-          onClick={onClickLogin}
+          // onClick={onClickLogin}
           type='submit'
           className='auth__btn'>{buttonText}</button>
-
       </form>
 
       <div className='auth__wrapper'>
@@ -34,7 +36,6 @@ const AuthForm = ({ title,
         </span>
         </p>
       </div>
-
     </>
   );
 }

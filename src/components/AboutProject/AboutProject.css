@@ -8,7 +8,8 @@
 
 .about__title {
   margin: 0;
-  padding: 113px 0 0;
+  padding: 114px 0 22px;
+  border-bottom: 1px solid black;
   color: #000;
   width: 89%;
   font-family: 'Inter', Arial, sans-serif;
@@ -16,14 +17,6 @@
   font-weight: 400;
   line-height: 1.22;
   letter-spacing: -0.88px;
-}
-
-.about__line {
-  width: 89%;
-  height: 1px;
-  background-color: black;
-  margin: 23px 0 0;
-  padding: 0;
 }
 
 .about__list {
@@ -104,29 +97,30 @@
   text-align: center;
 }
 
-.about__cell-paragraph_one-week {
+.about__cell-paragraph_type_blue {
   margin: 0;
   background-color: #3456F3;
   color: #fff;
 }
 
-.about__cell-paragraph_backend {
+.about__cell-paragraph_type_line {
   margin: 0;
   padding: 13px 0 0;
   color: #A0A0A0;
 }
 
-.about__cell-paragraph_four-week {
+.about__cell-paragraph_type_grey {
   margin: 0;
   background-color: #F2F2F2;
   color: #000;
 }
 
+/*
 .about__cell-paragraph_frontend {
   margin: 0;
   padding: 13px 0 0;
   color: #A0A0A0;
-}
+} */
 
 
 @media screen and (max-width: 768px) {
@@ -135,13 +129,14 @@
   }
 
   .about__title {
-    padding: 92px 0 0;
+    padding: 92px 0 24px;
     width: 87%;
   }
 
+  /*
   .about__line {
     width: 87%;
-  }
+  } */
 
   .about__list {
     width: 87%;
@@ -165,7 +160,6 @@
   .about__cell:last-child {
     flex-shrink: 1.06;
   }
-
 }
 
 @media screen and (max-width: 610px) {
@@ -189,7 +183,6 @@
     width: 88.7%;
     margin: 59px 0 0;
   }
-
 }
 
 @media screen and (max-width: 480px) {
@@ -200,18 +193,17 @@
 
   .about__title {
     width: 88.7%;
-    padding: 73px 0 0;
+    padding: 73px 0 28px;
 
     font-size: 18px;
     letter-spacing: -0.72px;
   }
 
+  /*
   .about__line {
     width: 88.7%;
     margin: 28px 0 0;
-  }
-
-
+  } */
 
   .about__item {
     max-width: 284px;

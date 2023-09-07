@@ -14,65 +14,15 @@ const Header = ({
   return (
     pathname === '/' || pathname === '/movies' || pathname === '/saved-movies' || pathname === '/profile'
       ?
-      <header className={`header ${pathname === '/' ? 'header_hero' : ''} ${pathname === '/movies' ? 'header_movies' : ''}`}>
+      <header className={`header ${pathname === '/' ? 'header_place_hero' : ''} ${pathname === '/movies' ? 'header_place_movies' : ''}`}>
         <Link to='/' className='header__logo links-hover'></Link>
         <Navigation onAuth={onAuth} />
         <BurgerMenu />
       </header>
-      : <header className='header header_auth'>
+      : <header className={`header ${pathname === '/signin' || pathname === '/signup' ? 'header_place_auth' : 'header_type_disable'}`}>
         <Link to='/' className='header__logo links-hover'></Link>
       </header>
   );
 }
 
 export default Header;
-
-/**
- *
-    <Routes>
-
-      <Route
-        path={'/'}
-        element={
-          <header className={`header ${pathname === '/' ? 'header_hero' : ''} ${pathname === '/movies' ? 'header_movies' : ''}`}>
-            <Link to='/' className='header__logo links-hover'></Link>
-            <Navigation onAuth={onAuth} />
-            <BurgerMenu />
-          </header>
-        }>
-      </Route>
-
-      <Route
-        path={'/movies'}
-        element={
-          <header className={`header ${pathname === '/' ? 'header_hero' : ''} ${pathname === '/movies' ? 'header_movies' : ''}`}>
-            <Link to='/' className='header__logo links-hover'></Link>
-            <Navigation onAuth={onAuth} />
-            <BurgerMenu />
-          </header>
-        }>
-      </Route>
-
-      <Route
-        path={'/saved-movies'}
-        element={
-          <header className={`header ${pathname === '/' ? 'header_hero' : ''} ${pathname === '/movies' ? 'header_movies' : ''}`}>
-            <Link to='/' className='header__logo links-hover'></Link>
-            <Navigation onAuth={onAuth} />
-            <BurgerMenu />
-          </header>
-        }>
-      </Route>
-
-      <Route
-        path={'/profile'}
-        element={
-          <header className={`header ${pathname === '/' ? 'header_hero' : ''} ${pathname === '/movies' ? 'header_movies' : ''}`}>
-            <Link to='/' className='header__logo links-hover'></Link>
-            <Navigation onAuth={onAuth} />
-            <BurgerMenu />
-          </header>
-        }>
-      </Route>
-    </Routes>
- */

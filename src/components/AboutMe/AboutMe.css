@@ -8,8 +8,10 @@
 
 .student__title {
   margin: 0;
-  padding: 114px 0 0;
+  padding: 114px 0 22px;
   width: 89%;
+
+  border-bottom: 1px solid black;
 
   color: #000;
   font-family: 'Inter', Arial, sans-serif;
@@ -19,6 +21,7 @@
   letter-spacing: -0.88px;
 }
 
+/*
 .student__line {
   margin: 22px 0 0;
   padding: 0;
@@ -27,7 +30,7 @@
 
   background-color: black;
   padding: 0;
-}
+} */
 
 .student__container {
   margin: 66px 0 0;
@@ -49,7 +52,7 @@
   flex-direction: column;
 }
 
-.student__wrapper_info {
+.student__wrapper_content_info {
   max-width: 600px;
 }
 
@@ -129,9 +132,11 @@
   text-decoration: none;
 }
 
-.student__title_portfolio {
+.student__title_content_portfolio {
   margin: 101px 0 0;
   padding: 0;
+
+  border: 0;
 
   font-size: 18px;
   line-height: 1.11;
@@ -192,19 +197,19 @@
   }
 
   .student__title {
-    padding: 93px 0 0;
+    padding: 93px 0 22px;
     width: 87%;
   }
 
-  .student__line {
+  /* .student__line {
     width: 87%;
-  }
+  } */
 
   .student__container {
     width: 87%;
   }
 
-  .student__wrapper_info {
+  .student__wrapper_content_info {
     max-width: 364px;
   }
 
@@ -242,7 +247,7 @@
     height: 307px;
   }
 
-  .student__title_portfolio {
+  .student__title_content_portfolio {
     margin: 90px 0 0;
     padding: 0;
   }
@@ -281,13 +286,13 @@
 /* //////////////////////////////////////////////////////// */
 /* //////////////////////////////////////////////////////// */
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 500px) {
   .student {
     min-height: 1198px;
   }
 
   .student__title {
-    padding: 74px 0 0;
+    padding: 74px 0 27px;
     width: 91%;
     font-size: 18px;
     font-weight: 400;
@@ -295,10 +300,10 @@
     letter-spacing: -0.72px;
   }
 
-  .student__line {
+  /* .student__line {
     width: 91%;
     margin: 26px 0 0;
-  }
+  } */
 
   .student__container {
     margin: 58px 0 0;
@@ -337,11 +342,12 @@
   }
 
   .student__portret {
+    margin: 0 auto;
     width: 292px;
     height: 352px;
   }
 
-  .student__title_portfolio {
+  .student__title_content_portfolio {
     width: 91%;
 
     margin: 68px 0 0;

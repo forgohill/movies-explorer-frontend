@@ -15,7 +15,6 @@ const SearchForm = () => {
           noValidate>
           <fieldset className='search__fieldset'>
             <label htmlFor="search__input" className='search__label-form'>
-              <img src={placeholderSerch} alt="" className='search__search-image' />
               <input
                 type="text"
                 className="search__input"
@@ -37,10 +36,11 @@ const SearchForm = () => {
             />
             <div className="search__slider search__slider_round"></div>
           </label>
-          Короткометражки
+          <label
+            className='search__label-text'
+            htmlFor="search__checkbox">Короткометражки</label>
         </div>
       </div>
-      <div className="search__line"></div>
     </section>
   );
 }

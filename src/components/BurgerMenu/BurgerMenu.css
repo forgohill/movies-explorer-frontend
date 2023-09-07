@@ -251,17 +251,13 @@
 
 
   .burger-menu__checkbox:checked~.burger-menu__label {
-    /* left: 13px; */
     right: 20px;
     top: 20px;
     width: 20px;
     height: 18px;
-
-    background-color: aqua;
   }
 
   .burger-menu__checkbox:checked~.burger-menu__line-list {
-    /* left: 13px; */
     right: 20px;
     top: 20px;
     width: 20px;
