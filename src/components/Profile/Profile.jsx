@@ -20,7 +20,9 @@ const Profile = ({ onAuth }) => {
       <div className="profile__container">
         <h1 className="profile__title">Привет, Виталий!</h1>
         {/* <form className={`profile__form ${isVisible === false ? 'profile__form_show' : ''}`}> */}
-        <form className='profile__form'>
+        <form className='profile__form'
+          onSubmit={handleRedact}
+        >
           <label
             htmlFor="email"
             className='profile__label'>
@@ -31,7 +33,8 @@ const Profile = ({ onAuth }) => {
               disabled={isVisible}
               type="text"
               id='email'
-              className='profile__input' />
+              className='profile__input'
+              required />
             <span
               className='profile__error'>
               Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символов).
@@ -48,9 +51,10 @@ const Profile = ({ onAuth }) => {
               disabled={isVisible}
               // value={'pochta@yandex.ru'}
               placeholder='Введите e-mail'
-              type="text"
+              type="email"
               id='name'
-              className='profile__input' />
+              className='profile__input'
+              required />
             <span
               className='profile__error'>
               Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символов).
@@ -62,7 +66,7 @@ const Profile = ({ onAuth }) => {
           </span>
           <button
             // disabled
-            onClick={handleRedact}
+            // onClick={handleRedact}
             className={`profile__btn-save  ${isVisible === false ? 'profile__btn-save_show' : ''} `}
           >Сохранить</button>
         </form>

@@ -2,22 +2,28 @@ import React from 'react';
 import './AuthInput.css';
 
 const AuthInput = ({
+  inputType,
   labelName,
-  inptValue,
+  inputValue,
   idInput,
   nameInput,
   placeholderInput,
-  erorrMessage
+  erorrMessage,
+  onChange,
 }) => {
   return (
     <label
       className='input-auth'
       htmlFor={idInput}>{labelName}
       <input
+        type={inputType}
         placeholder={placeholderInput}
         name={nameInput}
         className='input-auth__input' id={idInput}
-        type='text'
+        onChange={onChange}
+        value={inputValue}
+        // type='text'
+        required
       />
       <span
         className={`input-auth__error input-auth__error_${idInput}`}>{erorrMessage}</span>

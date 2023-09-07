@@ -20,28 +20,32 @@ const Register = () => {
 
       >
         <AuthInput
-
+          inputType={'text'}
           labelName={'Имя'}
           inptValue={'Виталий'}
           idInput={'name'}
           nameInput={'authName'}
-          placeholderInput={''}
+          placeholderInput={'Введите имя'}
           erorrMessage={'Что - то пошло не так...'}
         />
 
         <AuthInput
+          inputType={'email'}
           labelName={'E-mail'}
           inptValue={'pochta@yandex.ru|'}
           idInput={'email'}
           nameInput={'authEmail'}
+          placeholderInput={'Введите email'}
           erorrMessage={'Что - то пошло не так...'}
         />
 
         <AuthInput
+          inputType={'password'}
           labelName={'Пароль'}
           inptValue={'••••••••••••••'}
           idInput={'pwd'}
           nameInput={'authEmail'}
+          placeholderInput={'Введите пароль'}
           erorrMessage={'Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символов).'}
         />
       </AuthForm >
