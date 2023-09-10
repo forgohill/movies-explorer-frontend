@@ -32,7 +32,7 @@ function App() {
 
   const { pathname } = useLocation();
 
-  const [isAuthorized, setAuthorized] = useState(false);
+  const [isAuthorized, setAuthorized] = useState(true);
 
 
 

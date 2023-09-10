@@ -1,25 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SearchForm.css';
-import placeholderSerch from '../../images/search__gray.svg'
-const SearchForm = () => {
+// import placeholderSerch from '../../images/search__gray.svg'
+// import { useState } from 'react';
+import useValidationsForms from '../../hooks/useValidationsForms';
+
+
+const SearchForm = ({
+  onSubmit
+}) => {
+
+  const {
+    inputValues,
+    errMessage,
+    isValid,
+    handleChange,
+    setInputValues,
+  } = useValidationsForms();
+
+
 
   const clickChecbox = () => {
     console.log('clickChecbox');
   }
+
   return (
     <section className="search">
       <div className="search__container">
         <form
+          onSubmit={onSubmit}
           action=""
           className="search__form"
           noValidate>
           <fieldset className='search__fieldset'>
             <label htmlFor="search__input" className='search__label-form'>
               <input
+                placeholder='Фильм'
                 type="text"
-                className="search__input"
+                name='inputSearch'
+                value={inputValues.inputSearch ?? ''}
                 id="search__input"
-                placeholder='Фильм' />
+                className="search__input"
+                onChange={handleChange}
+              />
             </label>
           </fieldset>
           <button type='submit' className="search__button links-hover"></button>
