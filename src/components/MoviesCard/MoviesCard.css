@@ -33,6 +33,11 @@
   justify-content: space-between;
 }
 
+.movie-card__info {
+  margin: 0;
+  padding: 0;
+}
+
 .movie-card__title {
   margin: 0;
   padding: 0;
@@ -43,6 +48,14 @@
   font-size: 13px;
   font-weight: 500;
   line-height: 1.23;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+
+  /* background-color: #2BE080; */
+
 }
 
 .movie-card__btn {

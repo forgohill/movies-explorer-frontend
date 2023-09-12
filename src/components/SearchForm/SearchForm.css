@@ -115,6 +115,18 @@
   outline: none;
 }
 
+.search__button:hover {
+  background-color: #3457f3cc;
+  transition: .5s ease;
+}
+
+.search__button:disabled:hover,
+.search__button:disabled {
+  background-color: #F8F8F8;
+  transition: .5s ease;
+}
+
+
 .search__wrapper {
   margin: 0 30px 0 19px;
   padding: 0;
@@ -347,4 +359,10 @@
   .search__label-form {
     width: 200px;
   }
+}
+
+
+.search__button_cont {
+  margin: 5px;
+  padding: 0px;
 }
