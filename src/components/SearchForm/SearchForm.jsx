@@ -8,7 +8,9 @@ import { MESSAGE } from '../../utils/constats'
 const SearchForm = ({
   onSubmit,
   isLoading,
-  moviesFullList
+  moviesFullList,
+  isChecked,
+  onChange
 }) => {
 
   const [errSearchMessage, setErrSearchMessage] = useState(MESSAGE.SEARCH_PLACEHOLDER_INPUT);
@@ -29,6 +31,7 @@ const SearchForm = ({
     setInputValues,
   } = useValidationsForms();
 
+  // слушатель сабмита
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(`валидация: ${isValid}`);
@@ -38,6 +41,7 @@ const SearchForm = ({
     }
     // onSubmit(inputValues.inputSearch);
   }
+
 
   const clickChecbox = () => {
     console.log(moviesFullList);
@@ -82,6 +86,8 @@ const SearchForm = ({
               className="search__checkbox"
               id='search__checkbox'
               onClick={clickChecbox}
+              onChange={onChange}
+              checked={isChecked}
             />
             <div className="search__slider search__slider_round"></div>
           </label>

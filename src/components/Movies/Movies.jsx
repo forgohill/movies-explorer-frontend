@@ -15,24 +15,37 @@ const Movies = () => {
   const [isLoading, setIsLoading] = useState(false);
   // вытаскиеваем из памяти весь список фильмов с АПИ
   const moviesAll = JSON.parse(localStorage.getItem('moviesFullList')) ?? [];
-
+  // вытаскиеваем из памяти текст запроса
   const requestStorage = JSON.parse(localStorage.getItem('request')) ?? '';
+  // вытаскиваем из памяти состояние чебокса
+  const checkboxMoviesStorage = JSON.parse(localStorage.getItem('checkboxMoviesStorage')) ?? false;
   //стейт хранения всех фильмов с BeatFilms
   const [isMoviesFullList, setIsMoviesFullList] = useState('');
-
+  // стейт хранения найденых фильмов
   const [isFindMoviesList, setIsFindMoviesList] = useState([]);
-
-  const { foundFilms } = useFiltredFilms();
+  // стейт состояния чебокса
+  const [isCheckedShortFilms, setIsCheckedShortFilms] = useState(checkboxMoviesStorage);
+  // хуки фильтрации
+  const { foundFilms, checkedFilms } = useFiltredFilms();
 
   // функция фильтрации
-  const filtredFilms = (movies, request) => {
+  const filtredFilms = (movies, request, isCheckedShortFilms) => {
     console.error(`сработал в filtredFilms ${request}`);
     // const { foundFilms } = useFiltredFilms(moviesAll, requestStorage);
     // console.log(movies);
     // console.log(JSON.parse(movies));
     // foundFilms(movies, request);
-    setIsFindMoviesList(foundFilms(movies, request));
+    setIsFindMoviesList(foundFilms(movies, request, isCheckedShortFilms));
   }
+
+  // слушатель чекбокса
+  const handleChangeCheckbox = () => {
+    console.error('handleChangeCheckbox');
+    setIsCheckedShortFilms(!isCheckedShortFilms);
+    localStorage.setItem('checkboxMoviesStorage', JSON.stringify(!isCheckedShortFilms));
+    console.error(isCheckedShortFilms);
+  }
+
 
   const removeMoviesFullList = () => {
     localStorage.removeItem('moviesFullList');
@@ -56,7 +69,8 @@ const Movies = () => {
         // localStorage.setItem('request', JSON.stringify(request));
         // setIsMoviesFullList(JSON.stringify(moviesFullList));
         // filtredFilms(isMoviesFullList)
-        filtredFilms(moviesFullList, request);
+        filtredFilms(moviesFullList, request, isCheckedShortFilms);
+        // checkedFilms(checkboxMoviesStorage)
       })
       .catch((err) => {
         console.error(err);
@@ -66,14 +80,17 @@ const Movies = () => {
       })
 
     localStorage.setItem('request', JSON.stringify(request));
-    console.log('handleSubmit');
+    // console.log('handleSubmit');
   }
 
 
   useEffect(() => {
-    if (isMoviesFullList === '') {
+    if (requestStorage === '') {
       // setIsMoviesFullList(localStorage.getItem('moviesFullList'));
-      console.log('isMoviesFullList пуст')
+      console.error('requestStorage пуст')
+    } else {
+      // console.error(requestStorage);
+      setIsFindMoviesList(foundFilms(moviesAll, requestStorage));
     }
     return () => {
 
@@ -148,12 +165,31 @@ const Movies = () => {
             }}
           ></button>покажи foundFilms</p>
 
+        <p className='search__btn-container'>
+          <button
+            className='search__button search__button_cont'
+            onClick={() => {
+              console.log(isCheckedShortFilms);
+            }}
+          ></button>покажи isCheckedShortFilms</p>
+
+        <p className='search__btn-container'>
+          <button
+            className='search__button search__button_cont'
+            onClick={() => {
+              console.log(checkboxMoviesStorage);
+            }}
+          ></button>покажи checkboxMoviesStorage</p>
+
+
       </div>
 
       <SearchForm
         onSubmit={handleSubmit}
         isLoading={isLoading}
         moviesFullList={isMoviesFullList}
+        isChecked={isCheckedShortFilms}
+        onChange={handleChangeCheckbox}
       ></SearchForm>
 
       {isLoading
