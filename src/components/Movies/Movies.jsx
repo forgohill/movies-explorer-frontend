@@ -7,21 +7,31 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
 import { getFilms, } from '../../utils/MoviesApi';
-
+import useFiltredFilms from '../../hooks/useFiltredFilms';
 
 const Movies = () => {
 
+  // стейт прилоадера
+  const [isLoading, setIsLoading] = useState(false);
+  // вытаскиеваем из памяти весь список фильмов с АПИ
   const moviesAll = JSON.parse(localStorage.getItem('moviesFullList')) ?? [];
 
-  const [isLoading, setIsLoading] = useState(false);
-
+  const requestStorage = JSON.parse(localStorage.getItem('request')) ?? '';
   //стейт хранения всех фильмов с BeatFilms
   const [isMoviesFullList, setIsMoviesFullList] = useState('');
 
+  const [isFindMoviesList, setIsFindMoviesList] = useState([]);
 
-  const filtredFilms = (movies) => {
-    console.log(movies);
-    console.log(JSON.parse(movies));
+  const { foundFilms } = useFiltredFilms();
+
+  // функция фильтрации
+  const filtredFilms = (movies, request) => {
+    console.error(`сработал в filtredFilms ${request}`);
+    // const { foundFilms } = useFiltredFilms(moviesAll, requestStorage);
+    // console.log(movies);
+    // console.log(JSON.parse(movies));
+    // foundFilms(movies, request);
+    setIsFindMoviesList(foundFilms(movies, request));
   }
 
   const removeMoviesFullList = () => {
@@ -34,17 +44,19 @@ const Movies = () => {
 
 
   // нажатие кнопки поиск
-  const handleSubmit = (req) => {
+  const handleSubmit = (request) => {
     // e.preventDefault()
-    // console.log(req);
+    // console.log(request);
     setIsLoading(true);
 
     getFilms()
       .then((moviesFullList) => {
         console.log(moviesFullList);
         localStorage.setItem('moviesFullList', JSON.stringify(moviesFullList));
+        // localStorage.setItem('request', JSON.stringify(request));
         // setIsMoviesFullList(JSON.stringify(moviesFullList));
         // filtredFilms(isMoviesFullList)
+        filtredFilms(moviesFullList, request);
       })
       .catch((err) => {
         console.error(err);
@@ -52,6 +64,8 @@ const Movies = () => {
       .finally(() => {
         setIsLoading(false);
       })
+
+    localStorage.setItem('request', JSON.stringify(request));
     console.log('handleSubmit');
   }
 
@@ -85,6 +99,26 @@ const Movies = () => {
         <p className='search__btn-container'>
           <button
             className='search__button search__button_cont'
+            onClick={
+              () => {
+                console.log(requestStorage);
+              }
+            }
+          ></button>проверка локал стродж - requestStorage</p>
+
+        <p className='search__btn-container'>
+          <button
+            className='search__button search__button_cont'
+            onClick={() => {
+              localStorage.removeItem('request');
+              console.log('localStorage.removeItem(\'request\');')
+            }}
+          ></button>удаление локал стродж - request</p>
+
+
+        <p className='search__btn-container'>
+          <button
+            className='search__button search__button_cont'
             onClick={() => {
               console.log(isMoviesFullList);
             }}
@@ -94,9 +128,26 @@ const Movies = () => {
           <button
             className='search__button search__button_cont'
             onClick={() => {
+              console.log(isFindMoviesList);
+            }}
+          ></button>покажи isFindMoviesList</p>
+
+        <p className='search__btn-container'>
+          <button
+            className='search__button search__button_cont'
+            onClick={() => {
               console.log(moviesAll);
             }}
           ></button>покажи moviesAll</p>
+
+        <p className='search__btn-container'>
+          <button
+            className='search__button search__button_cont'
+            onClick={() => {
+              console.log(foundFilms);
+            }}
+          ></button>покажи foundFilms</p>
+
       </div>
 
       <SearchForm
@@ -108,7 +159,9 @@ const Movies = () => {
       {isLoading
         ? <Preloader />
         : (<MoviesCardList
-          listMovies={moviesAll}
+          // listMovies={moviesAll}
+          listMovies={isFindMoviesList}
+
         ></MoviesCardList>)
       }
 

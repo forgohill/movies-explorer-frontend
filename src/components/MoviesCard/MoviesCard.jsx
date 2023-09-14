@@ -41,7 +41,11 @@ const MoviesCard = ({
     <li className='movie-card'>
       <img src={`${configUrl.IMAGE_URL}${movie.image.url}`}
         alt={movie.description}
-        className='movie-card__image' />
+        className='movie-card__image'
+        onClick={() => {
+          console.log(movie);
+        }}
+      />
       <div className="movie-card__wrapper">
         <div className="movie-card__info">
           <h2 className='movie-card__title'>
