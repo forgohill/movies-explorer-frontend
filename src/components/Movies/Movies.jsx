@@ -43,7 +43,9 @@ const Movies = () => {
     console.error('handleChangeCheckbox');
     setIsCheckedShortFilms(!isCheckedShortFilms);
     localStorage.setItem('checkboxMoviesStorage', JSON.stringify(!isCheckedShortFilms));
-    console.error(isCheckedShortFilms);
+    // console.error(isCheckedShortFilms);
+    // setIsFindMoviesList(foundFilms(moviesAll, requestStorage, isCheckedShortFilms));
+    // filtredFilms(isMoviesFullList, requestStorage, isCheckedShortFilms);
   }
 
 
@@ -90,8 +92,9 @@ const Movies = () => {
       console.error('requestStorage пуст')
     } else {
       // console.error(requestStorage);
-      setIsFindMoviesList(foundFilms(moviesAll, requestStorage));
+      setIsFindMoviesList(foundFilms(moviesAll, requestStorage, isCheckedShortFilms));
     }
+
     return () => {
 
     };
