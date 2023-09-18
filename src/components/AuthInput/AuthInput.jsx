@@ -10,6 +10,7 @@ const AuthInput = ({
   placeholderInput,
   erorrMessage,
   onChange,
+  // onDisabled
 }) => {
   return (
     <label
@@ -23,6 +24,7 @@ const AuthInput = ({
         onChange={onChange}
         value={inputValue}
         // type='text'
+
         required
       />
       <span

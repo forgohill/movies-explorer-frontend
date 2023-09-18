@@ -29,7 +29,7 @@ const useValidationsForms = (values = {}) => {
     setIsValid(false)
   }, [])
 
-  // console.log(inputValues);
+  console.log(inputValues);
   // console.log(errMessage);
   // console.log(isValid);
 

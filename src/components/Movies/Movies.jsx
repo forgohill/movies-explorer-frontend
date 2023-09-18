@@ -6,7 +6,7 @@ import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 // import MoviesCard from '../MoviesCard/MoviesCard';
 
-import { getFilms, } from '../../utils/MoviesApi';
+import { getFilms, } from '../../utils/moviesApi';
 import useFiltredFilms from '../../hooks/useFiltredFilms';
 
 const Movies = () => {

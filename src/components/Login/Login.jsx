@@ -2,32 +2,39 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AuthorizedContext } from '../../contexts/AuthorizedContext';
 
+import useValidationsForms from '../../hooks/useValidationsForms';
+
 import AuthForm from '../AuthForm/AuthForm';
 import AuthInput from '../AuthInput/AuthInput';
+
 import './Login.css';
+
+
 const Login = ({
   onAuth,
+  onLogin,
+
+
+  sourceInfoTooltips,
 }) => {
   const Authorized = React.useContext(AuthorizedContext);
   // console.log(Authorized);
   const { pathname } = useLocation();
 
-  const [formValue, setFormValue] = useState({
-    authEmail: '',
-    authPwd: '',
-  });
+  const {
+    inputValues,
+    errMessage,
+    isValid,
+    handleChange,
+    setInputValues,
+  } = useValidationsForms();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormValue({ ...formValue, [name]: value });
-  }
-  console.log(formValue);
-
-  const handleClick = (e) => {
-    console.log(e);
+  const handleSubmit = (e) => {
     e.preventDefault();
-    onAuth();
+    console.log('сработал Login handleSubmit');
+    if (isValid) {
+      onLogin(inputValues);
+    }
   }
 
   return (
@@ -38,31 +45,31 @@ const Login = ({
         authMessage={'Ещё не зарегистрированы? '}
         authLinkMessage={'Регистрация'}
         endpoint={'/signup'}
-        onClickLogin={handleClick}
+        // onClickLogin={handleClick}
+        onSubmit={handleSubmit}
+        onDisabled={isValid}
+        sourceInfoTooltips={sourceInfoTooltips}
       >
 
         <AuthInput
-          inputValue={formValue.authEmail}
+          inputValue={inputValues.email ?? ''}
+          erorrMessage={errMessage.email ?? ''}
           inputType={'email'}
           labelName={'E-mail'}
           placeholderInput={'Введите email'}
-
-          inptValue={'pochta@yandex.ru|'}
           idInput={'email'}
-          nameInput={'authEmail'}
-          erorrMessage={'Что - то пошло не так...'}
+          nameInput={'email'}
           onChange={handleChange}
         />
 
         <AuthInput
-          inputValue={formValue.authPwd}
+          inputValue={inputValues.password ?? ''}
+          erorrMessage={errMessage.password ?? ''}
           inputType={'password'}
           labelName={'Пароль'}
           placeholderInput={'Введите пароль'}
-          // inptValue={'••••••••••••••'}
           idInput={'pwd'}
-          nameInput={'authPwd'}
-          erorrMessage={'Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символов).'}
+          nameInput={'password'}
           onChange={handleChange}
         />
       </AuthForm >
