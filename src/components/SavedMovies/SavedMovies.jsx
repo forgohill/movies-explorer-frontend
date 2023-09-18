@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+// import { useState } from 'react';
+// import { useEffect } from 'react';
 
 const SavedMovies = () => {
+  const [listMovies, setlistMovies] = useState([]);
   return (
     <div className='movies'>
       <SearchForm></SearchForm>
-      <MoviesCardList></MoviesCardList>
+      <MoviesCardList
+        listMovies={listMovies}
+      ></MoviesCardList>
     </div>
   );
 }

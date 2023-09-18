@@ -16,6 +16,7 @@
 import React, { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AuthorizedContext } from '../../contexts/AuthorizedContext';
+import { register } from '../../utils/mainApi';
 
 import './App.css';
 import Header from '../Header/Header';
@@ -32,9 +33,13 @@ function App() {
 
   const { pathname } = useLocation();
 
-  const [isAuthorized, setAuthorized] = useState(true);
+  const [isAuthorized, setAuthorized] = useState(false);
 
-
+  //стейт для хранения типа ошибок
+  const [sourceInfoTooltips, setSourceInfoTooltips] = React.useState({
+    access: false,
+    message: '',
+  });
 
   const togleAuthorized = () => {
     console.log('togleAuthorized');
@@ -46,6 +51,48 @@ function App() {
 
   const onlyLogin = () => {
     setAuthorized(true);
+  }
+
+  // //////////////////////////////////////////
+  // //////////// РЕГИСТРАЦИЯ АВТОРИЗАЦИЯ /////
+  // //////////////////////////////////////////
+
+  // регистрация
+  const handlerRegister = ({ email, password, name }) => {
+    console.log(`сработал handlerRegister App`);
+    console.error(`
+    email — ${email}
+    password — ${password}
+    name — ${name}`);
+
+    const date = { email, password, name };
+
+
+    register(date)
+      .then((res) => {
+        // setSourceInfoTooltips({
+        //   access: true,
+        //   message: 'Усешная регистрация',
+        // });
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err === 409) {
+          setSourceInfoTooltips({
+            access: true,
+            message: 'Пользователь с таким email уже существует.',
+          });
+        } else {
+          setSourceInfoTooltips({
+            access: true,
+            message: 'При регистрации пользователя произошла ошибка.',
+          });
+        }
+      })
+      .finally(() => {
+
+      })
   }
 
   return (
@@ -78,7 +125,10 @@ function App() {
             <Route
               path='/signup'
               element={
-                <Register></Register>
+                <Register
+                  onRegister={handlerRegister}
+                  sourceInfoTooltips={sourceInfoTooltips}
+                ></Register>
               } />
 
             <Route
