@@ -4,7 +4,7 @@ import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import MoviesCard from '../MoviesCard/MoviesCard';
+// import MoviesCard from '../MoviesCard/MoviesCard';
 
 import { getFilms, } from '../../utils/MoviesApi';
 import useFiltredFilms from '../../hooks/useFiltredFilms';
@@ -26,28 +26,49 @@ const Movies = () => {
   // стейт состояния чебокса
   const [isCheckedShortFilms, setIsCheckedShortFilms] = useState(checkboxMoviesStorage);
   // хуки фильтрации
-  const { foundFilms, checkedFilms } = useFiltredFilms();
+  const { foundFilms } = useFiltredFilms();
 
   // функция фильтрации
   const filtredFilms = (movies, request, isCheckedShortFilms) => {
     console.error(`сработал в filtredFilms ${request}`);
-    // const { foundFilms } = useFiltredFilms(moviesAll, requestStorage);
-    // console.log(movies);
-    // console.log(JSON.parse(movies));
-    // foundFilms(movies, request);
+
+    // в стейт IsFindMoviesList записываем массив прогнаный черех хук:
     setIsFindMoviesList(foundFilms(movies, request, isCheckedShortFilms));
+    // setIsFindMoviesList(foundFilms(movies, request, isCheckedShortFilms));
   }
 
-  // слушатель чекбокса
+  /**
+   *  Если чекбокс короткометражек не отмечен,
+   * в результатах отображаются все фильмы,
+   * которые подходят под введённый запрос, в том
+   * числе и короткометражки. Если чекбокс отмечен,
+   * в результатах запроса отображаются только короткометражные фильмы.
+   *
+   * Если карточки уже были отображены на странице
+   * в блоке результатов, то клик по чекбоксу
+   * «Короткометражки» должен приводить к новой
+   * фильтрации всех фильмов с учётом нового состояния
+   * чекбокса и введённого текста запроса в форме поиска.
+   */
+
+  // управление чекбоксом
   const handleChangeCheckbox = () => {
-    console.error('handleChangeCheckbox');
-    setIsCheckedShortFilms(!isCheckedShortFilms);
-    localStorage.setItem('checkboxMoviesStorage', JSON.stringify(!isCheckedShortFilms));
-    // console.error(isCheckedShortFilms);
-    // setIsFindMoviesList(foundFilms(moviesAll, requestStorage, isCheckedShortFilms));
-    // filtredFilms(isMoviesFullList, requestStorage, isCheckedShortFilms);
-  }
 
+    // запишем в лсЧекбокса значение
+    localStorage.setItem('checkboxMoviesStorage', JSON.stringify(!isCheckedShortFilms));
+    // в стейт isCheckedShortFilms запишем обратное того что там хранится
+    setIsCheckedShortFilms(!isCheckedShortFilms);
+    console.error(`в чекбоксе ${moviesAll.length}`);
+    // console.error(moviesAll);
+    if (moviesAll.length !== 0) {
+      console.log(' Я СРАБОТАЛ');
+
+      setIsFindMoviesList(foundFilms(moviesAll, requestStorage, !isCheckedShortFilms));
+      // console.log(' я туть')
+    } else {
+
+    }
+  }
 
   const removeMoviesFullList = () => {
     localStorage.removeItem('moviesFullList');
@@ -57,22 +78,13 @@ const Movies = () => {
     console.log(localStorage.getItem('moviesFullList'));
   }
 
-
-  // нажатие кнопки поиск
-  const handleSubmit = (request) => {
-    // e.preventDefault()
-    // console.log(request);
-    setIsLoading(true);
-
+  const getingFilms = (request) => {
     getFilms()
       .then((moviesFullList) => {
-        console.log(moviesFullList);
+        // запишет в лсВсеФильмыССервера
         localStorage.setItem('moviesFullList', JSON.stringify(moviesFullList));
-        // localStorage.setItem('request', JSON.stringify(request));
-        // setIsMoviesFullList(JSON.stringify(moviesFullList));
-        // filtredFilms(isMoviesFullList)
+        // функция которая создаст массив найденых фильмов
         filtredFilms(moviesFullList, request, isCheckedShortFilms);
-        // checkedFilms(checkboxMoviesStorage)
       })
       .catch((err) => {
         console.error(err);
@@ -80,24 +92,27 @@ const Movies = () => {
       .finally(() => {
         setIsLoading(false);
       })
+  }
 
+  // нажатие кнопки поиск
+  const handleSubmit = (request) => {
+    setIsLoading(true);
+    // вытягивание всех фильмов с АПИ битфильма
+    getingFilms(request);
+    // сохранили лсТекстЗапроса
     localStorage.setItem('request', JSON.stringify(request));
-    // console.log('handleSubmit');
   }
 
 
   useEffect(() => {
-    if (requestStorage === '') {
-      // setIsMoviesFullList(localStorage.getItem('moviesFullList'));
-      console.error('requestStorage пуст')
-    } else {
-      // console.error(requestStorage);
+    // если лсТекстЗапроса не пустая строка ТО :
+    if (requestStorage !== '') {
+      // setIsCheckedShortFilms(false);
+      // в стейт IsFindMoviesList записываем массив прогнаный черех хук:
       setIsFindMoviesList(foundFilms(moviesAll, requestStorage, isCheckedShortFilms));
+    } else {
+      setIsCheckedShortFilms(false);
     }
-
-    return () => {
-
-    };
   }, []);
 
   return (
@@ -193,14 +208,16 @@ const Movies = () => {
         moviesFullList={isMoviesFullList}
         isChecked={isCheckedShortFilms}
         onChange={handleChangeCheckbox}
+        oldRequest={requestStorage}
+        listMovies={isFindMoviesList}
       ></SearchForm>
 
       {isLoading
         ? <Preloader />
         : (<MoviesCardList
-          // listMovies={moviesAll}
+          requestStorage={requestStorage}
           listMovies={isFindMoviesList}
-
+          stateChechbox={isCheckedShortFilms}
         ></MoviesCardList>)
       }
 
@@ -208,7 +225,7 @@ const Movies = () => {
         ? <Preloader />
         : (<MoviesCardList></MoviesCardList>)
       } */}
-    </main>
+    </main >
   );
 }
 

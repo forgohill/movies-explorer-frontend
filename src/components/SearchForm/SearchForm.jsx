@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './SearchForm.css';
 // import placeholderSerch from '../../images/search__gray.svg'
 // import { useState } from 'react';
@@ -10,10 +10,15 @@ const SearchForm = ({
   isLoading,
   moviesFullList,
   isChecked,
-  onChange
+  onChange,
+  oldRequest,
+  // listMovies
 }) => {
 
   const [errSearchMessage, setErrSearchMessage] = useState(MESSAGE.SEARCH_PLACEHOLDER_INPUT);
+
+  // старый запрос
+  // const [isOldRequset, setIsOldRequset] = useState('');
 
   const inputSearch = useRef(null);
 
@@ -40,6 +45,7 @@ const SearchForm = ({
       onSubmit(inputValues.inputSearch);
     }
     // onSubmit(inputValues.inputSearch);
+    console.error(inputValues);
   }
 
 
@@ -48,6 +54,22 @@ const SearchForm = ({
     // console.log(localStorage.getItem('moviesFullList'));
     console.log('clickChecbox');
   }
+
+  // юз эффект который проверяет есть ли найденые фильмы и вставляет тело запроса в инпут
+  useEffect(() => {
+
+    // console.error(listMovies);
+    if (oldRequest !== '') {
+      console.error(`oldRequest: ${oldRequest}`);
+      // console.error(listMovies);
+      // console.error(inputValues);
+      // setIsOldRequset(oldRequest);
+
+      inputValues.inputSearch = oldRequest;
+      // inputSearch = oldRequest;
+      // console.log(inputSearch.current.value);
+    }
+  }, []);
 
   return (
     <section className="search">

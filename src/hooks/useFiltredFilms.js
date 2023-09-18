@@ -5,25 +5,19 @@ const useFiltredFilms = () => {
   // проверка дрейшн
   const checkedFilms = (movie) => {
     const { duration } = movie;
-    // const shortFilms =
-    // console.log(movie);
-    // console.log(duration)
-    // return movie.filter((movie.duration) => {
     if (duration <= 40) {
       return true;
     }
     return false;
-    // console.log(`${movie.nameRU} - ${duration}`);
-    // return duration <= 40;
-    // })
-    // console.error(movies);
   };
-  // console.error('тело');
-  // console.log(movies);
+
   const [filtredArray, setFiltredArray] = useState([]);
   // const foundFilms = movies;
   const foundFilms = (movies, request, state) => {
-    console.error('внутри фондфимльм');
+    console.error(`внутри хукФильтрФильмов
+    массив — ${movies.length}
+    запрос — ${request}
+    чекбокс — ${state}`);
     console.log(movies);
 
     // console.error(state);

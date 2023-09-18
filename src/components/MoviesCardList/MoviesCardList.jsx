@@ -24,7 +24,7 @@ import useWindowCalculator from '../../hooks/useWindowCalculator';
 
 // 1 сдлаем стейт который хранит входящий массив
 
-const MoviesCardList = ({ listMovies, listMoviesTwo }) => {
+const MoviesCardList = ({ listMovies, requestStorage, stateChechbox }) => {
 
   // стейт хранения входящео массива
   const [insertList, setInsertList] = useState([]);
@@ -36,7 +36,7 @@ const MoviesCardList = ({ listMovies, listMoviesTwo }) => {
 
   const { pathname } = useLocation();
 
-  console.log(pathname);
+  // console.log(pathname);
 
   const moviesList = movies.map((movie) => {
     return (
@@ -77,28 +77,13 @@ const MoviesCardList = ({ listMovies, listMoviesTwo }) => {
   // });
 
   useEffect(() => {
+    // console.log(' setInsertList ПРОИЗОШЕЛ')
     setInsertList(filtredMovies);
+    // console.log(insertList);
+  }, [moviesDisplay], stateChechbox);
 
-    // setInsertListTwo(listMoviesTwo);
-    // const handleResize = () => {
-    //   setRelationWidht(window.innerWidth);
-    // }
-
-    // const resizeDelay = () => {
-    //   let time;
-    //   if (!time) {
-    //     time = setTimeout(() => {
-    //       time = null;
-    //       handleResize();
-    //     }, 199);
-    //   };
-
-    //   window.addEventListener('resize', resizeDelay);
-    //   handleResize();
-
-    //   return () => window.removeEventListener('resize', resizeDelay)
-    // }
-    // resizeDelay
+  useEffect(() => {
+    console.log(stateChechbox);
     // навешиваем слушатель
     handleResize();
     window.addEventListener('resize', resizeDelay);
@@ -110,21 +95,6 @@ const MoviesCardList = ({ listMovies, listMoviesTwo }) => {
   return (
 
     <section className='movies-list'>
-
-      {/* правило по которому если ничего не найдено выводится надпись */}
-      {listMovies.length !== 0
-        ?
-        <ul className='movies-list__list'>
-          {/* {pathname === '/movies' ? moviesList : moviesSavedList} */}
-          {pathname === '/movies' ? filtredMovies : filtredMovies}
-        </ul>
-        :
-        <p
-          className='movies-list__not-found'>
-          Ничего не найдено
-        </p>
-      }
-
 
       <div className='search__wrapper-btn'>
         <p className='search__btn-container'>
@@ -151,8 +121,35 @@ const MoviesCardList = ({ listMovies, listMoviesTwo }) => {
             }}
           ></button>покажи insertList</p>
 
+        <p className='search__btn-container'>
+          <button
+            className='search__button search__button_cont'
+            onClick={() => {
+              console.log(stateChechbox);
+            }}
+          ></button>покажи stateChechbox</p>
+
       </div>
 
+
+      {/* правило по которому если ничего не найдено выводится надпись */}
+      {listMovies.length !== 0
+        ?
+        <ul className='movies-list__list'>
+          {/* {pathname === '/movies' ? moviesList : moviesSavedList} */}
+          {pathname === '/movies' ? filtredMovies : filtredMovies}
+        </ul>
+        :
+        <p
+          className='movies-list__not-found'>
+          {/* если есть текст запроса в ЛС покажем надпись */}
+          {`${requestStorage !== '' ? 'Ничего не найдено' : ''}`}
+        </p>
+      }
+
+
+
+      {/* КНОПКА ЕЩЕ */}
       {insertList.length < listMovies.length
         ?
         <button type='button'

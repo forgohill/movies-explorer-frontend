@@ -2,7 +2,7 @@ import React from 'react';
 
 const useValidationsForms = (values = {}) => {
 
-  console.log(values);
+  // console.log(values);
   // стейты
   // инпуты
   const [inputValues, setInputValues] = React.useState(values);
@@ -29,9 +29,9 @@ const useValidationsForms = (values = {}) => {
     setIsValid(false)
   }, [])
 
-  console.log(inputValues);
-  console.log(errMessage);
-  console.log(isValid);
+  // console.log(inputValues);
+  // console.log(errMessage);
+  // console.log(isValid);
 
   return {
     inputValues,

@@ -22,7 +22,7 @@ const useWindowCalculator = () => {
 
   const handleResize = () => {
     setRelationWidht(window.innerWidth);
-    console.log(relationWidht);
+    // console.log(relationWidht);
   };
 
   // handleResize();
@@ -41,12 +41,12 @@ const useWindowCalculator = () => {
 
   const widthWindow = window.screen.width;
 
-  console.log(`widthWindow : ${widthWindow}`);
-  console.log(relationWidht);
+  // console.log(`widthWindow : ${widthWindow}`);
+  // console.log(relationWidht);
 
   useEffect(() => {
-    console.log(widthWindow);
-    console.log(`relationWidht: ${relationWidht}`)
+    // console.log(widthWindow);
+    // console.log(`relationWidht: ${relationWidht}`)
     // console.log(handleResize);
 
     if (relationWidht >= 1200) {
