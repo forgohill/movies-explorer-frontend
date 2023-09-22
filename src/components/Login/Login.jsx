@@ -13,8 +13,8 @@ import './Login.css';
 const Login = ({
   onAuth,
   onLogin,
-
-
+  onRemoveCookie,
+  onCheckCockie,
   sourceInfoTooltips,
 }) => {
   const Authorized = React.useContext(AuthorizedContext);
@@ -39,6 +39,20 @@ const Login = ({
 
   return (
     <main className='login auth'>
+      <div>
+        <button
+          className='extraButton'
+          onClick={onRemoveCookie}>
+          УДАЛИТЬ КУКИСЫ
+        </button>
+
+        <button
+          className='extraButton'
+          onClick={onCheckCockie}
+        >
+          ПРОВЕРИТЬ КУКИ
+        </button>
+      </div>
       <AuthForm
         title={'Рады видеть!'}
         buttonText={'Войти'}
@@ -73,6 +87,7 @@ const Login = ({
           onChange={handleChange}
         />
       </AuthForm >
+
     </main >
   );
 }

@@ -13,10 +13,10 @@
 4. Вёрстка
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { AuthorizedContext } from '../../contexts/AuthorizedContext';
-import { register, authorize } from '../../utils/mainApi';
+import { register, authorize, logout, getUser } from '../../utils/mainApi';
 
 import './App.css';
 import Header from '../Header/Header';
@@ -121,8 +121,16 @@ function App() {
 
   //  Проверка токена/кукиса
   const cookieCheck = () => {
+    getUser()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     const token = localStorage.getItem('loginInMestoTrue');
-
+    console.log(token);
+    console.log('сработал App cookieCheck');
     if (token) {
       // setIsLoggedIn(true);
       // navigate('/', { replace: true });
@@ -131,22 +139,27 @@ function App() {
 
   // удаление кукиса JWT
   const removeCookie = () => {
-    // logout()
-    // .then((res) => {
-    // if (res.exit) {
-    // console.log('user logged out');
-    localStorage.removeItem('loginInMestoTrue');
-    // setIsLoggedIn(false);
-    // setUserEmail('');
-    // navigate('/sign-in', { replace: true });
-    // document.cookie = "jwtChek=; expires=Mon, 26 Dec 1991 00:00:01 GMT;";
-    // }
-    // })
-    // .catch((err) => {
-    // console.log(err);
-    // });
+    console.log('сработал App removeCookie')
+    logout()
+      .then((res) => {
+        if (res.exit) {
+          console.log('user logged out');
+
+          localStorage.removeItem('loginInMestoTrue');
+          // setIsLoggedIn(false);
+          // setUserEmail('');
+          // navigate('/sign-in', { replace: true });
+          document.cookie = "jwtChek=; expires=Mon, 26 Dec 1991 00:00:01 GMT;";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
+  useEffect(() => {
+    cookieCheck();
+  }, []);
 
   return (
     <div className='app'>
@@ -192,7 +205,8 @@ function App() {
                   onAuth={onlyLogin}
                   onLogin={handlerLogin}
                   sourceInfoTooltips={sourceInfoTooltips}
-
+                  onRemoveCookie={removeCookie}
+                  onCheckCockie={cookieCheck}
                 ></Login>
               } />
 

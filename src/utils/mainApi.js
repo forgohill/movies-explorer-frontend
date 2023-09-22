@@ -20,6 +20,10 @@ const checkError = (res) => {
   }
 };
 
+// //////////////////////////////////////////
+// //////////// РЕГИСТРАЦИЯ АВТОРИЗАЦИЯ /////
+// //////////////////////////////////////////
+
 export const register = ({ email, password, name }) => {
   return fetch(
     `${BASE_URL}${ENDPOINT_REGISTER}`,
@@ -43,6 +47,40 @@ export const authorize = ({ email, password }) => {
       credentials,
       body: JSON.stringify({ email, password })
     })
+    .then((res) => {
+      return checkError(res);
+    })
+};
+
+export const logout = () => {
+  return fetch(
+    `${BASE_URL}${ENDPOINT_OUT}`,
+    {
+      method: 'GET',
+      headers,
+      credentials
+    }
+  )
+    .then((res) => {
+      return checkError(res);
+    })
+}
+
+
+// //////////////////////////////////////////
+// ////////////           АПИ      //////////
+// //////////////////////////////////////////
+
+
+export const getUser = () => {
+  return fetch(
+    `${BASE_URL}${ENDPOINT_CHECKJWL}`,
+    {
+      method: 'GET',
+      headers,
+      credentials
+    }
+  )
     .then((res) => {
       return checkError(res);
     })
