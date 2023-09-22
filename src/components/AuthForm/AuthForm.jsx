@@ -5,6 +5,7 @@ import './AuthForm.css';
 
 
 
+
 const AuthForm = ({ title,
   buttonText,
   authMessage,
@@ -26,10 +27,22 @@ const AuthForm = ({ title,
   //   onSubmit();
   // }
 
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('сработал handleSubmit AuthForm');
+  //   onSubmit();
+  // }
+
   return (
     <>
       <h1 className='auth__title'>{title}</h1>
       <form className='auth__form'
+        // onSubmit={onClickLogin}
+        // onSubmit={handleSubmit}
+        onSubmit={onSubmit}
+        noValidate
         // onSubmit={onClickLogin}
         // onSubmit={handleSubmit}
         onSubmit={onSubmit}
