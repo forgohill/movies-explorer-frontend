@@ -18,11 +18,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom'
 import AccountButton from '../AccountButton/AccountButton';
 import './BurgerMenu.css';
-import { AuthorizedContext } from '../../contexts/AuthorizedContext';
+// import { AuthorizedContext } from '../../contexts/AuthorizedContext';
 
 
-const BurgerMenu = () => {
-  const Authorized = React.useContext(AuthorizedContext);
+const BurgerMenu = ({ isLoggedIn }) => {
+  // const Authorized = React.useContext(AuthorizedContext);
   const [isChecked, setChecked] = useState(false);
 
   const togleChecked = () => {
@@ -39,7 +39,7 @@ const BurgerMenu = () => {
   }
   return (
     <>
-      {Authorized === true ?
+      {isLoggedIn === true ?
         < div className={`burger-menu ${(isChecked === true ? '' : '')}`} >
           < input
             checked={isChecked}

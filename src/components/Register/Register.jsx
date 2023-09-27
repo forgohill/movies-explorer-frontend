@@ -57,16 +57,14 @@ const Register = ({
           labelName={'Имя'}
           inptValue={inputValues.name ?? ''}
           erorrMessage={errMessage.name ?? ''}
-          inptValue={inputValues.name ?? ''}
-          erorrMessage={errMessage.name ?? ''}
+          // inptValue={inputValues.name ?? ''}
+          // erorrMessage={errMessage.name ?? ''}
           idInput={'name'}
           nameInput={'name'}
-          nameInput={'name'}
+          // nameInput={'name'}
           placeholderInput={'Введите имя'}
           onChange={handleChange}
-
-          onChange={handleChange}
-
+        // onChange={handleChange}
         />
 
         <AuthInput
@@ -74,14 +72,14 @@ const Register = ({
           labelName={'E-mail'}
           inptValue={inputValues.email ?? ''}
           erorrMessage={errMessage.email ?? ''}
-          inptValue={inputValues.email ?? ''}
-          erorrMessage={errMessage.email ?? ''}
+          // inptValue={inputValues.email ?? ''}
+          // erorrMessage={errMessage.email ?? ''}
           idInput={'email'}
           nameInput={'email'}
-          nameInput={'email'}
+          // nameInput={'email'}
           placeholderInput={'Введите email'}
           onChange={handleChange}
-          onChange={handleChange}
+        // onChange={handleChange}
         />
 
         <AuthInput
@@ -89,14 +87,14 @@ const Register = ({
           labelName={'Пароль'}
           inptValue={inputValues.password ?? ''}
           erorrMessage={errMessage.password ?? ''}
-          inptValue={inputValues.password ?? ''}
-          erorrMessage={errMessage.password ?? ''}
+          // inptValue={inputValues.password ?? ''}
+          // erorrMessage={errMessage.password ?? ''}
           idInput={'pwd'}
           nameInput={'password'}
-          nameInput={'password'}
+          // nameInput={'password'}
           placeholderInput={'Введите пароль'}
           onChange={handleChange}
-          onChange={handleChange}
+        // onChange={handleChange}
         />
       </AuthForm >
 

@@ -85,3 +85,19 @@ export const getUser = () => {
       return checkError(res);
     })
 };
+
+export const updateuserInfo = ({ name, email }) => {
+  console.log('СРАБОТАЛ FETCH updateuserInfo mainAPI')
+  return fetch(
+    `${BASE_URL}${ENDPOINT_CHECKJWL}`,
+    {
+      method: 'PATCH',
+      headers,
+      credentials,
+      body: JSON.stringify({ name, email })
+    }
+  )
+    .then((res) => {
+      return checkError(res);
+    })
+}

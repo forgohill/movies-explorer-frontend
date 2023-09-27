@@ -16,7 +16,8 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { AuthorizedContext } from '../../contexts/AuthorizedContext';
-import { register, authorize, logout, getUser } from '../../utils/mainApi';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { register, authorize, logout, getUser, updateuserInfo } from '../../utils/mainApi';
 
 import './App.css';
 import Header from '../Header/Header';
@@ -28,14 +29,18 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const [isAuthorized, setAuthorized] = useState(false);
 
+  // стейт навигации
+  const [isAuthorized, setAuthorized] = useState(false);
+  // стейт Context
+  const [currentUser, setCurrentUser] = React.useState({});
   // стейт блокирует кнопку в момент отправки формы
   const [isBlockedButton, setIsBlockedButton] = useState(false);
   // стейт для хранения типа ошибок
@@ -59,6 +64,8 @@ function App() {
   // //////////////////////////////////////////
   // //////////// РЕГИСТРАЦИЯ АВТОРИЗАЦИЯ /////
   // //////////////////////////////////////////
+
+
 
   // регистрация
   const handlerRegister = ({ email, password, name }) => {
@@ -110,6 +117,9 @@ function App() {
       .then((res) => {
         console.log(res);
         localStorage.setItem('loginInMestoTrue', true);
+        setAuthorized(true);
+        navigate('/', { replace: true });
+
       })
       .catch((err) => {
         console.log(err);
@@ -121,20 +131,16 @@ function App() {
 
   //  Проверка токена/кукиса
   const cookieCheck = () => {
-    getUser()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    console.log('сработал App cookieCheck');
+    const currentPath = pathname;
     const token = localStorage.getItem('loginInMestoTrue');
     console.log(token);
-    console.log('сработал App cookieCheck');
     if (token) {
+      setAuthorized(true);
       // setIsLoggedIn(true);
       // navigate('/', { replace: true });
-    }
+      navigate(currentPath, { replace: true });
+    } else { setAuthorized(false) }
   }
 
   // удаление кукиса JWT
@@ -147,8 +153,9 @@ function App() {
 
           localStorage.removeItem('loginInMestoTrue');
           // setIsLoggedIn(false);
+          setAuthorized(false);
           // setUserEmail('');
-          // navigate('/sign-in', { replace: true });
+          navigate('/signin', { replace: true });
           document.cookie = "jwtChek=; expires=Mon, 26 Dec 1991 00:00:01 GMT;";
         }
       })
@@ -161,32 +168,71 @@ function App() {
     cookieCheck();
   }, []);
 
+  // обновление юзера
+  const handlerUserInfo = ({ name, email }) => {
+    console.log('СРАБОТАЛ updateUserInfo App');
+    // console.error(data);
+    // const { name, email } = data;
+    const data = { name, email };
+    // debugger;
+    updateuserInfo(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+      .finally(() => {
+        console.log('finally updateuserInfo App')
+      })
+      ;
+
+  }
+
+
+  useEffect(() => {
+    if (isAuthorized === true) {
+      console.log('СРАБОТАЛ useEffect isAuthorized')
+      getUser()
+        .then((data) => {
+          console.error(data);
+          setCurrentUser(data);
+          console.log(currentUser);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    console.log('currentUser — ');
+    console.log(currentUser);
+  }, [isAuthorized]);
+
+
+
+  const onClickCurrentUser = () => {
+    console.log(currentUser);
+  };
+
   return (
     <div className='app'>
       <div className='page'>
-        <AuthorizedContext.Provider
-          value={isAuthorized}>
+        <CurrentUserContext.Provider
+          value={currentUser}>
+
+          <button
+            onClick={onClickCurrentUser}
+          >onClick=currentUser</button>
+          {/*
+          <AuthorizedContext.Provider
+            value={isAuthorized}> */}
+
           <Header
-            onAuth={togleAuthorized}
+            isLoggedIn={isAuthorized}
+
+          // onAuth={togleAuthorized}
           ></Header>
+
           <Routes>
-            <Route
-              path='/'
-              element={
-                <Main></Main>
-              } />
-
-            <Route
-              path='/movies'
-              element={
-                <Movies></Movies>
-              } />
-
-            <Route
-              path='/saved-movies'
-              element={
-                <SavedMovies></SavedMovies>
-              } />
 
             <Route
               path='/signup'
@@ -211,12 +257,66 @@ function App() {
               } />
 
             <Route
+              path='/'
+              element={
+                <Main></Main>
+              } />
+
+            {/*
+            <Route
+              path='/movies'
+              element={
+                <Movies></Movies>
+              } />
+            */}
+
+            {/* <Route
               path='/profile'
               element={
                 <Profile
                   onAuth={togleAuthorized}
+                  onRemoveCookie={removeCookie}
                 ></Profile>
-              } />
+              } /> */}
+
+            <Route
+              path='/profile'
+              element={
+                <ProtectedRoute
+                  element={Profile}
+                  isLoggedIn={isAuthorized}
+                  onAuth={togleAuthorized}
+                  onRemoveCookie={removeCookie}
+                  onUpdateUserInfo={handlerUserInfo}
+                >
+                </ProtectedRoute>
+              }
+            />
+
+            <Route path='/movies' element={
+              <ProtectedRoute
+                element={Movies}
+                isLoggedIn={isAuthorized}
+              ></ProtectedRoute>
+            }
+            />
+
+            {/*
+            <Route
+              path='/saved-movies'
+              element={
+                <SavedMovies></SavedMovies>
+              } /> */}
+
+            <Route
+              path='/saved-movies'
+              element={
+                <ProtectedRoute
+                  element={SavedMovies}
+                  isLoggedIn={isAuthorized}
+                />
+              }
+            />
 
             <Route
               path='*'
@@ -225,8 +325,11 @@ function App() {
               } />
 
           </Routes>
+
           <Footer></Footer>
-        </AuthorizedContext.Provider>
+
+          {/* </AuthorizedContext.Provider> */}
+        </CurrentUserContext.Provider>
       </div>
     </div >
   );

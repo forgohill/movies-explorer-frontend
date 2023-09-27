@@ -17,16 +17,18 @@ import React from 'react';
 import { Routes, Route, Link, NavLink } from 'react-router-dom';
 import AccountButton from '../AccountButton/AccountButton'
 import './Navigation.css';
-import { AuthorizedContext } from '../../contexts/AuthorizedContext';
-const Navigation = () => {
-  const Authorized = React.useContext(AuthorizedContext);
-  console.log(Authorized);
+// import { AuthorizedContext } from '../../contexts/AuthorizedContext';
+const Navigation = ({ isLoggedIn }) => {
+  // const Authorized = React.useContext(AuthorizedContext);
+  // console.log(`навигатион :${isLoggedIn}`);
+  // console.log(isLoggedIn);
+  // console.error(isLoggedIn);
   return (
     <nav
-      className={`navigation ${Authorized === true
+      className={`navigation ${isLoggedIn === true
         ? 'navigation_invisible'
         : ''}`}>
-      {Authorized === true
+      {isLoggedIn === true
         ? (
           <ul className='navigation__container'>
             <ul className='navigation__wrapper'>
@@ -86,6 +88,7 @@ const Navigation = () => {
             </li>
           </ul>
         )}
+
     </nav>
   );
 }

@@ -43,10 +43,10 @@ const AuthForm = ({ title,
         // onSubmit={handleSubmit}
         onSubmit={onSubmit}
         noValidate
-        // onSubmit={onClickLogin}
-        // onSubmit={handleSubmit}
-        onSubmit={onSubmit}
-        noValidate
+      // onSubmit={onClickLogin}
+      // onSubmit={handleSubmit}
+      // onSubmit={onSubmit}
+      // noValidate
       >
         {props.children}
 
