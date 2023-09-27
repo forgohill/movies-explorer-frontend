@@ -8,11 +8,18 @@ import './Profile.css';
 const Profile = ({
   onAuth,
   onRemoveCookie,
+  sourceInfoTooltips,
+  // onResetSourceInfoTooltips,
   onUpdateUserInfo
 }) => {
   // const { email, name } = useContext(CurrentUserContext);
   const { name, email } = useContext(CurrentUserContext);
   const [isVisible, setIsVisible] = useState(true);
+  const [isRedact, setIsRedact] = useState(false);
+  const [changesInput, setChangesInput] = useState({
+    name: '',
+    email: '',
+  });
 
   const {
     inputValues,
@@ -20,68 +27,128 @@ const Profile = ({
     isValid,
     handleChange,
     setInputValues,
+    setIsValid,
   } = useValidationsForms();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('СРАБОТАЛ handleSubmit Profile');
+    // setIsValid(true);
     // const date = { inputValues.name, inputValues.email }
-    onUpdateUserInfo(inputValues);
-    setIsVisible(!isVisible);
+    if (isValid) {
+      console.log('СРАБОТАЛ isValid Profile');
+      onUpdateUserInfo(inputValues);
+      setIsVisible(!isVisible);
+    }
   }
+
+  // const inputName = useRef(null);
+  // const focusInputName = () => {
+  //   inputName.current.focus();
+  // };
 
 
   const handleRedact = (e) => {
     console.log('СРАБОТАЛ handleRedact Profile');
     e.preventDefault();
     setIsVisible(!isVisible);
-
+    setIsValid(true);
     // if (isVisible === true) {
     //   return setIsVisible(false)
     // }
     // return setIsVisible(true);
-
   }
 
   const btnCU = () => {
     console.log(name, email);
   }
 
+  // эффект котороый отвечает за
+  // отображение на странице из
+  // карентЮзер контекста
   useEffect(() => {
-    setInputValues({ name, email })
+    setInputValues({ name, email });
+    setChangesInput({ name, email });
+    console.log(`isValid  ${isValid}`);
     // setIsVisible(true);
   }, [name, email]);
+
+  useEffect(() => {
+    console.log('хуяк');
+    if (
+      inputValues.name === changesInput.name
+      && inputValues.email === changesInput.email
+    ) {
+      console.error('РАВНО!!!')
+      // setIsVisible(true);
+      setIsRedact(true);
+    } else {
+      console.error('___НЕРАВНО___');
+      // setIsVisible(false);
+      setIsRedact(false);
+      // setIsValid(true);
+    }
+  }, [inputValues])
+
+  useEffect(() => {
+    // focusInputName();
+  }, [isVisible]);
 
   return (
     <main
       className='profile'>
+      <div
+        className='profile__btnContainer'>
+        <button
+          onClick={btnCU}>
+          click btnCU
+        </button>
 
-      <button
-        onClick={btnCU}>
-        click btnCU
-      </button>
+        <button
+          onClick={() => { console.log(`isValid  ${isValid}`); }}>
+          click isValid
+        </button>
+
+        <button
+          onClick={() => { console.log(`isRedact ${isRedact}`); }}>
+          click isRedact
+        </button>
+
+        <button
+          onClick={() => { console.log(inputValues) }}>
+          log inputValues
+        </button>
+
+        <button
+          onClick={() => { console.log(changesInput) }}>
+          log changesInput
+        </button>
+      </div>
 
       <div className="profile__container">
-        <h1 className="profile__title">{`Привет, ${inputValues.name}!`}</h1>
+        <h1 className="profile__title">{`Привет, ${name}!`}</h1>
         <form className='profile__form'
           // onSubmit={handleRedact}
           onSubmit={handleSubmit}
-
           noValidate
         >
           <label
+
             htmlFor="email"
             className='profile__label'>
+
             Имя
             <input
               placeholder='Введите имя'
               value={inputValues.name ?? ''}
+              // ref={inputName}
               name='name'
-              disabled={isVisible}
+              // disabled={isVisible}
               type="text"
               id='email'
               className='profile__input'
               onChange={handleChange}
+              // onClick={handleRedact}
               required />
             <span
               className='profile__error'>
@@ -97,7 +164,7 @@ const Profile = ({
             className='profile__label'>
             E-mail
             <input
-              disabled={isVisible}
+              // disabled={isVisible}
               // value={'pochta@yandex.ru'}
               placeholder='Введите e-mail'
               value={inputValues.email ?? ''}
@@ -116,13 +183,16 @@ const Profile = ({
 
           <span
             className={`profile__error-submit
-            ${isVisible === false
+              ${isVisible === false
                 ? 'profile__error-submit_show'
-                : ''}`}>
-            При обновлении профиля произошла ошибка.
+                : ''}
+            ${sourceInfoTooltips.isSuccess ? 'profile__error-submit_success' : ''}`}>
+            {sourceInfoTooltips.message}
+            {/* При обновлении профиля произошла ошибка. */}
           </span>
+
           <button
-            // disabled
+            disabled={!isValid}
             // onClick={handleRedact}
             className={`profile__btn-save
             ${isVisible === false
@@ -134,6 +204,7 @@ const Profile = ({
         </form>
 
         <button
+          disabled={isRedact || !isValid}
           onClick={handleRedact}
           className={`profile__btn-redact
               ${isVisible === true

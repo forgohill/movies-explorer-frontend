@@ -40,14 +40,24 @@ function App() {
   // стейт навигации
   const [isAuthorized, setAuthorized] = useState(false);
   // стейт Context
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [currentUser, setCurrentUser] = useState({});
   // стейт блокирует кнопку в момент отправки формы
   const [isBlockedButton, setIsBlockedButton] = useState(false);
   // стейт для хранения типа ошибок
-  const [sourceInfoTooltips, setSourceInfoTooltips] = React.useState({
+  const [sourceInfoTooltips, setSourceInfoTooltips] = useState({
     access: false,
     message: '',
+    isSuccess: false,
   });
+
+  const resetSourceInfoTooltips = () => {
+    setSourceInfoTooltips({
+      access: false,
+      message: '',
+      isSuccess: false,
+    });
+  }
+
 
   const togleAuthorized = () => {
     console.log('togleAuthorized');
@@ -103,6 +113,7 @@ function App() {
       })
       .finally(() => {
         setIsBlockedButton(false);
+
       })
   };
 
@@ -150,7 +161,7 @@ function App() {
       .then((res) => {
         if (res.exit) {
           console.log('user logged out');
-
+          resetSourceInfoTooltips();
           localStorage.removeItem('loginInMestoTrue');
           // setIsLoggedIn(false);
           setAuthorized(false);
@@ -177,15 +188,40 @@ function App() {
     // debugger;
     updateuserInfo(data)
       .then((res) => {
+        setCurrentUser(res);
+        setSourceInfoTooltips({
+          access: true,
+          isSuccess: true,
+          message: 'Данные профиля успешно изменены.',
+        });
         console.log(res);
       })
       .catch((err) => {
         console.error(err)
+        if (err === 409) {
+          setSourceInfoTooltips({
+            access: true,
+            isSuccess: false,
+            message: 'Пользователь с таким email уже существует.',
+          });
+          setIsBlockedButton(false);
+        } else {
+          setSourceInfoTooltips({
+            access: true,
+            isSuccess: false,
+            message: 'При регистрации пользователя произошла ошибка.',
+          });
+          setIsBlockedButton(false);
+        }
       })
       .finally(() => {
-        console.log('finally updateuserInfo App')
-      })
-      ;
+        console.log('finally updateuserInfo App');
+        // setTimeout(setSourceInfoTooltips({
+        //   access: false,
+        //   message: '',
+        //   isSuccess: false,
+        // }), 10000);
+      });
 
   }
 
@@ -206,8 +242,6 @@ function App() {
     console.log('currentUser — ');
     console.log(currentUser);
   }, [isAuthorized]);
-
-
 
   const onClickCurrentUser = () => {
     console.log(currentUser);
@@ -287,7 +321,9 @@ function App() {
                   isLoggedIn={isAuthorized}
                   onAuth={togleAuthorized}
                   onRemoveCookie={removeCookie}
+                  sourceInfoTooltips={sourceInfoTooltips}
                   onUpdateUserInfo={handlerUserInfo}
+                // onResetSourceInfoTooltips={resetSourceInfoTooltips}
                 >
                 </ProtectedRoute>
               }
