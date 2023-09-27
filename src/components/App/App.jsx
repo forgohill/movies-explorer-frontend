@@ -124,18 +124,36 @@ function App() {
     console.error(`
     email — ${email}
     password — ${password}`);
+
+    setIsBlockedButton(true);
+
     authorize(date)
       .then((res) => {
         console.log(res);
         localStorage.setItem('loginInMestoTrue', true);
         setAuthorized(true);
         navigate('/', { replace: true });
-
       })
       .catch((err) => {
         console.log(err);
+        if (err === 401) {
+          setSourceInfoTooltips({
+            access: true,
+            isSuccess: false,
+            message: 'Вы ввели неправильный логин или пароль.',
+          });
+          setIsBlockedButton(false);
+        } else {
+          setSourceInfoTooltips({
+            access: true,
+            isSuccess: false,
+            message: 'При авторизации произошла ошибка.',
+          });
+          setIsBlockedButton(false);
+        }
       })
       .finally(() => {
+        setIsBlockedButton(false);
       })
   };
 
@@ -179,6 +197,12 @@ function App() {
     cookieCheck();
   }, []);
 
+  useEffect(() => {
+    if (pathname === '/') {
+      resetSourceInfoTooltips();
+    }
+  }, [pathname]);
+
   // обновление юзера
   const handlerUserInfo = ({ name, email }) => {
     console.log('СРАБОТАЛ updateUserInfo App');
@@ -186,6 +210,8 @@ function App() {
     // const { name, email } = data;
     const data = { name, email };
     // debugger;
+    setIsBlockedButton(true);
+    // resetSourceInfoTooltips();
     updateuserInfo(data)
       .then((res) => {
         setCurrentUser(res);
@@ -216,11 +242,7 @@ function App() {
       })
       .finally(() => {
         console.log('finally updateuserInfo App');
-        // setTimeout(setSourceInfoTooltips({
-        //   access: false,
-        //   message: '',
-        //   isSuccess: false,
-        // }), 10000);
+        setIsBlockedButton(false);
       });
 
   }
@@ -275,6 +297,7 @@ function App() {
                   onRegister={handlerRegister}
                   sourceInfoTooltips={sourceInfoTooltips}
                   onBlockedButton={isBlockedButton}
+                  onResetSourceInfoTooltips={resetSourceInfoTooltips}
                 ></Register>
               } />
 
@@ -285,8 +308,10 @@ function App() {
                   onAuth={onlyLogin}
                   onLogin={handlerLogin}
                   sourceInfoTooltips={sourceInfoTooltips}
+                  onBlockedButton={isBlockedButton}
                   onRemoveCookie={removeCookie}
                   onCheckCockie={cookieCheck}
+                  onResetSourceInfoTooltips={resetSourceInfoTooltips}
                 ></Login>
               } />
 
@@ -323,7 +348,8 @@ function App() {
                   onRemoveCookie={removeCookie}
                   sourceInfoTooltips={sourceInfoTooltips}
                   onUpdateUserInfo={handlerUserInfo}
-                // onResetSourceInfoTooltips={resetSourceInfoTooltips}
+                  onBlockedButton={isBlockedButton}
+                  onResetSourceInfoTooltips={resetSourceInfoTooltips}
                 >
                 </ProtectedRoute>
               }

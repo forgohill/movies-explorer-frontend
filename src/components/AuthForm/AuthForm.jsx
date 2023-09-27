@@ -16,6 +16,7 @@ const AuthForm = ({ title,
   onDisabled,
   sourceInfoTooltips,
   onBlockedButton,
+  onResetSourceInfoTooltips,
   ...props }) => {
   // console.log(props);
 
@@ -70,6 +71,7 @@ const AuthForm = ({ title,
         <p className="auth__paragraph">{authMessage}<span className='auth__link'><Link
           to={endpoint}
           className='auth__link links-hover'
+          onClick={onResetSourceInfoTooltips}
         >
           {authLinkMessage}
         </Link>

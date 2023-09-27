@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { AuthorizedContext } from '../../contexts/AuthorizedContext';
 
 import useValidationsForms from '../../hooks/useValidationsForms';
+import { REGEX_EMAIL, REGEX_NAME } from '../../utils/constats';
 
 import AuthForm from '../AuthForm/AuthForm';
 import AuthInput from '../AuthInput/AuthInput';
@@ -16,6 +17,8 @@ const Login = ({
   onRemoveCookie,
   onCheckCockie,
   sourceInfoTooltips,
+  onBlockedButton,
+  onResetSourceInfoTooltips,
 }) => {
   const Authorized = React.useContext(AuthorizedContext);
   // console.log(Authorized);
@@ -63,6 +66,8 @@ const Login = ({
         onSubmit={handleSubmit}
         onDisabled={isValid}
         sourceInfoTooltips={sourceInfoTooltips}
+        onBlockedButton={onBlockedButton}
+        onResetSourceInfoTooltips={onResetSourceInfoTooltips}
       >
 
         <AuthInput
@@ -74,6 +79,7 @@ const Login = ({
           idInput={'email'}
           nameInput={'email'}
           onChange={handleChange}
+          pattern={REGEX_EMAIL}
         />
 
         <AuthInput
@@ -85,6 +91,7 @@ const Login = ({
           idInput={'pwd'}
           nameInput={'password'}
           onChange={handleChange}
+          minLength="6"
         />
       </AuthForm >
 

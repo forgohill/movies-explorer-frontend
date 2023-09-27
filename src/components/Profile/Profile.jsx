@@ -9,8 +9,9 @@ const Profile = ({
   onAuth,
   onRemoveCookie,
   sourceInfoTooltips,
-  // onResetSourceInfoTooltips,
-  onUpdateUserInfo
+  onResetSourceInfoTooltips,
+  onUpdateUserInfo,
+  onBlockedButton
 }) => {
   // const { email, name } = useContext(CurrentUserContext);
   const { name, email } = useContext(CurrentUserContext);
@@ -38,7 +39,7 @@ const Profile = ({
     if (isValid) {
       console.log('СРАБОТАЛ isValid Profile');
       onUpdateUserInfo(inputValues);
-      setIsVisible(!isVisible);
+      // setIsVisible(!isVisible);
     }
   }
 
@@ -51,6 +52,7 @@ const Profile = ({
   const handleRedact = (e) => {
     console.log('СРАБОТАЛ handleRedact Profile');
     e.preventDefault();
+    onResetSourceInfoTooltips();
     setIsVisible(!isVisible);
     setIsValid(true);
     // if (isVisible === true) {
@@ -92,7 +94,10 @@ const Profile = ({
 
   useEffect(() => {
     // focusInputName();
-  }, [isVisible]);
+    if (sourceInfoTooltips.isSuccess) {
+      setIsVisible(true);
+    } else { console.error('ХУЕЦ') }
+  }, [sourceInfoTooltips]);
 
   return (
     <main
@@ -123,6 +128,18 @@ const Profile = ({
           onClick={() => { console.log(changesInput) }}>
           log changesInput
         </button>
+
+        <button
+          onClick={() => { console.log(sourceInfoTooltips) }}>
+          log sourceInfoTooltips
+        </button>
+
+        <button
+          onClick={() => { console.log(onBlockedButton) }}>
+          log onBlockedButton
+        </button>
+
+
       </div>
 
       <div className="profile__container">
@@ -192,7 +209,7 @@ const Profile = ({
           </span>
 
           <button
-            disabled={!isValid}
+            disabled={!isValid || onBlockedButton}
             // onClick={handleRedact}
             className={`profile__btn-save
             ${isVisible === false

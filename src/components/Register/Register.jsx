@@ -5,11 +5,14 @@ import AuthForm from '../AuthForm/AuthForm';
 import AuthInput from '../AuthInput/AuthInput';
 import './Register.css';
 import useValidationsForms from '../../hooks/useValidationsForms';
+import { REGEX_EMAIL, REGEX_NAME } from '../../utils/constats';
 
 const Register = ({
   onRegister,
   sourceInfoTooltips,
-  onBlockedButton
+  onBlockedButton,
+  onResetSourceInfoTooltips,
+
 }) => {
 
   // стейт слушает запрет работы кнопки
@@ -51,6 +54,7 @@ const Register = ({
         onDisabled={isValid}
         sourceInfoTooltips={sourceInfoTooltips}
         onBlockedButton={onBlockedButton}
+        onResetSourceInfoTooltips={onResetSourceInfoTooltips}
       >
         <AuthInput
           inputType={'text'}
@@ -64,7 +68,8 @@ const Register = ({
           // nameInput={'name'}
           placeholderInput={'Введите имя'}
           onChange={handleChange}
-        // onChange={handleChange}
+          // onChange={handleChange}
+          pattern={REGEX_NAME}
         />
 
         <AuthInput
@@ -79,7 +84,8 @@ const Register = ({
           // nameInput={'email'}
           placeholderInput={'Введите email'}
           onChange={handleChange}
-        // onChange={handleChange}
+          // onChange={handleChange}
+          pattern={REGEX_EMAIL}
         />
 
         <AuthInput
@@ -94,7 +100,9 @@ const Register = ({
           // nameInput={'password'}
           placeholderInput={'Введите пароль'}
           onChange={handleChange}
-        // onChange={handleChange}
+          // onChange={handleChange}
+          minLength="6"
+
         />
       </AuthForm >
 

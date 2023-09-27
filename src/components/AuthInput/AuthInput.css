@@ -60,3 +60,8 @@
   font-weight: 400;
   line-height: 0.9;
 }
+
+.input-auth__input_type_error {
+  color: #EE3465;
+  /* background-color: #3456F3; */
+}
