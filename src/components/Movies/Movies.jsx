@@ -92,7 +92,7 @@ const Movies = ({ onSaveFilms }) => {
       .finally(() => {
         setIsLoading(false);
       })
-  }
+  };
 
   // нажатие кнопки поиск
   const handleSubmit = (request) => {

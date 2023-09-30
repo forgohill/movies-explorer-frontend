@@ -34,3 +34,6 @@ export const configUrl = {
 }
 
 
+export const console_log = {
+  red_style: 'color: yellow; font- style: italic; background-color: #red; padding: 4px;'
+}

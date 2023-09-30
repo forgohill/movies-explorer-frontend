@@ -26,70 +26,49 @@ import useWindowCalculator from '../../hooks/useWindowCalculator';
 
 const MoviesCardList = ({
   listMovies,
+  // savedListMovies,
   requestStorage,
   stateChechbox,
-  onSaveFilms }) => {
+  onSaveFilms,
+  onDeleteSaveFilm,
+}) => {
 
+  const { pathname } = useLocation();
   // стейт хранения входящео массива
   const [insertList, setInsertList] = useState([]);
 
-  // const [insertListTwo, setInsertListTwo] = useState([]);
-  // const [relationWidht, setRelationWidht] = useState(undefined);
+  const isSavedMovies = pathname === '/saved-movies';
 
-  const { addCards, moviesDisplay, resizeDelay, handleResize } = useWindowCalculator();
 
-  const { pathname } = useLocation();
 
-  // console.log(pathname);
+  const {
+    addCards,
+    moviesDisplay,
+    resizeDelay,
+    handleResize,
+  } = useWindowCalculator();
 
-  const moviesList = movies.map((movie) => {
-    return (
-      <MoviesCard
-        key={movie.id}
-        movie={movie}
-      />
-    )
-  });
 
-  const moviesSavedList = moviesSaved.map((movie) => {
-    return (
-      <MoviesCard
-        key={movie.id}
-        movie={movie}
-      />
-    )
-  });
-
-  // console.error(listMovies);
-
-  // const handlerSaveFilms = () => {
-  //   console.log('СРАБОТАЛ handlerSaveFilms App');
-  // };
 
   const filtredMovies = listMovies.slice(0, moviesDisplay).map((movie) => {
     return (
       <MoviesCard
-        key={movie.id}
+        key={isSavedMovies ? movie._id : movie.id}
         movie={movie}
+        isSavedMovies={isSavedMovies}
         onSaveFilms={onSaveFilms}
+        onDeleteSaveFilm={onDeleteSaveFilm}
       />
     )
   });
-
-  // const filtredMoviesTwo = insertListTwo.map((movie) => {
-  //   return (
-  //     <MoviesCard
-  //       key={movie.id}
-  //       movie={movie}
-  //     />
-  //   )
-  // });
 
   useEffect(() => {
     // console.log(' setInsertList ПРОИЗОШЕЛ')
     setInsertList(filtredMovies);
     // console.log(insertList);
-  }, [moviesDisplay], stateChechbox);
+    // }, [moviesDisplay], stateChechbox);
+  }, [moviesDisplay, stateChechbox]);
+
 
   useEffect(() => {
     console.log(stateChechbox);
@@ -139,6 +118,7 @@ const MoviesCardList = ({
           ></button>покажи stateChechbox</p>
 
       </div>
+      {isSavedMovies ? <div>СОХРАНЕНЫЕ ФИЛЬМЫ</div> : <div>ФИЛЬМЫ</div>}
 
 
       {/* правило по которому если ничего не найдено выводится надпись */}
@@ -146,7 +126,8 @@ const MoviesCardList = ({
         ?
         <ul className='movies-list__list'>
           {/* {pathname === '/movies' ? moviesList : moviesSavedList} */}
-          {pathname === '/movies' ? filtredMovies : filtredMovies}
+          {/* {pathname === '/movies' ? filtredMovies : filtredMovies} */}
+          {filtredMovies}
         </ul>
         :
         <p
@@ -155,8 +136,6 @@ const MoviesCardList = ({
           {`${requestStorage !== '' ? 'Ничего не найдено' : ''}`}
         </p>
       }
-
-
 
       {/* КНОПКА ЕЩЕ */}
       {insertList.length < listMovies.length
@@ -171,8 +150,6 @@ const MoviesCardList = ({
           className='movies-list__saveddevider'>
         </div>
       }
-
-
 
       {/* {pathname === '/movies'
         ? <button type='button'

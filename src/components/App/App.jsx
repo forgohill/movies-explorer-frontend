@@ -15,7 +15,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { AuthorizedContext } from '../../contexts/AuthorizedContext';
+// import { AuthorizedContext } from '../../contexts/AuthorizedContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import {
   register,
@@ -25,7 +25,10 @@ import {
   updateuserInfo,
   savedMovies,
   getMovies,
+  deleteMovie,
 } from '../../utils/mainApi';
+import { console_log } from '../../utils/constats'
+
 
 import './App.css';
 import Header from '../Header/Header';
@@ -43,7 +46,6 @@ function App() {
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
-
 
   // стейт навигации
   const [isAuthorized, setAuthorized] = useState(false);
@@ -68,7 +70,7 @@ function App() {
     });
   }
 
-
+  // не помню что это =)
   const togleAuthorized = () => {
     console.log('togleAuthorized');
     if (isAuthorized === true) {
@@ -81,6 +83,12 @@ function App() {
     setAuthorized(true);
   }
 
+  // //////////////////////////////////////////
+  // //////////// РАБОТА С ФИЛЬМАМИ       /////
+  // //////////////////////////////////////////
+
+
+  // переключатель сохранения фильмов
   const handlerSaveFilms = (movie) => {
     console.log('СРАБОТАЛ handlerSaveFilms App');
     console.log(movie);
@@ -99,12 +107,39 @@ function App() {
       });
   };
 
+  const handleDeleteSaveFilm = (movieId) => {
+    console.log('СРАБОТАЛО handleDeleteSaveFilm App');
+    console.log(`movieId %c${movieId}`,
+      "color: yellow; font-style: italic; background-color: blue; padding: 2px;");
+
+    deleteMovie(movieId)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        console.log(`%cfinally handleDeleteSaveFilm deleteMovie App`,
+          "color: yellow; font-style: italic; background-color: blue; padding: 2px;");
+      });
+  };
+
+  const getingSavedFilms = () => {
+    getMovies()
+      .then((data) => {
+        console.log(data);
+        setSavedFilms(data.movies);
+      })
+      .catch((err) => {
+        console.error(err)
+      });
+  }
+
 
   // //////////////////////////////////////////
   // //////////// РЕГИСТРАЦИЯ АВТОРИЗАЦИЯ /////
   // //////////////////////////////////////////
-
-
 
   // регистрация
   const handlerRegister = ({ email, password, name }) => {
@@ -189,12 +224,16 @@ function App() {
 
   //  Проверка токена/кукиса
   const cookieCheck = () => {
-    console.log('сработал App cookieCheck');
+    console.log('сработал App %ccookieCheck', `${console_log.red_style}`);
     const currentPath = pathname;
     const token = localStorage.getItem('loginInBeatfilmTrue');
     console.log(token);
     if (token) {
+      console.log('сработал %cПРОВЕРКА ТОКЕНА', `${console_log.red_style}`);
       setAuthorized(true);
+
+      getingSavedFilms();
+
       // setIsLoggedIn(true);
       // navigate('/', { replace: true });
       navigate(currentPath, { replace: true });
@@ -296,14 +335,16 @@ function App() {
           console.log(err);
         });
 
-      getMovies()
-        .then((data) => {
-          console.log(data);
-          setSavedFilms(data.movies);
-        })
-        .catch((err) => {
-          console.error(err)
-        })
+      getingSavedFilms();
+
+      // getMovies()
+      //   .then((data) => {
+      //     console.log(data);
+      //     setSavedFilms(data.movies);
+      //   })
+      //   .catch((err) => {
+      //     console.error(err)
+      //   })
 
     }
     console.log('currentUser — ');
@@ -334,6 +375,14 @@ function App() {
               className='App__containerbtn_btn'
               onClick={getSavedFilms}
             >onClick=getSavedFilms</button>
+
+            <button
+              className='App__containerbtn_btn'
+              onClick={() => {
+                console.log(isAuthorized);
+              }}
+            >onClick=isAuthorized</button>
+
           </div>
           {/*
           <AuthorizedContext.Provider
@@ -435,6 +484,7 @@ function App() {
                   element={SavedMovies}
                   isLoggedIn={isAuthorized}
                   savedFilms={savedFilms}
+                  onDeleteSaveFilm={handleDeleteSaveFilm}
                 />
               }
             />

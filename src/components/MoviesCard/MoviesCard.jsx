@@ -6,6 +6,8 @@ import { configUrl } from '../../utils/constats';
 const MoviesCard = ({
   movie,
   onSaveFilms,
+  isSavedMovies,
+  onDeleteSaveFilm
 }) => {
 
   const { pathname } = useLocation();
@@ -23,9 +25,16 @@ const MoviesCard = ({
     onSaveFilms(movie);
   };
 
+  const handleClickDeleteSaveFilm = () => {
+    // console.error(movie._id);
+    onDeleteSaveFilm(movie._id);
+  }
+
   return (
     <li className='movie-card'>
-      <img src={`${configUrl.IMAGE_URL}${movie.image.url}`}
+      <img src={isSavedMovies ? movie.image : `${configUrl.IMAGE_URL}${movie.image.url}`}
+
+        // <img src={`${configUrl.IMAGE_URL}${movie.image.url}`}
         alt={movie.description}
         className='movie-card__image'
         onClick={() => {
@@ -51,6 +60,7 @@ const MoviesCard = ({
             className={`movie-card__btn
           movie-card__btn_delete-saved
           links-hover`}
+            onClick={handleClickDeleteSaveFilm}
           ></button>}
 
         {/* <div>

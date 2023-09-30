@@ -172,3 +172,19 @@ export const getMovies = () => {
       return checkError(res);
     })
 }
+
+export const deleteMovie = (movieId) => {
+  console.log('СРАБОТАЛ FETCH deleteMovie mainAPI');
+  console.error(`${BASE_URL}${ENDPOINT_MOVIES}/${movieId}`);
+  return fetch(
+    `${BASE_URL}${ENDPOINT_MOVIES}/${movieId}`,
+    {
+      method: 'DELETE',
+      headers,
+      credentials
+    }
+  )
+    .then((res) => {
+      return checkError(res);
+    })
+}
