@@ -24,7 +24,11 @@ import useWindowCalculator from '../../hooks/useWindowCalculator';
 
 // 1 сдлаем стейт который хранит входящий массив
 
-const MoviesCardList = ({ listMovies, requestStorage, stateChechbox }) => {
+const MoviesCardList = ({
+  listMovies,
+  requestStorage,
+  stateChechbox,
+  onSaveFilms }) => {
 
   // стейт хранения входящео массива
   const [insertList, setInsertList] = useState([]);
@@ -58,11 +62,16 @@ const MoviesCardList = ({ listMovies, requestStorage, stateChechbox }) => {
 
   // console.error(listMovies);
 
+  // const handlerSaveFilms = () => {
+  //   console.log('СРАБОТАЛ handlerSaveFilms App');
+  // };
+
   const filtredMovies = listMovies.slice(0, moviesDisplay).map((movie) => {
     return (
       <MoviesCard
         key={movie.id}
         movie={movie}
+        onSaveFilms={onSaveFilms}
       />
     )
   });

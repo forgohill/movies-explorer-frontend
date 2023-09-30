@@ -18,6 +18,7 @@ export const configMainApi = {
     ENDPOINT_AUTH: '/signin',
     ENDPOINT_OUT: '/signout',
     ENDPOINT_CHECKJWL: '/users/me',
+    ENDPOINT_MOVIES: '/movies',
   }
 };
 
@@ -31,4 +32,5 @@ export const
 export const configUrl = {
   IMAGE_URL: 'https://api.nomoreparties.co/'
 }
+
 

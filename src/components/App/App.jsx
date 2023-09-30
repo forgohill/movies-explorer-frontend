@@ -17,7 +17,15 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { AuthorizedContext } from '../../contexts/AuthorizedContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { register, authorize, logout, getUser, updateuserInfo } from '../../utils/mainApi';
+import {
+  register,
+  authorize,
+  logout,
+  getUser,
+  updateuserInfo,
+  savedMovies,
+  getMovies,
+} from '../../utils/mainApi';
 
 import './App.css';
 import Header from '../Header/Header';
@@ -49,6 +57,8 @@ function App() {
     message: '',
     isSuccess: false,
   });
+  // стейт сохранненые фильмы
+  const [savedFilms, setSavedFilms] = useState([]);
 
   const resetSourceInfoTooltips = () => {
     setSourceInfoTooltips({
@@ -70,6 +80,25 @@ function App() {
   const onlyLogin = () => {
     setAuthorized(true);
   }
+
+  const handlerSaveFilms = (movie) => {
+    console.log('СРАБОТАЛ handlerSaveFilms App');
+    console.log(movie);
+    // debugger;
+    savedMovies(movie)
+      .then((data) => {
+        console.log(data);
+        // const savingFilms = data;
+        setSavedFilms([data, ...savedFilms]);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        console.log('СРАБОТАЛ finally handlerSaveFilms App');
+      });
+  };
+
 
   // //////////////////////////////////////////
   // //////////// РЕГИСТРАЦИЯ АВТОРИЗАЦИЯ /////
@@ -130,7 +159,7 @@ function App() {
     authorize(date)
       .then((res) => {
         console.log(res);
-        localStorage.setItem('loginInMestoTrue', true);
+        localStorage.setItem('loginInBeatfilmTrue', true);
         setAuthorized(true);
         navigate('/', { replace: true });
       })
@@ -162,7 +191,7 @@ function App() {
   const cookieCheck = () => {
     console.log('сработал App cookieCheck');
     const currentPath = pathname;
-    const token = localStorage.getItem('loginInMestoTrue');
+    const token = localStorage.getItem('loginInBeatfilmTrue');
     console.log(token);
     if (token) {
       setAuthorized(true);
@@ -180,7 +209,13 @@ function App() {
         if (res.exit) {
           console.log('user logged out');
           resetSourceInfoTooltips();
-          localStorage.removeItem('loginInMestoTrue');
+          localStorage.removeItem('loginInBeatfilmTrue');
+
+          // удаляем все локал сториджы когда юзер выходит
+          localStorage.removeItem('moviesFullList');
+          localStorage.removeItem('request');
+          localStorage.removeItem('checkboxMoviesStorage');
+
           // setIsLoggedIn(false);
           setAuthorized(false);
           // setUserEmail('');
@@ -244,13 +279,13 @@ function App() {
         console.log('finally updateuserInfo App');
         setIsBlockedButton(false);
       });
-
   }
 
-
+  // получим контекст юзер и сохраненые карточки
   useEffect(() => {
     if (isAuthorized === true) {
       console.log('СРАБОТАЛ useEffect isAuthorized')
+
       getUser()
         .then((data) => {
           console.error(data);
@@ -260,6 +295,16 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
+
+      getMovies()
+        .then((data) => {
+          console.log(data);
+          setSavedFilms(data.movies);
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+
     }
     console.log('currentUser — ');
     console.log(currentUser);
@@ -269,15 +314,27 @@ function App() {
     console.log(currentUser);
   };
 
+  const getSavedFilms = () => {
+    console.log(savedFilms);
+  };
+
   return (
     <div className='app'>
       <div className='page'>
         <CurrentUserContext.Provider
           value={currentUser}>
+          <div className='App__containerbtn'>
 
-          <button
-            onClick={onClickCurrentUser}
-          >onClick=currentUser</button>
+            <button
+              className='App__containerbtn_btn'
+              onClick={onClickCurrentUser}
+            >onClick=currentUser</button>
+
+            <button
+              className='App__containerbtn_btn'
+              onClick={getSavedFilms}
+            >onClick=getSavedFilms</button>
+          </div>
           {/*
           <AuthorizedContext.Provider
             value={isAuthorized}> */}
@@ -359,6 +416,7 @@ function App() {
               <ProtectedRoute
                 element={Movies}
                 isLoggedIn={isAuthorized}
+                onSaveFilms={handlerSaveFilms}
               ></ProtectedRoute>
             }
             />
@@ -376,6 +434,7 @@ function App() {
                 <ProtectedRoute
                   element={SavedMovies}
                   isLoggedIn={isAuthorized}
+                  savedFilms={savedFilms}
                 />
               }
             />

@@ -1,15 +1,20 @@
-import { configMainApi } from './constats';
+import SavedMovies from '../components/SavedMovies/SavedMovies';
+import { configMainApi, configUrl } from './constats';
 
 const {
   BASE_URL,
   headers,
   credentials,
-  endpoint } = configMainApi;
+  endpoint
+} = configMainApi;
+
 const {
   ENDPOINT_REGISTER,
   ENDPOINT_AUTH,
   ENDPOINT_CHECKJWL,
-  ENDPOINT_OUT } = endpoint;
+  ENDPOINT_OUT,
+  ENDPOINT_MOVIES
+} = endpoint;
 
 const checkError = (res) => {
   if (res.ok) {
@@ -68,7 +73,7 @@ export const logout = () => {
 
 
 // //////////////////////////////////////////
-// ////////////           АПИ      //////////
+// ////////////     УПРАВЛЕНИЕ АПИ  /////////
 // //////////////////////////////////////////
 
 
@@ -95,6 +100,72 @@ export const updateuserInfo = ({ name, email }) => {
       headers,
       credentials,
       body: JSON.stringify({ name, email })
+    }
+  )
+    .then((res) => {
+      return checkError(res);
+    })
+}
+
+
+
+// //////////////////////////////////////////
+// /////   МАССИВ СОХРАНЕННЫЕ ФИЛЬМЫ  ///////
+// //////////////////////////////////////////
+
+/**
+ *   {
+    "country": "info1",
+    "director": "info2",
+    "duration": "36000",
+    "year": "info4",
+    "description": "info5",
+    "image": "https://www.kinopoisk.ru/image",
+    "trailerLink": "https://www.kinopoisk.ru/trailerLink",
+    "nameRU": "info8",
+    "nameEN": "info9",
+    "thumbnail": "https://www.kinopoisk.ru/trailer",
+    "movieId": "23"
+  }
+ */
+
+export const savedMovies = (movie) => {
+  console.log('СРАБОТАЛ FETCH savedMovies mainAPI');
+  return fetch(
+    `${BASE_URL}${ENDPOINT_MOVIES}`,
+    {
+      method: 'POST',
+      headers,
+      credentials,
+      body: JSON.stringify({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `${configUrl.IMAGE_URL}${movie.image.url}`,
+        trailerLink: movie.trailerLink,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        thumbnail: `${configUrl.IMAGE_URL}${movie.image.formats.thumbnail.url}`,
+        movieId: movie.id,
+      })
+    }
+  )
+    .then((res) => {
+      return checkError(res);
+    })
+};
+
+
+export const getMovies = () => {
+  console.log('СРАБОТАЛ FETCH getMovies mainAPI');
+  return fetch(
+    `${BASE_URL}${ENDPOINT_MOVIES}`,
+    {
+      method: 'GET',
+      headers,
+      credentials
     }
   )
     .then((res) => {

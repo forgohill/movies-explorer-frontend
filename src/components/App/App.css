@@ -20,3 +20,18 @@
   transition: 1s ease;
   opacity: .7;
 }
+
+.App__containerbtn {
+  margin: 10px auto;
+
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.App__containerbtn_btn {
+  padding: 5px 3px;
+  margin: 7px;
+  width: 200px;
+}

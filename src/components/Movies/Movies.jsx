@@ -9,7 +9,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { getFilms, } from '../../utils/moviesApi';
 import useFiltredFilms from '../../hooks/useFiltredFilms';
 
-const Movies = () => {
+const Movies = ({ onSaveFilms }) => {
 
   // стейт прилоадера
   const [isLoading, setIsLoading] = useState(false);
@@ -108,7 +108,7 @@ const Movies = () => {
     // если лсТекстЗапроса не пустая строка ТО :
     if (requestStorage !== '') {
       // setIsCheckedShortFilms(false);
-      // в стейт IsFindMoviesList записываем массив прогнаный черех хук:
+      // в стейт IsFindMoviesList записываем массив прогнаный через хук:
       setIsFindMoviesList(foundFilms(moviesAll, requestStorage, isCheckedShortFilms));
     } else {
       setIsCheckedShortFilms(false);
@@ -218,6 +218,7 @@ const Movies = () => {
           requestStorage={requestStorage}
           listMovies={isFindMoviesList}
           stateChechbox={isCheckedShortFilms}
+          onSaveFilms={onSaveFilms}
         ></MoviesCardList>)
       }
 

@@ -4,38 +4,24 @@ import { configUrl } from '../../utils/constats';
 
 
 const MoviesCard = ({
-  movie
+  movie,
+  onSaveFilms,
 }) => {
 
   const { pathname } = useLocation();
 
-  // function msToTime(duration) {
-  //   var milliseconds = Math.floor((duration % 1000) / 100),
-  //     seconds = Math.floor((duration / 1000) % 60),
-  //     minutes = Math.floor((duration / (1000 * 60)) % 60),
-  //     hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
-  //   // hours = (hours < 10) ? "0" + hours : hours;
-  //   minutes = (minutes < 10) ? "0" + minutes : minutes;
-  //   // seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-  //   return hours + "ч" + minutes + 'м';
-  // }
 
   function msToTime(duration) {
-    // var milliseconds = Math.floor((duration % 1000) / 100),
-    // let seconds = Math.floor((duration / 60) % 60),
-    // minutes = Math.floor((duration / (1000 * 60)) % 60),
-    // hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
-    let minutes = duration % 60,
-      hours = Math.floor(duration / 60);
-    // hours = (hours < 10) ? "0" + hours : hours;
-    minutes = (minutes < 10) ? "0" + minutes : minutes;
-    // seconds = (seconds < 10) ? "0" + seconds : seconds;
 
+    let minutes = duration % 60, hours = Math.floor(duration / 60);
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
     return hours + "ч" + minutes + 'м';
   }
 
-
+  const handleClickSave = (e) => {
+    e.preventDefault();
+    onSaveFilms(movie);
+  };
 
   return (
     <li className='movie-card'>
@@ -55,8 +41,17 @@ const MoviesCard = ({
         </div>
 
         {pathname === '/movies'
-          ? <button className={`movie-card__btn ${movie.status === true ? 'movie-card__btn_saved' : ''} links-hover`}></button>
-          : <button className={`movie-card__btn movie-card__btn_delete-saved links-hover`}></button>}
+          ? <button
+            className={`movie-card__btn ${movie.status === true
+              ? 'movie-card__btn_saved'
+              : ''} links-hover`}
+            onClick={handleClickSave}
+          ></button>
+          : <button
+            className={`movie-card__btn
+          movie-card__btn_delete-saved
+          links-hover`}
+          ></button>}
 
         {/* <div>
           <button className='movie-card__btn movie-card__btn_delete-saved links-hover'

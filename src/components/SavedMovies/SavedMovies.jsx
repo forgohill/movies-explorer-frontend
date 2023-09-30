@@ -4,7 +4,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 // import { useState } from 'react';
 // import { useEffect } from 'react';
 
-const SavedMovies = () => {
+const SavedMovies = ({ savedFilms }) => {
   const [listMovies, setlistMovies] = useState([]);
   return (
     <div className='movies'>
