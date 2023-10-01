@@ -183,6 +183,7 @@ function App() {
     logout()
       .then((res) => {
         if (res.exit) {
+          const currentPath = pathname;
           resetSourceInfoTooltips();
           localStorage.removeItem('loginInBeatfilmTrue');
           // удаляем все локал сториджы когда юзер выходит
@@ -190,7 +191,10 @@ function App() {
           localStorage.removeItem('request');
           localStorage.removeItem('checkboxMoviesStorage');
           setAuthorized(false);
-          navigate('/signin', { replace: true });
+          if (currentPath !== '/') {
+            navigate('/signin', { replace: true });
+          }
+
           document.cookie = "jwtChek=; expires=Mon, 26 Dec 1991 00:00:01 GMT;";
         }
       })
@@ -213,6 +217,7 @@ function App() {
     getUser()
       .then((data) => {
         cookieCheck();
+        setCurrentUser(data);
       })
       .catch((err) => {
         removeCookie();
