@@ -1,14 +1,11 @@
 import React from 'react';
-import { Route, Routes, Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import './Header.css';
 
 const Header = ({ isLoggedIn }) => {
-
   const { pathname } = useLocation();
-  console.log(pathname);
-  // console.error(isLoggedIn);
   return (
     <>
       {
@@ -17,7 +14,6 @@ const Header = ({ isLoggedIn }) => {
           <header className={`header ${pathname === '/' ? 'header_place_hero' : ''} ${pathname === '/movies' ? 'header_place_movies' : ''}`}>
             <Link to='/' className='header__logo links-hover'></Link>
             <Navigation
-              // onAuth={onAuth}
               isLoggedIn={isLoggedIn}
             />
             <BurgerMenu

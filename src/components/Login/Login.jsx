@@ -1,29 +1,20 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { AuthorizedContext } from '../../contexts/AuthorizedContext';
+import React from 'react';
+// import { Link, useLocation } from 'react-router-dom';
 
 import useValidationsForms from '../../hooks/useValidationsForms';
-import { REGEX_EMAIL, REGEX_NAME } from '../../utils/constats';
+import { REGEX_EMAIL } from '../../utils/constats';
 
 import AuthForm from '../AuthForm/AuthForm';
 import AuthInput from '../AuthInput/AuthInput';
 
 import './Login.css';
 
-
 const Login = ({
-  onAuth,
   onLogin,
-  onRemoveCookie,
-  onCheckCockie,
   sourceInfoTooltips,
   onBlockedButton,
   onResetSourceInfoTooltips,
 }) => {
-  const Authorized = React.useContext(AuthorizedContext);
-  // console.log(Authorized);
-  const { pathname } = useLocation();
-
   const {
     inputValues,
     errMessage,
@@ -42,34 +33,19 @@ const Login = ({
 
   return (
     <main className='login auth'>
-      <div>
-        <button
-          className='extraButton'
-          onClick={onRemoveCookie}>
-          УДАЛИТЬ КУКИСЫ
-        </button>
 
-        <button
-          className='extraButton'
-          onClick={onCheckCockie}
-        >
-          ПРОВЕРИТЬ КУКИ
-        </button>
-      </div>
       <AuthForm
         title={'Рады видеть!'}
         buttonText={'Войти'}
         authMessage={'Ещё не зарегистрированы? '}
         authLinkMessage={'Регистрация'}
         endpoint={'/signup'}
-        // onClickLogin={handleClick}
         onSubmit={handleSubmit}
         onDisabled={isValid}
         sourceInfoTooltips={sourceInfoTooltips}
         onBlockedButton={onBlockedButton}
         onResetSourceInfoTooltips={onResetSourceInfoTooltips}
       >
-
         <AuthInput
           inputValue={inputValues.email ?? ''}
           erorrMessage={errMessage.email ?? ''}
@@ -81,7 +57,6 @@ const Login = ({
           onChange={handleChange}
           pattern={REGEX_EMAIL}
         />
-
         <AuthInput
           inputValue={inputValues.password ?? ''}
           erorrMessage={errMessage.password ?? ''}
@@ -94,7 +69,6 @@ const Login = ({
           minLength="6"
         />
       </AuthForm >
-
     </main >
   );
 }

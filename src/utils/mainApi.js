@@ -92,7 +92,6 @@ export const getUser = () => {
 };
 
 export const updateuserInfo = ({ name, email }) => {
-  console.log('СРАБОТАЛ FETCH updateuserInfo mainAPI')
   return fetch(
     `${BASE_URL}${ENDPOINT_CHECKJWL}`,
     {
@@ -113,24 +112,7 @@ export const updateuserInfo = ({ name, email }) => {
 // /////   МАССИВ СОХРАНЕННЫЕ ФИЛЬМЫ  ///////
 // //////////////////////////////////////////
 
-/**
- *   {
-    "country": "info1",
-    "director": "info2",
-    "duration": "36000",
-    "year": "info4",
-    "description": "info5",
-    "image": "https://www.kinopoisk.ru/image",
-    "trailerLink": "https://www.kinopoisk.ru/trailerLink",
-    "nameRU": "info8",
-    "nameEN": "info9",
-    "thumbnail": "https://www.kinopoisk.ru/trailer",
-    "movieId": "23"
-  }
- */
-
 export const savedMovies = (movie) => {
-  console.log('СРАБОТАЛ FETCH savedMovies mainAPI');
   return fetch(
     `${BASE_URL}${ENDPOINT_MOVIES}`,
     {
@@ -159,7 +141,6 @@ export const savedMovies = (movie) => {
 
 
 export const getMovies = () => {
-  console.log('СРАБОТАЛ FETCH getMovies mainAPI');
   return fetch(
     `${BASE_URL}${ENDPOINT_MOVIES}`,
     {
@@ -174,8 +155,6 @@ export const getMovies = () => {
 }
 
 export const deleteMovie = (movieId) => {
-  console.log('СРАБОТАЛ FETCH deleteMovie mainAPI');
-  console.error(`${BASE_URL}${ENDPOINT_MOVIES}/${movieId}`);
   return fetch(
     `${BASE_URL}${ENDPOINT_MOVIES}/${movieId}`,
     {

@@ -102,75 +102,29 @@ const Profile = ({
   return (
     <main
       className='profile'>
-      <div
-        className='profile__btnContainer'>
-        <button
-          onClick={btnCU}>
-          click btnCU
-        </button>
-
-        <button
-          onClick={() => { console.log(`isValid  ${isValid}`); }}>
-          click isValid
-        </button>
-
-        <button
-          onClick={() => { console.log(`isRedact ${isRedact}`); }}>
-          click isRedact
-        </button>
-
-        <button
-          onClick={() => { console.log(inputValues) }}>
-          log inputValues
-        </button>
-
-        <button
-          onClick={() => { console.log(changesInput) }}>
-          log changesInput
-        </button>
-
-        <button
-          onClick={() => { console.log(sourceInfoTooltips) }}>
-          log sourceInfoTooltips
-        </button>
-
-        <button
-          onClick={() => { console.log(onBlockedButton) }}>
-          log onBlockedButton
-        </button>
-
-
-      </div>
 
       <div className="profile__container">
         <h1 className="profile__title">{`Привет, ${name}!`}</h1>
         <form className='profile__form'
-          // onSubmit={handleRedact}
           onSubmit={handleSubmit}
           noValidate
         >
           <label
-
             htmlFor="email"
             className='profile__label'>
-
             Имя
             <input
               placeholder='Введите имя'
               value={inputValues.name ?? ''}
-              // ref={inputName}
               name='name'
-              // disabled={isVisible}
               type="text"
               id='email'
               className='profile__input'
               onChange={handleChange}
-              // onClick={handleRedact}
               required />
             <span
               className='profile__error'>
               {errMessage.name}
-              {/* Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символов). */}
             </span>
           </label>
 

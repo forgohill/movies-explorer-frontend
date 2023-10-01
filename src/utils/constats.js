@@ -32,8 +32,3 @@ export const
 export const configUrl = {
   IMAGE_URL: 'https://api.nomoreparties.co/'
 }
-
-
-export const console_log = {
-  red_style: 'color: yellow;'
-}

@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './SearchForm.css';
-// import placeholderSerch from '../../images/search__gray.svg'
-// import { useState } from 'react';
 import useValidationsForms from '../../hooks/useValidationsForms';
 import { MESSAGE } from '../../utils/constats'
 
@@ -12,13 +10,9 @@ const SearchForm = ({
   isChecked,
   onChange,
   oldRequest,
-  // listMovies
 }) => {
 
   const [errSearchMessage, setErrSearchMessage] = useState(MESSAGE.SEARCH_PLACEHOLDER_INPUT);
-
-  // старый запрос
-  // const [isOldRequset, setIsOldRequset] = useState('');
 
   const inputSearch = useRef(null);
 
@@ -39,35 +33,16 @@ const SearchForm = ({
   // слушатель сабмита
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`валидация: ${isValid}`);
     listenerValidation(isValid);
     if (isValid) {
       onSubmit(inputValues.inputSearch);
     }
-    // onSubmit(inputValues.inputSearch);
-    console.error(inputValues);
-  }
-
-
-  const clickChecbox = () => {
-    console.log(moviesFullList);
-    // console.log(localStorage.getItem('moviesFullList'));
-    console.log('clickChecbox');
-  }
+  };
 
   // юз эффект который проверяет есть ли найденые фильмы и вставляет тело запроса в инпут
   useEffect(() => {
-
-    // console.error(listMovies);
     if (oldRequest !== '') {
-      console.error(`oldRequest: ${oldRequest}`);
-      // console.error(listMovies);
-      // console.error(inputValues);
-      // setIsOldRequset(oldRequest);
-
       inputValues.inputSearch = oldRequest;
-      // inputSearch = oldRequest;
-      // console.log(inputSearch.current.value);
     }
   }, []);
 
@@ -107,7 +82,6 @@ const SearchForm = ({
               type="checkbox"
               className="search__checkbox"
               id='search__checkbox'
-              onClick={clickChecbox}
               onChange={onChange}
               checked={isChecked}
             />

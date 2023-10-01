@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './AboutMe.css';
 import portret from '../../images/foto_title.jpg'
 
@@ -42,7 +43,6 @@ const AboutMe = () => {
         </li>
       </ul>
 
-
       <h2 className="student__title student__title_content_portfolio">Портфолио</h2>
       <ul className='student__list-portfolio'>
         <li className='student__item-portfolio'>
@@ -76,6 +76,7 @@ const AboutMe = () => {
           </a>
         </li>
       </ul>
+
     </section>
   );
 }

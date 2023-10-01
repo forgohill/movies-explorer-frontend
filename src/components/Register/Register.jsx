@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-import { Link, useLocation } from 'react-router-dom';
 import AuthForm from '../AuthForm/AuthForm';
 import AuthInput from '../AuthInput/AuthInput';
 import './Register.css';
@@ -12,17 +11,11 @@ const Register = ({
   sourceInfoTooltips,
   onBlockedButton,
   onResetSourceInfoTooltips,
-
 }) => {
 
-  // стейт слушает запрет работы кнопки
-  // const [isDisables, setIsDisables] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`сработал handleSubmit Register`);
-    console.error(inputValues);
-    console.log(`ВАЛИАДЦИЯ — ${isValid}`)
     if (isValid) {
       onRegister(inputValues);
     }
@@ -35,12 +28,6 @@ const Register = ({
     handleChange,
     setInputValues,
   } = useValidationsForms();
-
-  // useEffect(() => {
-  //   setIsDisables(false)
-  // }, [isValid]);
-
-  const { pathname } = useLocation();
 
   return (
     <main className='register auth'>
@@ -61,14 +48,10 @@ const Register = ({
           labelName={'Имя'}
           inptValue={inputValues.name ?? ''}
           erorrMessage={errMessage.name ?? ''}
-          // inptValue={inputValues.name ?? ''}
-          // erorrMessage={errMessage.name ?? ''}
           idInput={'name'}
           nameInput={'name'}
-          // nameInput={'name'}
           placeholderInput={'Введите имя'}
           onChange={handleChange}
-          // onChange={handleChange}
           pattern={REGEX_NAME}
         />
 
@@ -77,14 +60,10 @@ const Register = ({
           labelName={'E-mail'}
           inptValue={inputValues.email ?? ''}
           erorrMessage={errMessage.email ?? ''}
-          // inptValue={inputValues.email ?? ''}
-          // erorrMessage={errMessage.email ?? ''}
           idInput={'email'}
           nameInput={'email'}
-          // nameInput={'email'}
           placeholderInput={'Введите email'}
           onChange={handleChange}
-          // onChange={handleChange}
           pattern={REGEX_EMAIL}
         />
 
@@ -93,19 +72,13 @@ const Register = ({
           labelName={'Пароль'}
           inptValue={inputValues.password ?? ''}
           erorrMessage={errMessage.password ?? ''}
-          // inptValue={inputValues.password ?? ''}
-          // erorrMessage={errMessage.password ?? ''}
           idInput={'pwd'}
           nameInput={'password'}
-          // nameInput={'password'}
           placeholderInput={'Введите пароль'}
           onChange={handleChange}
-          // onChange={handleChange}
           minLength="6"
-
         />
       </AuthForm >
-
     </main >
   );
 }

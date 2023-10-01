@@ -13,8 +13,6 @@ const AuthInput = ({
   pattern,
   minLength,
   maxLength,
-
-  // onDisabled
 }) => {
   return (
     <label
@@ -28,7 +26,6 @@ const AuthInput = ({
         id={idInput}
         onChange={onChange}
         value={inputValue}
-        // type='text'
         pattern={pattern}
         minLength={minLength}
         maxLength={maxLength}

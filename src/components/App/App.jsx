@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-// import { AuthorizedContext } from '../../contexts/AuthorizedContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import {
   register,
@@ -13,8 +12,6 @@ import {
   getMovies,
   deleteMovie,
 } from '../../utils/mainApi';
-import { console_log } from '../../utils/constats'
-
 
 import './App.css';
 import Header from '../Header/Header';
@@ -27,8 +24,6 @@ import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
-// import useCheckSavedFilm from '../../hooks/useCheckSavedFilm';
 
 
 function App() {
@@ -51,11 +46,7 @@ function App() {
   // стейт сохранненые фильмы
   const [savedFilms, setSavedFilms] = useState([]);
 
-
-
-  // const { checkSaved } = useCheckSavedFilm();
-
-
+  // сброс сообщения ошибки
   const resetSourceInfoTooltips = () => {
     setSourceInfoTooltips({
       access: false,
@@ -64,92 +55,56 @@ function App() {
     });
   }
 
-  // не помню что это =)
-  const togleAuthorized = () => {
-    console.log('togleAuthorized');
-    if (isAuthorized === true) {
-      return setAuthorized(false)
-    }
-    return setAuthorized(true);
-  };
-
-  const onlyLogin = () => {
-    setAuthorized(true);
-  }
-
   // //////////////////////////////////////////
   // //////////// РАБОТА С ФИЛЬМАМИ       /////
   // //////////////////////////////////////////
 
-
-  // переключатель сохранения фильмов
+  // сохранение фильма
   const handlerSaveFilms = (movie) => {
-    console.log('СРАБОТАЛ handlerSaveFilms App');
-    console.log(movie);
-    // debugger;
     setIsBlockedButton(true);
-
     savedMovies(movie)
       .then((data) => {
-        console.log(data);
         setSavedFilms([data, ...savedFilms]);
-        setIsBlockedButton(false);
       })
       .catch((err) => {
         console.error(err);
         setIsBlockedButton(false);
       })
       .finally(() => {
-        console.log('СРАБОТАЛ finally handlerSaveFilms App');
         setIsBlockedButton(false);
       });
   };
 
+  // удаление фильма
   const handleDeleteSaveFilm = (movieId) => {
-    console.log('СРАБОТАЛО handleDeleteSaveFilm App');
-    console.log(`movieId %c${movieId}`,
-      "color: yellow; font-style: italic; background-color: blue; padding: 2px;");
     setIsBlockedButton(true);
-
     deleteMovie(movieId)
       .then((res) => {
-        console.log(res);
         setSavedFilms(
           savedFilms.filter((movie) => {
-            // debugger;
-            console.log('savedFilms.filter');
             return movie._id !== movieId;
           })
         );
-        setIsBlockedButton(false);
-
       })
       .catch((err) => {
         console.log(err);
         setIsBlockedButton(false);
       })
       .finally(() => {
-        console.log(`%cfinally handleDeleteSaveFilm deleteMovie App`,
-          "color: yellow; font-style: italic; background-color: blue; padding: 2px;");
         setIsBlockedButton(false);
       });
   };
 
+  // получить массив фильмов
   const getingSavedFilms = () => {
     getMovies()
       .then((data) => {
-        console.log(data);
         setSavedFilms(data.movies);
       })
       .catch((err) => {
         console.error(err)
       });
-  }
-
-  // const checkSavedFilms = (movie) => {
-  //   checkSaved(savedFilms, movie);
-  // };
-
+  };
 
   // //////////////////////////////////////////
   // //////////// РЕГИСТРАЦИЯ АВТОРИЗАЦИЯ /////
@@ -166,11 +121,6 @@ function App() {
     const date = { email, password, name };
     register(date)
       .then((res) => {
-        // setSourceInfoTooltips({
-        //   access: true,
-        //   message: 'Усешная регистрация',
-        // });
-        console.log(res);
         navigate('/signin', { replace: true });
       })
       .catch((err) => {
@@ -198,22 +148,14 @@ function App() {
   // авторизация
   const handlerLogin = ({ email, password }) => {
     const date = { email, password };
-    console.log('сработал Login handlerLogin')
-    console.error(`
-    email — ${email}
-    password — ${password}`);
-
     setIsBlockedButton(true);
-
     authorize(date)
       .then((res) => {
-        console.log(res);
         localStorage.setItem('loginInBeatfilmTrue', true);
         setAuthorized(true);
         navigate('/', { replace: true });
       })
       .catch((err) => {
-        console.log(err);
         if (err === 401) {
           setSourceInfoTooltips({
             access: true,
@@ -235,22 +177,13 @@ function App() {
       })
   };
 
-
   //  Проверка токена/кукиса
   const cookieCheck = () => {
-    console.log('сработал App %ccookieCheck', `${console_log.red_style}`);
     const currentPath = pathname;
     const token = localStorage.getItem('loginInBeatfilmTrue');
-    console.log(token);
     if (token) {
-      console.log('сработал %cПРОВЕРКА ТОКЕНА', `${console_log.red_style}`);
       setAuthorized(true);
-      // debugger;
       getingSavedFilms();
-      console.log('______________________________');
-      console.log(savedFilms);
-      // setIsLoggedIn(true);
-      // navigate('/', { replace: true });
       navigate(currentPath, { replace: true });
     } else { setAuthorized(false) }
   }
@@ -261,18 +194,13 @@ function App() {
     logout()
       .then((res) => {
         if (res.exit) {
-          console.log('user logged out');
           resetSourceInfoTooltips();
           localStorage.removeItem('loginInBeatfilmTrue');
-
           // удаляем все локал сториджы когда юзер выходит
           localStorage.removeItem('moviesFullList');
           localStorage.removeItem('request');
           localStorage.removeItem('checkboxMoviesStorage');
-
-          // setIsLoggedIn(false);
           setAuthorized(false);
-          // setUserEmail('');
           navigate('/signin', { replace: true });
           document.cookie = "jwtChek=; expires=Mon, 26 Dec 1991 00:00:01 GMT;";
         }
@@ -294,13 +222,8 @@ function App() {
 
   // обновление юзера
   const handlerUserInfo = ({ name, email }) => {
-    console.log('СРАБОТАЛ updateUserInfo App');
-    // console.error(data);
-    // const { name, email } = data;
     const data = { name, email };
-    // debugger;
     setIsBlockedButton(true);
-    // resetSourceInfoTooltips();
     updateuserInfo(data)
       .then((res) => {
         setCurrentUser(res);
@@ -312,7 +235,6 @@ function App() {
         console.log(res);
       })
       .catch((err) => {
-        console.error(err)
         if (err === 409) {
           setSourceInfoTooltips({
             access: true,
@@ -330,7 +252,6 @@ function App() {
         }
       })
       .finally(() => {
-        console.log('finally updateuserInfo App');
         setIsBlockedButton(false);
       });
   }
@@ -338,32 +259,15 @@ function App() {
   // получим контекст юзер и сохраненые карточки
   useEffect(() => {
     if (isAuthorized === true) {
-      console.log('СРАБОТАЛ useEffect isAuthorized')
-
       getUser()
         .then((data) => {
-          console.error(data);
           setCurrentUser(data);
-          console.log(currentUser);
         })
         .catch((err) => {
           console.log(err);
         });
-
       getingSavedFilms();
-
-      // getMovies()
-      //   .then((data) => {
-      //     console.log(data);
-      //     setSavedFilms(data.movies);
-      //   })
-      //   .catch((err) => {
-      //     console.error(err)
-      //   })
-
     }
-    console.log('currentUser — ');
-    console.log(currentUser);
   }, [isAuthorized]);
 
   const onClickCurrentUser = () => {
@@ -379,38 +283,10 @@ function App() {
       <div className='page'>
         <CurrentUserContext.Provider
           value={currentUser}>
-          <div className='App__containerbtn'>
-
-            <button
-              className='App__containerbtn_btn'
-              onClick={onClickCurrentUser}
-            >onClick=currentUser</button>
-
-            <button
-              className='App__containerbtn_btn'
-              onClick={getSavedFilms}
-            >onClick=getSavedFilms</button>
-
-            <button
-              className='App__containerbtn_btn'
-              onClick={() => {
-                console.log(isAuthorized);
-              }}
-            >onClick=isAuthorized</button>
-
-          </div>
-          {/*
-          <AuthorizedContext.Provider
-            value={isAuthorized}> */}
-
           <Header
             isLoggedIn={isAuthorized}
-
-          // onAuth={togleAuthorized}
           ></Header>
-
           <Routes>
-
             <Route
               path='/signup'
               element={
@@ -421,12 +297,10 @@ function App() {
                   onResetSourceInfoTooltips={resetSourceInfoTooltips}
                 ></Register>
               } />
-
             <Route
               path='/signin'
               element={
                 <Login
-                  onAuth={onlyLogin}
                   onLogin={handlerLogin}
                   sourceInfoTooltips={sourceInfoTooltips}
                   onBlockedButton={isBlockedButton}
@@ -435,37 +309,17 @@ function App() {
                   onResetSourceInfoTooltips={resetSourceInfoTooltips}
                 ></Login>
               } />
-
             <Route
               path='/'
               element={
                 <Main></Main>
               } />
-
-            {/*
-            <Route
-              path='/movies'
-              element={
-                <Movies></Movies>
-              } />
-            */}
-
-            {/* <Route
-              path='/profile'
-              element={
-                <Profile
-                  onAuth={togleAuthorized}
-                  onRemoveCookie={removeCookie}
-                ></Profile>
-              } /> */}
-
             <Route
               path='/profile'
               element={
                 <ProtectedRoute
                   element={Profile}
                   isLoggedIn={isAuthorized}
-                  onAuth={togleAuthorized}
                   onRemoveCookie={removeCookie}
                   sourceInfoTooltips={sourceInfoTooltips}
                   onUpdateUserInfo={handlerUserInfo}
@@ -475,27 +329,17 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
             <Route path='/movies' element={
               <ProtectedRoute
                 element={Movies}
                 isLoggedIn={isAuthorized}
                 onSaveFilms={handlerSaveFilms}
                 savedFilms={savedFilms}
-                // onCheckSavedFilms={checkSavedFilms}
                 onDeleteSaveFilm={handleDeleteSaveFilm}
                 onBlockedButton={isBlockedButton}
               ></ProtectedRoute>
             }
             />
-
-            {/*
-            <Route
-              path='/saved-movies'
-              element={
-                <SavedMovies></SavedMovies>
-              } /> */}
-
             <Route
               path='/saved-movies'
               element={
@@ -504,23 +348,16 @@ function App() {
                   isLoggedIn={isAuthorized}
                   savedFilms={savedFilms}
                   onDeleteSaveFilm={handleDeleteSaveFilm}
-                // onCheckSavedFilms={checkSavedFilms}
-
                 />
               }
             />
-
             <Route
               path='*'
               element={
                 <PageNotFound></PageNotFound>
               } />
-
           </Routes>
-
           <Footer></Footer>
-
-          {/* </AuthorizedContext.Provider> */}
         </CurrentUserContext.Provider>
       </div>
     </div >

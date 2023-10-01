@@ -31,20 +31,3 @@
 
   color: #3456F3;
 }
-
-
-.extraButton {
-  padding: 5px;
-  margin: 5px;
-
-  font-family: 'Inter', Arial, sans-serif;
-  font-size: 12px;
-
-  border-radius: 14%;
-  background-color: cornsilk;
-}
-
-.extraButton:hover {
-  background-color: azure;
-  cursor: pointer;
-}

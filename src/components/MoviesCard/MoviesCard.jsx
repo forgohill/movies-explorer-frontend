@@ -14,9 +14,7 @@ const MoviesCard = ({
 
   const { pathname } = useLocation();
 
-
   function msToTime(duration) {
-
     let minutes = duration % 60, hours = Math.floor(duration / 60);
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     return hours + "ч" + minutes + 'м';
@@ -28,29 +26,26 @@ const MoviesCard = ({
   };
 
   const handleClickDeleteSaveFilm = () => {
-    // console.error(movie._id);
     onDeleteSaveFilm(movie._id);
   }
 
   return (
     <li className='movie-card'>
-      <img src={isSavedMovies ? movie.image : `${configUrl.IMAGE_URL}${movie.image.url}`}
-
-        // <img src={`${configUrl.IMAGE_URL}${movie.image.url}`}
-        alt={movie.description}
-        className='movie-card__image'
-        onClick={() => {
-          console.log(movie);
-        }}
-      />
-      <div className="movie-card__wrapper">
-        <div className="movie-card__info">
+      <a href={movie.trailerLink}
+        target='_blank'
+      >
+        <img src={isSavedMovies ? movie.image : `${configUrl.IMAGE_URL}${movie.image.url}`}
+          alt={movie.description}
+          className='movie-card__image'
+        />
+      </a>
+      <div className='movie-card__wrapper'>
+        <div className='movie-card__info'>
           <h2 className='movie-card__title'>
             {movie.nameRU}
           </h2>
           <p className="movie-card__duration">{msToTime(movie.duration)}</p>
         </div>
-        {/* {checkSaved ? <p>ДА</p> : <p>НЕТ</p>} */}
         {pathname === '/movies'
           ? <button
             className={`movie-card__btn ${checkSaved
@@ -66,15 +61,6 @@ const MoviesCard = ({
             onClick={handleClickDeleteSaveFilm}
             disabled={onBlockedButton}
           ></button>}
-
-        {/* <div>
-          <button className='movie-card__btn movie-card__btn_delete-saved links-hover'
-            onClick={() => {
-              console.log(movie.image.previewUrl);
-            }}>
-          </button>
-        </div> */}
-
       </div>
 
     </li>
