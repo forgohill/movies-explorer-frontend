@@ -8,7 +8,8 @@ const MoviesCard = ({
   onSaveFilms,
   isSavedMovies,
   onDeleteSaveFilm,
-  checkSaved
+  checkSaved,
+  onBlockedButton
 }) => {
 
   const { pathname } = useLocation();
@@ -49,19 +50,21 @@ const MoviesCard = ({
           </h2>
           <p className="movie-card__duration">{msToTime(movie.duration)}</p>
         </div>
-        {checkSaved ? <p>ДА</p> : <p>НЕТ</p>}
+        {/* {checkSaved ? <p>ДА</p> : <p>НЕТ</p>} */}
         {pathname === '/movies'
           ? <button
             className={`movie-card__btn ${checkSaved
               ? 'movie-card__btn_saved'
               : ''} links-hover`}
             onClick={handleClickSave}
+            disabled={onBlockedButton}
           ></button>
           : <button
             className={`movie-card__btn
           movie-card__btn_delete-saved
           links-hover`}
             onClick={handleClickDeleteSaveFilm}
+            disabled={onBlockedButton}
           ></button>}
 
         {/* <div>

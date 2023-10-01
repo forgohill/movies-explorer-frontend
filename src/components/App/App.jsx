@@ -1,17 +1,3 @@
-/**
-Подготовьте необходимые маршруты:
-по роуту / отображается страница «О проекте»;
-по роуту /movies отображается страница «Фильмы»;
-по роуту /saved-movies отображается страница «Сохранённые фильмы»;
-по роуту /profile отображается страница с профилем пользователя;
-по роутам /signin и /signup отображаются страницы авторизации и регистрации.
-Защищать маршруты авторизацией пока не требуется. Достаточно наладить работу всех ссылок:
-нажатие на логотип ведёт на страницу «О проекте»;
-нажатие на «Фильмы» — на роут /movies;
-нажатие на «Сохранённые фильмы» — на роут /saved-movies;
-нажатие на «Регистрация», «Авторизация», «Аккаунт» — на соответствующие роуты /signup, /signin и /profile.
-4. Вёрстка
- */
 
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
@@ -101,17 +87,21 @@ function App() {
     console.log('СРАБОТАЛ handlerSaveFilms App');
     console.log(movie);
     // debugger;
+    setIsBlockedButton(true);
+
     savedMovies(movie)
       .then((data) => {
         console.log(data);
-        // const savingFilms = data;
         setSavedFilms([data, ...savedFilms]);
+        setIsBlockedButton(false);
       })
       .catch((err) => {
         console.error(err);
+        setIsBlockedButton(false);
       })
       .finally(() => {
         console.log('СРАБОТАЛ finally handlerSaveFilms App');
+        setIsBlockedButton(false);
       });
   };
 
@@ -119,6 +109,7 @@ function App() {
     console.log('СРАБОТАЛО handleDeleteSaveFilm App');
     console.log(`movieId %c${movieId}`,
       "color: yellow; font-style: italic; background-color: blue; padding: 2px;");
+    setIsBlockedButton(true);
 
     deleteMovie(movieId)
       .then((res) => {
@@ -130,13 +121,17 @@ function App() {
             return movie._id !== movieId;
           })
         );
+        setIsBlockedButton(false);
+
       })
       .catch((err) => {
         console.log(err);
+        setIsBlockedButton(false);
       })
       .finally(() => {
         console.log(`%cfinally handleDeleteSaveFilm deleteMovie App`,
           "color: yellow; font-style: italic; background-color: blue; padding: 2px;");
+        setIsBlockedButton(false);
       });
   };
 
@@ -489,7 +484,7 @@ function App() {
                 savedFilms={savedFilms}
                 // onCheckSavedFilms={checkSavedFilms}
                 onDeleteSaveFilm={handleDeleteSaveFilm}
-
+                onBlockedButton={isBlockedButton}
               ></ProtectedRoute>
             }
             />

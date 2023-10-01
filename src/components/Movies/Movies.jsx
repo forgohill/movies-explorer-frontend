@@ -14,7 +14,9 @@ const Movies = ({
   onSaveFilms,
   // onCheckSavedFilms,
   savedFilms,
-  onDeleteSaveFilm }) => {
+  onDeleteSaveFilm,
+  onBlockedButton,
+}) => {
 
   // стейт прилоадера
   const [isLoading, setIsLoading] = useState(false);
@@ -235,6 +237,7 @@ const Movies = ({
           onSaveFilms={handleSavedFilms}
           // onCheckSavedFilms={onCheckSavedFilms}
           savedFilms={savedFilms}
+          onBlockedButton={onBlockedButton}
         ></MoviesCardList>)
       }
 

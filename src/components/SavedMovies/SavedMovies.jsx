@@ -11,6 +11,7 @@ const SavedMovies = ({
   savedFilms,
   onDeleteSaveFilm,
   // onCheckSavedFilms,
+  onBlockedButton,
 }) => {
 
   // стейт прилоадера
@@ -98,6 +99,7 @@ const SavedMovies = ({
             listMovies={listMovies}
             onDeleteSaveFilm={onDeleteSaveFilm}
             isRequestBlock={isRequestBlock}
+            onBlockedButton={onBlockedButton}
           // onCheckSavedFilms={onCheckSavedFilms}
 
           ></MoviesCardList>

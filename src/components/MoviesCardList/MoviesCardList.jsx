@@ -34,6 +34,7 @@ const MoviesCardList = ({
   isRequestBlock,
   // onCheckSavedFilms,
   savedFilms,
+  onBlockedButton
 }) => {
 
   const { checkSaved } = useCheckSavedFilm();
@@ -97,6 +98,7 @@ const MoviesCardList = ({
           isSavedMovies
             ? true
             : checkSaved(savedFilms, movie)}
+        onBlockedButton={onBlockedButton}
       />
     )
   });
