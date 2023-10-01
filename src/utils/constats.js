@@ -9,7 +9,7 @@ export const REGEX_NAME = '[A-Za-zА-Яа-яЁё\\s\\-]+';
 
 export const configMainApi = {
   // BASE_URL: 'http://localhost:3000',
-  BASE_URL: 'http://api.forgohill.diplom.nomoreparties.co',
+  BASE_URL: 'https://api.forgohill.diplom.nomoreparties.co',
   headers: {
     accept: 'application/json',
     'Content-type': 'application/json',
