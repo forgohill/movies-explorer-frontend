@@ -1,6 +1,13 @@
 # Дипломная работа Яндекс.Практикум
 
+[ПУЛЛ РЕКВЕСТ]()
 
+
+
+[ФРОНТЕНД:](https://forgohill.diplom.nomoreparties.co/)
+https://forgohill.diplom.nomoreparties.co/
+[БЭКЕНД:](https://api.forgohill.diplom.nomoreparties.co/)
+https://api.forgohill.diplom.nomoreparties.co/
 
 ## Макет выбранный для верстки:
 ** light-3 **
