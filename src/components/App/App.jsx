@@ -68,6 +68,9 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
+        if (err === 401) {
+          removeCookie();
+        }
         setIsBlockedButton(false);
       })
       .finally(() => {
@@ -88,6 +91,9 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        if (err === 401) {
+          removeCookie();
+        }
         setIsBlockedButton(false);
       })
       .finally(() => {
@@ -112,11 +118,6 @@ function App() {
 
   // регистрация
   const handlerRegister = ({ email, password, name }) => {
-    console.log(`сработал handlerRegister App`);
-    console.error(`
-    email — ${email}
-    password — ${password}
-    name — ${name}`);
     setIsBlockedButton(true);
     const date = { email, password, name };
     register(date)
@@ -153,7 +154,7 @@ function App() {
       .then((res) => {
         localStorage.setItem('loginInBeatfilmTrue', true);
         setAuthorized(true);
-        navigate('/', { replace: true });
+        navigate('/movies', { replace: true });
       })
       .catch((err) => {
         if (err === 401) {
@@ -177,20 +178,8 @@ function App() {
       })
   };
 
-  //  Проверка токена/кукиса
-  const cookieCheck = () => {
-    const currentPath = pathname;
-    const token = localStorage.getItem('loginInBeatfilmTrue');
-    if (token) {
-      setAuthorized(true);
-      getingSavedFilms();
-      navigate(currentPath, { replace: true });
-    } else { setAuthorized(false) }
-  }
-
   // удаление кукиса JWT
   const removeCookie = () => {
-    console.log('сработал App removeCookie')
     logout()
       .then((res) => {
         if (res.exit) {
@@ -210,8 +199,24 @@ function App() {
       });
   };
 
+  const cookieCheck = () => {
+    const currentPath = pathname;
+    const token = localStorage.getItem('loginInBeatfilmTrue');
+    if (token) {
+      setAuthorized(true);
+      getingSavedFilms();
+      navigate(currentPath, { replace: true });
+    } else { }
+  };
+
   useEffect(() => {
-    cookieCheck();
+    getUser()
+      .then((data) => {
+        cookieCheck();
+      })
+      .catch((err) => {
+        removeCookie();
+      });
   }, []);
 
   useEffect(() => {
@@ -265,18 +270,11 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
+          removeCookie();
         });
       getingSavedFilms();
     }
   }, [isAuthorized]);
-
-  const onClickCurrentUser = () => {
-    console.log(currentUser);
-  };
-
-  const getSavedFilms = () => {
-    console.log(savedFilms);
-  };
 
   return (
     <div className='app'>

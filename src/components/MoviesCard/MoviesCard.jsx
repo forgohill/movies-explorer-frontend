@@ -33,6 +33,7 @@ const MoviesCard = ({
     <li className='movie-card'>
       <a href={movie.trailerLink}
         target='_blank'
+        rel='noreferrer'
       >
         <img src={isSavedMovies ? movie.image : `${configUrl.IMAGE_URL}${movie.image.url}`}
           alt={movie.description}

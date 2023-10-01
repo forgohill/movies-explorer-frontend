@@ -18,6 +18,7 @@ const Footer = () => {
             <p className="footer__text">Яндекс.Практикум</p>
             <a href="https://github.com/forgohill"
               target='_blank'
+              rel='noreferrer'
               className="footer__link">Github</a>
           </div>
         </div>

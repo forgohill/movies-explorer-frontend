@@ -6,14 +6,12 @@ import useValidationsForms from '../../hooks/useValidationsForms';
 import './Profile.css';
 
 const Profile = ({
-  onAuth,
   onRemoveCookie,
   sourceInfoTooltips,
   onResetSourceInfoTooltips,
   onUpdateUserInfo,
   onBlockedButton
 }) => {
-  // const { email, name } = useContext(CurrentUserContext);
   const { name, email } = useContext(CurrentUserContext);
   const [isVisible, setIsVisible] = useState(true);
   const [isRedact, setIsRedact] = useState(false);
@@ -43,26 +41,12 @@ const Profile = ({
     }
   }
 
-  // const inputName = useRef(null);
-  // const focusInputName = () => {
-  //   inputName.current.focus();
-  // };
-
-
   const handleRedact = (e) => {
     console.log('СРАБОТАЛ handleRedact Profile');
     e.preventDefault();
     onResetSourceInfoTooltips();
     setIsVisible(!isVisible);
     setIsValid(true);
-    // if (isVisible === true) {
-    //   return setIsVisible(false)
-    // }
-    // return setIsVisible(true);
-  }
-
-  const btnCU = () => {
-    console.log(name, email);
   }
 
   // эффект котороый отвечает за
@@ -71,32 +55,23 @@ const Profile = ({
   useEffect(() => {
     setInputValues({ name, email });
     setChangesInput({ name, email });
-    console.log(`isValid  ${isValid}`);
-    // setIsVisible(true);
   }, [name, email]);
 
   useEffect(() => {
-    console.log('хуяк');
     if (
       inputValues.name === changesInput.name
       && inputValues.email === changesInput.email
     ) {
-      console.error('РАВНО!!!')
-      // setIsVisible(true);
       setIsRedact(true);
     } else {
-      console.error('___НЕРАВНО___');
-      // setIsVisible(false);
       setIsRedact(false);
-      // setIsValid(true);
     }
   }, [inputValues])
 
   useEffect(() => {
-    // focusInputName();
     if (sourceInfoTooltips.isSuccess) {
       setIsVisible(true);
-    } else { console.error('ХУЕЦ') }
+    }
   }, [sourceInfoTooltips]);
 
   return (
@@ -135,8 +110,6 @@ const Profile = ({
             className='profile__label'>
             E-mail
             <input
-              // disabled={isVisible}
-              // value={'pochta@yandex.ru'}
               placeholder='Введите e-mail'
               value={inputValues.email ?? ''}
               name='email'
@@ -148,7 +121,6 @@ const Profile = ({
             <span
               className='profile__error'>
               {errMessage.email}
-              {/* Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символов). */}
             </span>
           </label>
 
@@ -159,12 +131,10 @@ const Profile = ({
                 : ''}
             ${sourceInfoTooltips.isSuccess ? 'profile__error-submit_success' : ''}`}>
             {sourceInfoTooltips.message}
-            {/* При обновлении профиля произошла ошибка. */}
           </span>
 
           <button
             disabled={!isValid || onBlockedButton}
-            // onClick={handleRedact}
             className={`profile__btn-save
             ${isVisible === false
                 ? 'profile__btn-save_show'
