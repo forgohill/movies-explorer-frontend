@@ -8,8 +8,13 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 import { getFilms, } from '../../utils/moviesApi';
 import useFiltredFilms from '../../hooks/useFiltredFilms';
+import useCheckSavedFilm from '../../hooks/useCheckSavedFilm';
 
-const Movies = ({ onSaveFilms }) => {
+const Movies = ({
+  onSaveFilms,
+  // onCheckSavedFilms,
+  savedFilms,
+  onDeleteSaveFilm }) => {
 
   // стейт прилоадера
   const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +32,7 @@ const Movies = ({ onSaveFilms }) => {
   const [isCheckedShortFilms, setIsCheckedShortFilms] = useState(checkboxMoviesStorage);
   // хуки фильтрации
   const { foundFilms } = useFiltredFilms();
+  const { checkSaved } = useCheckSavedFilm();
 
   // функция фильтрации
   const filtredFilms = (movies, request, isCheckedShortFilms) => {
@@ -65,8 +71,16 @@ const Movies = ({ onSaveFilms }) => {
 
       setIsFindMoviesList(foundFilms(moviesAll, requestStorage, !isCheckedShortFilms));
       // console.log(' я туть')
-    } else {
+    }
+  }
 
+  const handleSavedFilms = (movie) => {
+    const savedFilm = checkSaved(savedFilms, movie);
+    if (savedFilm) {
+      onDeleteSaveFilm(savedFilm._id);
+      return;
+    } else {
+      onSaveFilms(movie);
     }
   }
 
@@ -218,7 +232,9 @@ const Movies = ({ onSaveFilms }) => {
           requestStorage={requestStorage}
           listMovies={isFindMoviesList}
           stateChechbox={isCheckedShortFilms}
-          onSaveFilms={onSaveFilms}
+          onSaveFilms={handleSavedFilms}
+          // onCheckSavedFilms={onCheckSavedFilms}
+          savedFilms={savedFilms}
         ></MoviesCardList>)
       }
 

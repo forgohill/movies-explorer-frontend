@@ -6,7 +6,7 @@ import { movies } from '../../utils/movies-list.js';
 import { moviesSaved } from '../../utils/movies-list-saved.js';
 
 import useWindowCalculator from '../../hooks/useWindowCalculator';
-
+import useCheckSavedFilm from '../../hooks/useCheckSavedFilm';
 /**
  * Обратите внимание, что количество карточек,
  * которые отображаются на странице, зависит от
@@ -31,15 +31,18 @@ const MoviesCardList = ({
   stateChechbox,
   onSaveFilms,
   onDeleteSaveFilm,
+  isRequestBlock,
+  // onCheckSavedFilms,
+  savedFilms,
 }) => {
+
+  const { checkSaved } = useCheckSavedFilm();
 
   const { pathname } = useLocation();
   // стейт хранения входящео массива
   const [insertList, setInsertList] = useState([]);
 
   const isSavedMovies = pathname === '/saved-movies';
-
-
 
   const {
     addCards,
@@ -48,9 +51,40 @@ const MoviesCardList = ({
     handleResize,
   } = useWindowCalculator();
 
+  const handleCheckSaved = (movie) => {
+    console.log(`сработал  %c handleCheckSaved MoviesCardList`,
+      "color: yellow; font-style: italic;");
+
+    if (isSavedMovies) {
+
+      console.log(`сработал  %c isSavedMovies isSavedMovies — ЭТО ОНО`,
+        "color: yellow; font-style: italic;");
+      return true;
+    } else {
+      // const savedFilm = savedFilms.find((item) => {
+      //   return item.movieId === movie.id;
+      // });
+
+      // if (savedFilm) {
+      //   console.log(`сработал  %c savedFilm savedFilm`,
+      //     "color: yellow; font-style: italic;");
+      // }
+
+      // return savedFilm;
+      // console.log(savedFilm);
+
+      const savedFilm = checkSaved(savedFilms, movie);
+      return savedFilm;
+    }
+  };
+
 
 
   const filtredMovies = listMovies.slice(0, moviesDisplay).map((movie) => {
+    // debugger;
+    // const movieSaved = onCheckSavedFilms(movie);
+    // console.log(movieSaved);
+
     return (
       <MoviesCard
         key={isSavedMovies ? movie._id : movie.id}
@@ -58,6 +92,11 @@ const MoviesCardList = ({
         isSavedMovies={isSavedMovies}
         onSaveFilms={onSaveFilms}
         onDeleteSaveFilm={onDeleteSaveFilm}
+        // checkSaved={handleCheckSaved(movie)}
+        checkSaved={
+          isSavedMovies
+            ? true
+            : checkSaved(savedFilms, movie)}
       />
     )
   });
@@ -67,7 +106,7 @@ const MoviesCardList = ({
     setInsertList(filtredMovies);
     // console.log(insertList);
     // }, [moviesDisplay], stateChechbox);
-  }, [moviesDisplay, stateChechbox]);
+  }, [moviesDisplay, stateChechbox, listMovies]);
 
 
   useEffect(() => {
@@ -133,7 +172,10 @@ const MoviesCardList = ({
         <p
           className='movies-list__not-found'>
           {/* если есть текст запроса в ЛС покажем надпись */}
-          {`${requestStorage !== '' ? 'Ничего не найдено' : ''}`}
+          {isSavedMovies
+            ? `${isRequestBlock !== '' ? 'Ничего не найдено' : ''}`
+            : `${requestStorage !== '' ? 'Ничего не найдено' : ''}`
+          }
         </p>
       }
 

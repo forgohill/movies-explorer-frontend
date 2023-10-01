@@ -42,6 +42,9 @@ import Footer from '../Footer/Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+// import useCheckSavedFilm from '../../hooks/useCheckSavedFilm';
+
+
 function App() {
 
   const { pathname } = useLocation();
@@ -61,6 +64,11 @@ function App() {
   });
   // стейт сохранненые фильмы
   const [savedFilms, setSavedFilms] = useState([]);
+
+
+
+  // const { checkSaved } = useCheckSavedFilm();
+
 
   const resetSourceInfoTooltips = () => {
     setSourceInfoTooltips({
@@ -114,7 +122,14 @@ function App() {
 
     deleteMovie(movieId)
       .then((res) => {
-        console.log(res)
+        console.log(res);
+        setSavedFilms(
+          savedFilms.filter((movie) => {
+            // debugger;
+            console.log('savedFilms.filter');
+            return movie._id !== movieId;
+          })
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -135,6 +150,10 @@ function App() {
         console.error(err)
       });
   }
+
+  // const checkSavedFilms = (movie) => {
+  //   checkSaved(savedFilms, movie);
+  // };
 
 
   // //////////////////////////////////////////
@@ -231,9 +250,10 @@ function App() {
     if (token) {
       console.log('сработал %cПРОВЕРКА ТОКЕНА', `${console_log.red_style}`);
       setAuthorized(true);
-
+      // debugger;
       getingSavedFilms();
-
+      console.log('______________________________');
+      console.log(savedFilms);
       // setIsLoggedIn(true);
       // navigate('/', { replace: true });
       navigate(currentPath, { replace: true });
@@ -466,6 +486,10 @@ function App() {
                 element={Movies}
                 isLoggedIn={isAuthorized}
                 onSaveFilms={handlerSaveFilms}
+                savedFilms={savedFilms}
+                // onCheckSavedFilms={checkSavedFilms}
+                onDeleteSaveFilm={handleDeleteSaveFilm}
+
               ></ProtectedRoute>
             }
             />
@@ -485,6 +509,8 @@ function App() {
                   isLoggedIn={isAuthorized}
                   savedFilms={savedFilms}
                   onDeleteSaveFilm={handleDeleteSaveFilm}
+                // onCheckSavedFilms={checkSavedFilms}
+
                 />
               }
             />
