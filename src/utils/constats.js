@@ -11,6 +11,7 @@ export const configMainApi = {
   // BASE_URL: 'http://localhost:3000',
   BASE_URL: 'http://api.forgohill.diplom.nomoreparties.co',
   headers: {
+    accept: 'application/json',
     'Content-type': 'application/json',
   },
   credentials: 'include',
