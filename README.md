@@ -1,7 +1,7 @@
 # Дипломная работа Яндекс.Практикум
 
-[ПУЛЛ РЕКВЕСТ]()
-
+[ПУЛЛ РЕКВЕСТ](https://github.com/forgohill/movies-explorer-frontend/pull/3)
+https://github.com/forgohill/movies-explorer-frontend/pull/3
 
 
 [ФРОНТЕНД:](https://forgohill.diplom.nomoreparties.co/)
