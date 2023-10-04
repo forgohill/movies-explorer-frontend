@@ -15,7 +15,12 @@ const Footer = () => {
         <div className="footer__container">
           <p className="footer__text footer__text_copyright">© 2020</p>
           <div className="footer__wrapper">
-            <p className="footer__text">Яндекс.Практикум</p>
+            <a
+              href="https://practicum.yandex.ru/"
+              target='_blank'
+              rel='noreferrer'
+              className="footer__link">
+              Яндекс.Практикум</a>
             <a href="https://github.com/forgohill"
               target='_blank'
               rel='noreferrer'
