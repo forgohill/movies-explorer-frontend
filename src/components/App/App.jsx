@@ -119,10 +119,9 @@ function App() {
   // регистрация
   const handlerRegister = ({ email, password, name }) => {
     setIsBlockedButton(true);
-    const date = { email, password, name };
-    register(date)
+    register({ email, password, name })
       .then((res) => {
-        navigate('/signin', { replace: true });
+        handlerLogin({ email, password });
       })
       .catch((err) => {
         console.log(err);
