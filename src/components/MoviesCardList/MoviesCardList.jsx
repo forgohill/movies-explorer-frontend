@@ -74,10 +74,11 @@ const MoviesCardList = ({
         <p
           className='movies-list__not-found'>
           {/* если есть текст запроса в ЛС покажем надпись */}
-          {isSavedMovies
+          {`${requestStorage !== '' ? 'Ничего не найдено' : ''}`}
+          {/* {isSavedMovies
             ? `${isRequestBlock !== '' ? 'Ничего не найдено' : ''}`
             : `${requestStorage !== '' ? 'Ничего не найдено' : ''}`
-          }
+          } */}
         </p>
       }
 

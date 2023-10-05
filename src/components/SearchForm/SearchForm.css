@@ -118,6 +118,7 @@
 .search__button:hover {
   background-color: #3457f3cc;
   transition: .5s ease;
+  cursor: pointer;
 }
 
 .search__button:disabled:hover,
