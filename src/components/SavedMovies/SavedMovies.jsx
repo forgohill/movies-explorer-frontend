@@ -9,16 +9,11 @@ const SavedMovies = ({
   onDeleteSaveFilm,
   onBlockedButton,
 }) => {
-
-  // стейт прилоадера
-  const [isLoading, setIsLoading] = useState(false);
-
   const [listMovies, setListMovies] = useState([]);
 
   // стейт хранения запроса
   const [isRequestBlock, setIsRequestBlock] = useState('');
-  // стейт хранения найденых фильмов
-  const [isFindMoviesList, setIsFindMoviesList] = useState([]);
+
   // стейт состояния чебокса
   const [isCheckedShortFilms, setIsCheckedShortFilms] = useState(false);
 
@@ -40,7 +35,6 @@ const SavedMovies = ({
   };
 
   const handleSubmit = (request) => {
-    console.log('СРАБОТАЛ handleSubmit SAVED_MOVIES');
     filtredFilms(request);
   };
 
@@ -54,6 +48,12 @@ const SavedMovies = ({
 
   useEffect(() => {
     if (savedFilms) {
+      if (isCheckedShortFilms || isRequestBlock !== '') {
+        setListMovies(
+          foundFilms(savedFilms, isRequestBlock, isCheckedShortFilms)
+        );
+        return
+      }
       setListMovies(savedFilms);
     }
   }, [savedFilms]);
@@ -69,7 +69,6 @@ const SavedMovies = ({
       <MoviesCardList
         listMovies={listMovies}
         onDeleteSaveFilm={onDeleteSaveFilm}
-        isRequestBlock={isRequestBlock}
         onBlockedButton={onBlockedButton}
       ></MoviesCardList>
 

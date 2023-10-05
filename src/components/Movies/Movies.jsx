@@ -23,8 +23,6 @@ const Movies = ({
   const requestStorage = JSON.parse(localStorage.getItem('request')) ?? '';
   // вытаскиваем из памяти состояние чебокса
   const checkboxMoviesStorage = JSON.parse(localStorage.getItem('checkboxMoviesStorage')) ?? false;
-  //стейт хранения всех фильмов с BeatFilms
-  const [isMoviesFullList, setIsMoviesFullList] = useState('');
   // стейт хранения найденых фильмов
   const [isFindMoviesList, setIsFindMoviesList] = useState([]);
   // стейт состояния чебокса
@@ -81,11 +79,8 @@ const Movies = ({
 
   // нажатие кнопки поиск
   const handleSubmit = (request) => {
-
-
     if (moviesAll.length === 0) {
       // вытягивание всех фильмов с АПИ битфильма
-      console.log(' я тут moviesAll.length === 0');
       getingFilms(request);
     } else {
       setIsFindMoviesList(foundFilms(moviesAll, request, isCheckedShortFilms))
@@ -112,7 +107,6 @@ const Movies = ({
       <SearchForm
         onSubmit={handleSubmit}
         isLoading={isLoading}
-        moviesFullList={isMoviesFullList}
         isChecked={isCheckedShortFilms}
         onChange={handleChangeCheckbox}
         oldRequest={requestStorage}
@@ -130,7 +124,6 @@ const Movies = ({
           onBlockedButton={onBlockedButton}
         ></MoviesCardList>)
       }
-
     </main >
   );
 }

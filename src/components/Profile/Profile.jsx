@@ -31,18 +31,12 @@ const Profile = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('СРАБОТАЛ handleSubmit Profile');
-    // setIsValid(true);
-    // const date = { inputValues.name, inputValues.email }
     if (isValid) {
-      console.log('СРАБОТАЛ isValid Profile');
       onUpdateUserInfo(inputValues);
-      // setIsVisible(!isVisible);
     }
   }
 
   const handleRedact = (e) => {
-    console.log('СРАБОТАЛ handleRedact Profile');
     e.preventDefault();
     onResetSourceInfoTooltips();
     setIsVisible(!isVisible);

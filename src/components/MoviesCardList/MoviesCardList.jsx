@@ -12,7 +12,6 @@ const MoviesCardList = ({
   stateChechbox,
   onSaveFilms,
   onDeleteSaveFilm,
-  isRequestBlock,
   savedFilms,
   onBlockedButton
 }) => {
