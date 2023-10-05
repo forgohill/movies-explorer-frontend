@@ -63,6 +63,7 @@ const Movies = ({
   }
 
   const getingFilms = (request) => {
+    setIsLoading(true);
     getFilms()
       .then((moviesFullList) => {
         // запишет в лсВсеФильмыССервера
@@ -80,11 +81,18 @@ const Movies = ({
 
   // нажатие кнопки поиск
   const handleSubmit = (request) => {
-    setIsLoading(true);
-    // вытягивание всех фильмов с АПИ битфильма
-    getingFilms(request);
+
+
+    if (moviesAll.length === 0) {
+      // вытягивание всех фильмов с АПИ битфильма
+      console.log(' я тут moviesAll.length === 0');
+      getingFilms(request);
+    } else {
+      setIsFindMoviesList(foundFilms(moviesAll, request, isCheckedShortFilms))
+    }
     // сохранили лсТекстЗапроса
     localStorage.setItem('request', JSON.stringify(request));
+    // setIsLoading(false);
   }
 
 
@@ -118,7 +126,6 @@ const Movies = ({
           listMovies={isFindMoviesList}
           stateChechbox={isCheckedShortFilms}
           onSaveFilms={handleSavedFilms}
-          // onCheckSavedFilms={onCheckSavedFilms}
           savedFilms={savedFilms}
           onBlockedButton={onBlockedButton}
         ></MoviesCardList>)
