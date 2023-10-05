@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import {
   register,
@@ -181,25 +181,16 @@ function App() {
   const removeCookie = () => {
     logout()
       .then((res) => {
-        if (res.exit) {
-          // const currentPath = pathname;
-          resetSourceInfoTooltips();
-          localStorage.removeItem('loginInBeatfilmTrue');
-          // удаляем все локал сториджы когда юзер выходит
-          localStorage.removeItem('moviesFullList');
-          localStorage.removeItem('request');
-          localStorage.removeItem('checkboxMoviesStorage');
-          setAuthorized(false);
-
-          navigate('/', { replace: true });
-
-
-          // if (currentPath !== '/') {
-          //   navigate('/signin', { replace: true });
-          // }
-
-          // document.cookie = "jwtChek=; expires=Mon, 26 Dec 1991 00:00:01 GMT;";
-        }
+        console.log(res.exit);
+        console.log('я туть');
+        resetSourceInfoTooltips();
+        localStorage.removeItem('loginInBeatfilmTrue');
+        // удаляем все локал сториджы когда юзер выходит
+        localStorage.removeItem('moviesFullList');
+        localStorage.removeItem('request');
+        localStorage.removeItem('checkboxMoviesStorage');
+        setAuthorized(false);
+        navigate('/', { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -295,25 +286,27 @@ function App() {
           <Routes>
             <Route
               path='/signup'
-              element={
-                <Register
+              element={isAuthorized
+                ? <Navigate to='/movies' replace />
+                : (<Register
                   onRegister={handlerRegister}
                   sourceInfoTooltips={sourceInfoTooltips}
                   onBlockedButton={isBlockedButton}
                   onResetSourceInfoTooltips={resetSourceInfoTooltips}
-                ></Register>
+                ></Register>)
               } />
             <Route
               path='/signin'
-              element={
-                <Login
+              element={isAuthorized
+                ? <Navigate to='/movies' replace />
+                : (<Login
                   onLogin={handlerLogin}
                   sourceInfoTooltips={sourceInfoTooltips}
                   onBlockedButton={isBlockedButton}
                   onRemoveCookie={removeCookie}
                   onCheckCockie={cookieCheck}
                   onResetSourceInfoTooltips={resetSourceInfoTooltips}
-                ></Login>
+                ></Login>)
               } />
             <Route
               path='/'
