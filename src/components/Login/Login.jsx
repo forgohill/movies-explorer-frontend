@@ -25,7 +25,6 @@ const Login = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('сработал Login handleSubmit');
     if (isValid) {
       onLogin(inputValues);
     }

@@ -12,7 +12,6 @@ const MoviesCardList = ({
   stateChechbox,
   onSaveFilms,
   onDeleteSaveFilm,
-  isRequestBlock,
   savedFilms,
   onBlockedButton
 }) => {
@@ -32,7 +31,6 @@ const MoviesCardList = ({
   } = useWindowCalculator();
 
   const filtredMovies = listMovies.slice(0, moviesDisplay).map((movie) => {
-
     return (
       <MoviesCard
         key={isSavedMovies ? movie._id : movie.id}
@@ -48,6 +46,24 @@ const MoviesCardList = ({
       />
     )
   });
+
+  const savedMovies = listMovies.map((movie) => {
+    return (
+      <MoviesCard
+        key={isSavedMovies ? movie._id : movie.id}
+        movie={movie}
+        isSavedMovies={isSavedMovies}
+        onSaveFilms={onSaveFilms}
+        onDeleteSaveFilm={onDeleteSaveFilm}
+        checkSaved={
+          isSavedMovies
+            ? true
+            : checkSaved(savedFilms, movie)}
+        onBlockedButton={onBlockedButton}
+      />
+    )
+  });
+
 
   useEffect(() => {
     setInsertList(filtredMovies);
@@ -68,21 +84,18 @@ const MoviesCardList = ({
       {listMovies.length !== 0
         ?
         <ul className='movies-list__list'>
-          {filtredMovies}
+          {isSavedMovies ? savedMovies : filtredMovies}
         </ul>
         :
         <p
           className='movies-list__not-found'>
           {/* если есть текст запроса в ЛС покажем надпись */}
-          {isSavedMovies
-            ? `${isRequestBlock !== '' ? 'Ничего не найдено' : ''}`
-            : `${requestStorage !== '' ? 'Ничего не найдено' : ''}`
-          }
+          {`${requestStorage !== '' ? 'Ничего не найдено' : ''}`}
         </p>
       }
 
       {/* КНОПКА ЕЩЕ */}
-      {insertList.length < listMovies.length
+      {!isSavedMovies && insertList.length < listMovies.length
         ?
         <button type='button'
           onClick={addCards}
@@ -94,6 +107,7 @@ const MoviesCardList = ({
           className='movies-list__saveddevider'>
         </div>
       }
+
     </section >
   );
 }

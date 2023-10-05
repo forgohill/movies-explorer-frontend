@@ -26,7 +26,6 @@ const Register = ({
     errMessage,
     isValid,
     handleChange,
-    setInputValues,
   } = useValidationsForms();
 
   return (

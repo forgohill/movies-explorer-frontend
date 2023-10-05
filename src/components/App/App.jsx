@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import {
   register,
@@ -25,11 +24,13 @@ import Footer from '../Footer/Footer';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+import { MESSAGE, ENDPOINTS, CODE_ERROR } from '../../utils/constats';
 
 function App() {
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
+
 
   // стейт навигации
   const [isAuthorized, setAuthorized] = useState(false);
@@ -68,9 +69,6 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
-        if (err === 401) {
-          removeCookie();
-        }
         setIsBlockedButton(false);
       })
       .finally(() => {
@@ -91,9 +89,6 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        if (err === 401) {
-          removeCookie();
-        }
         setIsBlockedButton(false);
       })
       .finally(() => {
@@ -119,30 +114,28 @@ function App() {
   // регистрация
   const handlerRegister = ({ email, password, name }) => {
     setIsBlockedButton(true);
-    const date = { email, password, name };
-    register(date)
+    register({ email, password, name })
       .then((res) => {
-        navigate('/signin', { replace: true });
+        handlerLogin({ email, password });
       })
       .catch((err) => {
         console.log(err);
-        if (err === 409) {
+        if (err === CODE_ERROR.ERROR_409) {
           setSourceInfoTooltips({
             access: true,
-            message: 'Пользователь с таким email уже существует.',
+            message: MESSAGE.USER_EXIST,
           });
           setIsBlockedButton(false);
         } else {
           setSourceInfoTooltips({
             access: true,
-            message: 'При регистрации пользователя произошла ошибка.',
+            message: MESSAGE.REGISTER_USER_ERROR,
           });
           setIsBlockedButton(false);
         }
       })
       .finally(() => {
         setIsBlockedButton(false);
-
       })
   };
 
@@ -152,29 +145,29 @@ function App() {
     setIsBlockedButton(true);
     authorize(date)
       .then((res) => {
-        localStorage.setItem('loginInBeatfilmTrue', true);
         setAuthorized(true);
         navigate('/movies', { replace: true });
       })
       .catch((err) => {
-        if (err === 401) {
+        if (err === CODE_ERROR.ERROR_401) {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: 'Вы ввели неправильный логин или пароль.',
+            message: MESSAGE.LOGIN_PASSWORD_INCORRECT,
           });
           setIsBlockedButton(false);
         } else {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: 'При авторизации произошла ошибка.',
+            message: MESSAGE.AUTHORIZATION_ERROR,
           });
           setIsBlockedButton(false);
         }
       })
       .finally(() => {
         setIsBlockedButton(false);
+        resetSourceInfoTooltips();
       })
   };
 
@@ -182,53 +175,18 @@ function App() {
   const removeCookie = () => {
     logout()
       .then((res) => {
-        if (res.exit) {
-          const currentPath = pathname;
-          resetSourceInfoTooltips();
-          localStorage.removeItem('loginInBeatfilmTrue');
-          // удаляем все локал сториджы когда юзер выходит
-          localStorage.removeItem('moviesFullList');
-          localStorage.removeItem('request');
-          localStorage.removeItem('checkboxMoviesStorage');
-          setAuthorized(false);
-          if (currentPath !== '/') {
-            navigate('/signin', { replace: true });
-          }
-
-          document.cookie = "jwtChek=; expires=Mon, 26 Dec 1991 00:00:01 GMT;";
-        }
+        resetSourceInfoTooltips();
+        // удаляем все локал сториджы когда юзер выходит
+        localStorage.removeItem('moviesFullList');
+        localStorage.removeItem('request');
+        localStorage.removeItem('checkboxMoviesStorage');
+        setAuthorized(false);
+        navigate('/', { replace: true });
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-  const cookieCheck = () => {
-    const currentPath = pathname;
-    const token = localStorage.getItem('loginInBeatfilmTrue');
-    if (token) {
-      setAuthorized(true);
-      getingSavedFilms();
-      navigate(currentPath, { replace: true });
-    } else { }
-  };
-
-  useEffect(() => {
-    getUser()
-      .then((data) => {
-        cookieCheck();
-        setCurrentUser(data);
-      })
-      .catch((err) => {
-        removeCookie();
-      });
-  }, []);
-
-  useEffect(() => {
-    if (pathname === '/') {
-      resetSourceInfoTooltips();
-    }
-  }, [pathname]);
 
   // обновление юзера
   const handlerUserInfo = ({ name, email }) => {
@@ -240,23 +198,23 @@ function App() {
         setSourceInfoTooltips({
           access: true,
           isSuccess: true,
-          message: 'Данные профиля успешно изменены.',
+          message: MESSAGE.USER_DATE_MODIFIED,
         });
         console.log(res);
       })
       .catch((err) => {
-        if (err === 409) {
+        if (err === CODE_ERROR.ERROR_409) {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: 'Пользователь с таким email уже существует.',
+            message: MESSAGE.USER_EXIST,
           });
           setIsBlockedButton(false);
         } else {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: 'При регистрации пользователя произошла ошибка.',
+            message: MESSAGE.REGISTER_USER_ERROR,
           });
           setIsBlockedButton(false);
         }
@@ -266,20 +224,37 @@ function App() {
       });
   }
 
-  // получим контекст юзер и сохраненые карточки
+  // //////////////////////////////////////////
+  // //////////// useEffect БЛОК         /////
+  // //////////////////////////////////////////
+
+  // получим контекст юзер
   useEffect(() => {
-    if (isAuthorized === true) {
-      getUser()
-        .then((data) => {
-          setCurrentUser(data);
-        })
-        .catch((err) => {
-          console.log(err);
-          removeCookie();
-        });
+    const currentPath = pathname;
+    getUser()
+      .then((user) => {
+        setCurrentUser(user);
+        setAuthorized(true);
+        navigate(currentPath, { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [isAuthorized]);
+
+  // получим сайвфилмы
+  useEffect(() => {
+    if (isAuthorized) {
       getingSavedFilms();
     }
   }, [isAuthorized]);
+
+  // сброс информационных полей
+  useEffect(() => {
+    if (pathname === '/') {
+      resetSourceInfoTooltips();
+    }
+  }, [pathname]);
 
   return (
     <div className='app'>
@@ -291,26 +266,27 @@ function App() {
           ></Header>
           <Routes>
             <Route
-              path='/signup'
-              element={
-                <Register
+              path={ENDPOINTS.ENDPOINT_REGISTER}
+              element={isAuthorized
+                ? <Navigate to={ENDPOINTS.ENDPOINT_MOVIES} replace />
+                : (<Register
                   onRegister={handlerRegister}
                   sourceInfoTooltips={sourceInfoTooltips}
                   onBlockedButton={isBlockedButton}
                   onResetSourceInfoTooltips={resetSourceInfoTooltips}
-                ></Register>
+                ></Register>)
               } />
             <Route
-              path='/signin'
-              element={
-                <Login
+              path={ENDPOINTS.ENDPOINT_AUTH}
+              element={isAuthorized
+                ? <Navigate to={ENDPOINTS.ENDPOINT_MOVIES} replace />
+                : (<Login
                   onLogin={handlerLogin}
                   sourceInfoTooltips={sourceInfoTooltips}
                   onBlockedButton={isBlockedButton}
                   onRemoveCookie={removeCookie}
-                  onCheckCockie={cookieCheck}
                   onResetSourceInfoTooltips={resetSourceInfoTooltips}
-                ></Login>
+                ></Login>)
               } />
             <Route
               path='/'
@@ -318,7 +294,7 @@ function App() {
                 <Main></Main>
               } />
             <Route
-              path='/profile'
+              path={ENDPOINTS.ENDPOINT_PROFILE}
               element={
                 <ProtectedRoute
                   element={Profile}
@@ -332,7 +308,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path='/movies' element={
+            <Route path={ENDPOINTS.ENDPOINT_MOVIES} element={
               <ProtectedRoute
                 element={Movies}
                 isLoggedIn={isAuthorized}
@@ -344,7 +320,7 @@ function App() {
             }
             />
             <Route
-              path='/saved-movies'
+              path={ENDPOINTS.ENDPOINT_SAVED_MOVIES}
               element={
                 <ProtectedRoute
                   element={SavedMovies}

@@ -6,7 +6,6 @@ import { MESSAGE } from '../../utils/constats'
 const SearchForm = ({
   onSubmit,
   isLoading,
-  moviesFullList,
   isChecked,
   onChange,
   oldRequest,
@@ -24,10 +23,8 @@ const SearchForm = ({
 
   const {
     inputValues,
-    errMessage,
     isValid,
     handleChange,
-    setInputValues,
   } = useValidationsForms();
 
   // слушатель сабмита
