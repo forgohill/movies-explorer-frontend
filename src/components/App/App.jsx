@@ -103,6 +103,7 @@ function App() {
 
   // получить массив фильмов
   const getingSavedFilms = () => {
+    console.log('getingSavedFilms ПРОИЗОШЕЛ');
     getMovies()
       .then((data) => {
         setSavedFilms(data.movies);
@@ -141,7 +142,6 @@ function App() {
       })
       .finally(() => {
         setIsBlockedButton(false);
-
       })
   };
 
@@ -151,7 +151,6 @@ function App() {
     setIsBlockedButton(true);
     authorize(date)
       .then((res) => {
-        localStorage.setItem('loginInBeatfilmTrue', true);
         setAuthorized(true);
         navigate('/movies', { replace: true });
       })
@@ -184,7 +183,6 @@ function App() {
         console.log(res.exit);
         console.log('я туть');
         resetSourceInfoTooltips();
-        localStorage.removeItem('loginInBeatfilmTrue');
         // удаляем все локал сториджы когда юзер выходит
         localStorage.removeItem('moviesFullList');
         localStorage.removeItem('request');
@@ -196,41 +194,6 @@ function App() {
         console.log(err);
       });
   };
-
-  const cookieCheck = () => {
-    const currentPath = pathname;
-    const token = localStorage.getItem('loginInBeatfilmTrue');
-    if (token) {
-      setAuthorized(true);
-      getingSavedFilms();
-      navigate(currentPath, { replace: true });
-    } else { }
-  };
-
-  // ////////////////////////////////////////////////
-  // ////////////////////////////////////////////////
-  // ////////////////////////////////////////////////
-  // ////////////////////////////////////////////////
-  // ////////////////////////////////////////////////
-
-  useEffect(() => {
-    getUser()
-      .then((data) => {
-        cookieCheck();
-        setCurrentUser(data);
-      })
-      .catch((err) => {
-        // removeCookie();
-      });
-  }, []);
-
-  // ////////////////////////////////////////////////
-  // ////////////////////////////////////////////////
-  // ////////////////////////////////////////////////
-  // ////////////////////////////////////////////////
-
-
-
 
   useEffect(() => {
     if (pathname === '/') {
@@ -274,17 +237,23 @@ function App() {
       });
   }
 
-  // получим контекст юзер и сохраненые карточки
+  // получим контекст юзер
   useEffect(() => {
-    if (isAuthorized === true) {
-      getUser()
-        .then((data) => {
-          setCurrentUser(data);
-        })
-        .catch((err) => {
-          console.log(err);
-          // removeCookie();
-        });
+    const currentPath = pathname;
+    getUser()
+      .then((user) => {
+        setCurrentUser(user);
+        setAuthorized(true);
+        navigate(currentPath, { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [isAuthorized]);
+
+  // получим сайвфилмы
+  useEffect(() => {
+    if (isAuthorized) {
       getingSavedFilms();
     }
   }, [isAuthorized]);
@@ -318,7 +287,6 @@ function App() {
                   sourceInfoTooltips={sourceInfoTooltips}
                   onBlockedButton={isBlockedButton}
                   onRemoveCookie={removeCookie}
-                  onCheckCockie={cookieCheck}
                   onResetSourceInfoTooltips={resetSourceInfoTooltips}
                 ></Login>)
               } />
