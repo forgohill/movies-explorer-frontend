@@ -20,8 +20,8 @@ export const CODE_ERROR = {
   ERROR_400: 400,
 }
 export const configMainApi = {
-  BASE_URL: 'http://localhost:3000',
-  // BASE_URL: 'https://api.forgohill.diplom.nomoreparties.co',
+  // BASE_URL: 'http://localhost:3000',
+  BASE_URL: 'https://api.forgohill.diplom.nomoreparties.co',
   headers: {
     accept: 'application/json',
     'Content-type': 'application/json',
