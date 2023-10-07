@@ -34,6 +34,27 @@
 
 .auth__error_pwd {}
 
+.auth__error {
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+
+  position: absolute;
+  bottom: 70px;
+
+  text-align: center;
+
+  color: #EE3465;
+
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+}
+
 .auth__btn {
   position: absolute;
   bottom: 0;
@@ -61,6 +82,18 @@
 .auth__btn:hover {
   background-color: rgba(52, 87, 243, .8);
   transition: 1s ease;
+}
+
+.auth__btn:disabled {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+  cursor: auto;
+}
+
+.auth__btn:disabled:hover {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+  cursor: auto;
 }
 
 .auth__title {

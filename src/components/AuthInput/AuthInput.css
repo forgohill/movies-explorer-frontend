@@ -57,7 +57,11 @@
   color: #EE3465;
   font-family: 'Inter', Arial, sans-serif;
   font-size: 10px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 0.9;
+}
+
+.input-auth__input_type_error {
+  color: #EE3465;
+  /* background-color: #3456F3; */
 }

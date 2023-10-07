@@ -1,32 +1,15 @@
-/**
-Подготовьте необходимые маршруты:
-по роуту / отображается страница «О проекте»;
-по роуту /movies отображается страница «Фильмы»;
-по роуту /saved-movies отображается страница «Сохранённые фильмы»;
-по роуту /profile отображается страница с профилем пользователя;
-по роутам /signin и /signup отображаются страницы авторизации и регистрации.
-Защищать маршруты авторизацией пока не требуется. Достаточно наладить работу всех ссылок:
-нажатие на логотип ведёт на страницу «О проекте»;
-нажатие на «Фильмы» — на роут /movies;
-нажатие на «Сохранённые фильмы» — на роут /saved-movies;
-нажатие на «Регистрация», «Авторизация», «Аккаунт» — на соответствующие роуты /signup, /signin и /profile.
-4. Вёрстка
- */
-
 import React from 'react';
-import { Routes, Route, Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import AccountButton from '../AccountButton/AccountButton'
 import './Navigation.css';
-import { AuthorizedContext } from '../../contexts/AuthorizedContext';
-const Navigation = () => {
-  const Authorized = React.useContext(AuthorizedContext);
-  console.log(Authorized);
+const Navigation = ({ isLoggedIn }) => {
+
   return (
     <nav
-      className={`navigation ${Authorized === true
+      className={`navigation ${isLoggedIn === true
         ? 'navigation_invisible'
         : ''}`}>
-      {Authorized === true
+      {isLoggedIn === true
         ? (
           <ul className='navigation__container'>
             <ul className='navigation__wrapper'>
