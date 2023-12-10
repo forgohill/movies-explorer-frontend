@@ -12,7 +12,7 @@
 
 Репозиторий для приложения Дипломная работа Яндекс.Практикум.
 
-Это учебный проект прошеший PullRequest, с проверкой профессиональными ревьюверами Яндекс Практикума.
+Это учебный проект прошедший PullRequest, с проверкой профессиональными ревьюверами Яндекс Практикума.
 
 <div id="badges" align="center">
   <a target='_blank' rel='noreferrer' href="https://github.com/forgohill/movies-explorer-frontend/pull/2">
